@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="http://apidev.accuweather.com/currentconditions/v1/45883.json?language=pt&apikey=hoArfRosT1215"></script>
+		<!--<script src="manifest.json"></script>-->
+		<!--<script src="http://servicos.cptec.inpe.br/XML/listaCidades?city=sao%20paulo"></script>-->
+		<xml id="ptXML" src="http://servicos.cptec.inpe.br/XML/cidade/1182/previsao.xml"></xml>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<title>Buscas</title>
+		
+		<script>
+		
+			function getById(id){
+				return document.getElementById(id) 
+			}
+
+			function getByClass(cl){
+				return document.getElementsByClassName(cl) 
+			}
+		
+		</script>
+		
+		<style>
+		
+			*{
+			transition: 0.5s ease;important!
+			font-family: sans, verdana;
+			}
+			
+			option::selection, ::selection{
+			background-color: rgba(0,0,0,0.5);
+			color: #fff;
+			}
+			
+			::focus{
+			border: 3px solid #000;
+			}
+		
+			.pesquisa{
+			background: #35b;
+			}
+			
+			form:hover, .link a:hover{
+			position: relative;
+			box-shadow: 0px 3px 8px #555;
+			border: 1px solid rgba(0,0,0,0.5);
+			//transform: scale(1.01);
+			}
+			
+			form{
+			background: rgba(255,255,255,0.5);
+			display: grid;
+			grid-template-columns: 30% 40% 30%;
+			justify-content: space-around;
+			border: 1px solid rgba(0,0,0,0.2);
+			border-radius: 25px;
+			margin: 5px;
+			padding: 15px 0px;
+			}
+		
+			select, input, button{
+			background: rgba(0,0,0,0.0);
+			display: inline-block;
+			color: #555;
+			border: 1px solid rgba(0,0,0,0.0);
+			padding: 0px 5%;
+			}
+			
+			input{
+			border-left-color: rgba(0,0,0,0.1);
+			border-right-color: rgba(0,0,0,0.1);
+			}
+			
+			select{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-ms-appearance: none;
+			appearance: none;
+			background: url("img/setaBaixo.png") no-repeat rgba(0,0,0,0.0);  /* Imagem de fundo (Seta) */
+			background-position: 95% 50%;
+			background-size: 12px;
+   
+			}
+			
+			#nomeDaEscola{
+			color: #358;
+			background-color: rgba(255,255,255,0.0);
+			text-align: center;
+			font-size: 38px;
+			text-shadow: 0px 1px 5px #fff;
+			//transform: translate( 0%, 50%);
+			//margin: 0px 10%;
+			}
+			
+			#apresentacao{
+			background-image: url('img/bg.jpg');
+			background-position: 20% 0%;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			padding: 0%;
+			}
+			
+			#relogio{
+			display: grid;
+			grid-template-columns: 160px 160px;
+			//background-color: rgba(150,200,255,0.5);
+			justify-content: space-around;
+			}
+			
+			#relogio div{
+			//font-size: 150%;
+			text-align: center;
+			//margin: 20px;
+			}
+			
+			@media screen and (max-width: 400px){
+				#relogio{
+				display: grid;
+				grid-template-columns: 200px;
+				}
+			}
+		
+			.link a{
+			text-decoration: none;
+			background: #35b;
+			color: #fff;
+			width: 100%;
+			line-height: 60px;
+			padding: 15px 5px;
+			margin: 2px 0px;
+			border: 1px solid rgba(255,255,255,0.4);
+			}
+			
+			
+		
+		</style>
+		
+		
+	</head>
+
+	<body>
+	
+		<div class="tudo">
+			
+			<div class="pesquisa w3-container">
+			
+				<form class="entradaPesquisa" action="https://www.google.com.br/search?q=" target="_blank">
+				
+					<select class="seletorDeSite">
+						<!-- ADICIONAR ICONES COM CSS -->
+						<option value="https://www.google.com.br/search?q=">Google</option>
+						<option value="https://www.cifraclub.com.br/?q=">CifraClub</option>
+						<option value="http://tubidy.mobi/search.php?q=">Tubidy</option>
+						<option value="https://www.youtube.com/results?search_query=">Youtube</option>
+						<option value="https://www.letras.mus.br/?q=">Letras</option>
+					</select>
+					
+					<input type="text" name="q" id="entrada" class="entrada" placeholder="Google"/>
+					
+					<button value="Ir" class="encontrar">Pesquisar</button>
+				
+				</form>
+			
+			</div><!--pesquisa-->
+
+
+			<div id="apresentacao">
+				<div id="nomeDaEscola">
+				
+					E. E. Profª Maria Helena Antônio Cardoso (Vida Nova)
+			
+					<div id="relogio">
+					
+						<div><span id="horas"></span>:<span id="minutos"></span>:<span id="segundos"></span></div>
+						<div><span id="dia"></span>/<span id="mes"></span>/<span id="ano"></span></div>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+			
+
+
+			<div class="link w3-container">
+				<a href="https://sed.educacao.sp.gov.br/" target="_blank"><span>Secretaria Digital</span></a>
+				<a href="cal.html" target="_blank"><span>Horários</span></a>
+			</div>
+			
+			<div class="link w3-container">
+				<a href="https://sed.educacao.sp.gov.br/NCA/FichaAluno/Consulta" target="_blank">Fixa do aluno</a>
+			</div>
+			
+		</div><!--tudo-->
+	
+	</body>
+	
+	<script>
+	
+		$(document).ready(function(){
+			//alert("OI");
+			
+			altura = window.innerHeight;
+			
+			$("select").change(function(){
+				motor = $("select option:selected");
+				//alert( motor.val() );
+				$("form").attr("action", motor.val() );
+				$("#entrada").attr("placeholder", motor.text());
+			});
+
+			addZero = function(num){
+				if ( num < 10 ){
+					num = "0" + num.toString();
+				}
+				return num;
+			}
+
+			motorRelogio = function(){
+				t = new Date();
+				
+				horas = t.getHours()
+				minutos = t.getMinutes();
+				segundos = t.getSeconds();
+				
+				dia = t.getDate();
+				mes = t.getMonth()+1;
+				ano = t.getFullYear();
+				
+				getById("horas").innerText = addZero(horas);
+				getById("minutos").innerText = addZero(minutos);
+				getById("segundos").innerText = addZero(segundos);
+				
+				getById("dia").innerText = addZero(dia);
+				getById("mes").innerText = addZero(mes);
+				getById("ano").innerText = addZero(ano);
+				
+				setTimeout( function(){ motorRelogio() }, 1000);
+			}
+
+
+			motorRelogio();
+			
+			getById("apresentacao").style.height = (altura / 2)+"px";
+			
+		});
+	
+	</script>
+	
+</html>
