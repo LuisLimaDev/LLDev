@@ -4,7 +4,7 @@
 	"theme_color": "#127",
 	"icons": {
 		"src" : "https://luislimadev.github.io/LLDev/img/logo144.png",
-		"type": "image/png"
+		"type": "image/png",
 		"sizes": "144x144"
 	},
 	"start_url": "https://luislimadev.github.io/LLDev",
