@@ -14,7 +14,7 @@
 				transition: 0.5s all ease; important!
 			}
 			
-			.tagCorpo{ width: 0% }
+			.tagCorpo{ filter: opacity(0) }
 			#tagCorpo{ transition: 1s all ease; important! }
 			
 			::target{
@@ -310,7 +310,7 @@
 		getById("comandosBanner").style.padding = ( ( altura / 3 ) * 1 )+"px 0px 0px 0px";
 
 		setTimeout(function(){
-			getById("tagCorpo").style.width = "100%";
+			getById("tagCorpo").style.filter = "opacity(1)";
 		}, 500)
 
 		$(function() {
