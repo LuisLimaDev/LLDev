@@ -4,18 +4,18 @@
 		<title>LLDev Sistemas Web</title>
 		<meta charset="UTF-8">
 		<link rel="manifest" href="manifest.json">
-		<link rel="icon" type="image/png" href="https://luislimadev.github.io/LLDev/img/logo144.png"/>
+		<link rel="icon" type="image/png" href="img/favicon.png"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="jquery.min.js"></script>
 		<style>
 			*{
 				margin: 0px;
 				padding: 0px;
-				transition: 0.5s all ease; important!
+				//transition: 2s all ease; important!
 			}
 			
-			.tudo{ filter: opacity(0) }
-			#tudo{ transition: 1s all ease; important! }
+			.tudo{ margin: 100% 0% }
+			#tudo{ transition: 0.5s all cubic-bezier(1, 0.01, 0, 1.0); important! }
 			
 			::target{
 				background-color: #f00;
@@ -116,6 +116,7 @@
 				box-shadow: 0px 10px 15px -5px #333;
 				animation-name: darZoom;
 				animation-duration: 0.5s;
+				justify-content: space-around;
 			}
 
 			.cartao{
@@ -215,15 +216,15 @@
 	</head>
 	
 	<body onload="slide1()" class="tagCorpo" id="tagCorpo">
-		<header></header>
-		<div id="tudo">
+		<header>
 		
 			<div id="lista">
 				<a href="#primeiro">Web Design</a>
 				<a href="#segundo">Gerenciamento</a>
 				<a href="#terceiro">Tecnologia</a>
 			</div>
-		
+		</header>
+		<div id="tudo" class="tudo">		
 			<!--<div id="primeiro" class="escondido cartao" style="background-color: rgba(255,0,0,0.95);">-->
 			<div id="primeiro" class="escondido cartao" style="">
 				<div>
@@ -310,7 +311,7 @@
 		getById("comandosBanner").style.padding = ( ( altura / 3 ) * 1 )+"px 0px 0px 0px";
 
 		setTimeout(function(){
-			getById("tudo").style.filter = "opacity(1)";
+			getById("tudo").style.margin = "0% 0%";
 		}, 500)
 
 		$(function() {
