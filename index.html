@@ -375,6 +375,10 @@
 		  }
 		}
 
+		window.addEventListener("scroll", function(){
+			console.log(window.scrollY);
+			comandosBanner.style.backgroundPosition = "50% -" + (window.scrollY / 8 ) + "px";
+		})
 
 	</script>
 </html>
