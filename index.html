@@ -11,11 +11,11 @@
 			*{
 				margin: 0px;
 				padding: 0px;
-				//transition: 2s all ease; important!
+				transition: 2s margin ease; important!
 			}
 			
 			.tudo{ margin: 100% 0% }
-			#tudo{ transition: 0.5s all cubic-bezier(1, 0.01, 0, 1.0); important! }
+			#aId{ transition: 0.5s all ease; important! }
 			
 			::target{
 				background-color: #f00;
@@ -129,9 +129,12 @@
 				color: #333;
 				top: 120px;
 				background-color: #ffffff;
-				border: 1px solid #fefeff;
 				border-radius: 3px;
+			}
+			
+			.sombraLeve{
 				box-shadow: 0px 10px 15px -5px #888;
+				border: 1px solid #eee;
 			}
 			
 			.cartao div{
@@ -266,13 +269,13 @@
 			<div id="corpo">
 				<div class="cartao" style="background-image: url('https://luislimadev.github.io/LLDev/img/phone.png')">
 					<div>
-					<h2>Primeiro cartão</h2>
-					<hr/>
+					<h2>Por que escolher entre uma página rápida ou uma página bonita?</h2>
+					
 					<p>Uma página leve, simples e com fluídez para que quando solicitada, possa ser exibida
 					o mais rápido possível em qualquer dispositivo que estiver acessando.</p>
 					</div>
 				</div>
-				<div class="cartao" style="background-image: url('https://luislimadev.github.io/LLDev/img/pc.png')">
+				<div class="cartao sombraLeve" style="background-image: url('https://luislimadev.github.io/LLDev/img/pc.png')">
 					<div>
 					<h2>Primeiro cartão</h2>
 					<hr/>
@@ -280,7 +283,7 @@
 					o mais rápido possível em qualquer dispositivo que estiver acessando.</p>
 					</div>
 				</div>
-				<div class="cartao" style="background-image: url('https://luislimadev.github.io/LLDev/img/tv.png')">
+				<div class="cartao sombraLeve" style="background-image: url('https://luislimadev.github.io/LLDev/img/tv.png')">
 					<div>
 					<h2>Primeiro cartão</h2>
 					<hr/>
