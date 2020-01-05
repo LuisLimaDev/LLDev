@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<title>WUTL :: Inicio</title>
+		
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+				font-family: helvetca, verdana;
+			}
+
+			div#logoEbotao {
+				width: 200px;
+			}
+
+			#logoEbotao a{
+				font-size: 36px;
+				color: #fff;
+				text-decoration: none;
+				padding: 24px;
+				line-height: 80px;
+				background-color: #000a;
+			}
+
+			div#menuBar {
+				background-color: #0000;
+				position: fixed;
+				width: 100%;
+			}
+
+			div#artistas {
+				display: grid;
+				grid-template-columns: 25% 25% 25% 25%;
+				text-align: center;
+			}
+
+			#apresentacao{
+				background-image: url(https://yt3.ggpht.com/a/AGF-l79qcJmjriOIQR6lDqGkfAGT2HbkLQ4CWLqf5Q=s900-c-k-c0xffffffff-no-rj-mo);
+				background-attachment: fixed;
+				background-size: cover;
+				background-position: 50%;
+				background-repeat: no-repeat;
+			}
+
+			.titulo {
+				text-align: center;
+				padding: 20%;
+				text-shadow: 0px 2px 20px #fff;
+				font-size: 44px;
+			}
+
+			.artistasDestaque{}
+
+			#apresentacao #artistas a img {
+				width: 80%;
+				border-radius: 50%;
+			}
+
+			#apresentacao #artistas .artista a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			div.artista {
+				background-image: linear-gradient(rgba(0,0,0,0.0), #000);
+			}
+			
+			.conteudo{
+			 width: 100%;
+			}
+			
+			.cartao80, .painel{
+			 margin: 15% 5%;
+			 padding: 5%;
+			
+			}
+			
+			.sombra{
+			 box-shadow: 0px 3px 25px #888;
+			}
+			
+			#rodape{
+			 width: 100%;
+			 background-color: #000a;
+			 color: #fff;
+			}
+			
+			#rodape .itens{
+			 display: grid;
+			 grid-template-columns: 50% 50%;
+			}
+			
+			#rodape #redes{
+				display: grid;
+				line-height: 30px;
+			}
+			
+			.escondido{
+			 display: none;
+			}
+			
+			#menuNav{
+			 transition: 1s all ease;
+			}
+			
+			#menuNav:target{
+			 width: 320px;
+			 display: block;
+			 font-size: 36px;
+			}
+			
+			#menuNav #menu{
+				display: grid;
+				grid-template-columns: 80% 20%;
+			}
+			
+			#menuNav{
+			 background-color: #000;
+			 width: 320px;
+			}
+			
+			#menu a, #menuItems a{
+				width: 100%;
+			 color: #fff;
+			 text-decoration: none;
+			 display: block;
+			 position: relative;
+			 line-height: 50px;
+			 border: 1px solid #000;
+			 padding: 10px;
+			}
+			
+			#menu a:hover{
+			 border-top: #aaa;
+			 border-bottom: #aaa;
+			}
+			
+			div.gradeInicio{
+				display: grid;
+				grid-template-columns: 25% 25% 25% 25%;
+			}
+			
+			div.gradeInicio a{
+				background-color: #000;
+				color: #fff;
+			}
+			
+			div.gradeInicio iframe, div.gradeInicio a{
+				border: 0px solid;
+				width: 80%;
+			}
+
+		</style>
+		
+	</head>
+
+	<script>
+	
+		function getById(id){
+			return document.getElementById(id);
+		}
+	
+		function getByClass(cl){
+			return document.getElementById(cl);
+		}
+	
+	</script>
+
+	<body>
+		<header>
+		</header>
+		<div id="corpo">
+			<div id="menuBar">
+				<div id="logoEbotao">
+					<a href="#menuNav">&#9776;</a>
+				</div>
+				
+				<!--<div id="pesquisa" class="escondido">
+					<form action="pesquisas.html/">
+						<input name="q" placeholder="Sua pesquisa"/>
+						<input type="button" id="vai" value="Encontrar"/>
+					</form>
+				</div>-->
+				
+				
+				<div id="menuNav" class="escondido">
+					<div id="menu">
+						<div id="menuItems">
+							<a href="#inicio">Inicio</a>
+							<a href="#lancamentos">lancamentos</a>
+							<a href="#eventos">eventos</a>
+							<a href="#galeria">Galeria</a>
+							<a href="#contato">Contato</a>
+						</div>
+						<a href="#cancela">&times;</a>
+					</div>
+				</div>
+			</div>
+			
+			<div id="topo" class="inicio topo banner">
+				<div id="apresentacao" class="grade">
+					<div class="titulo borda5">
+						<h4>Bem vindo à</h4>
+						<h1>WUTL Records</h1>
+					</div>
+					<div class="artistasDestaque">
+						<h4>Conheça nossos</h4>
+						<h1>PRINCIPAIS ARTISTAS</h1>
+						<div id="artistas" class="grade">
+							<div class="artista">
+								<a href="artista1.html"><img src="https://i1.sndcdn.com/avatars-000599143698-ftm6c2-t500x500.jpg" type="image/jpeg" />SIFER</a>
+								<!-- https://soundcloud.com/siferlive -->
+							</div>
+							<div class="artista">
+								<a href="artista2.html"><img src="https://i1.sndcdn.com/avatars-000346685402-qc59mv-t500x500.jpg" type="image/jpeg" />GrustB'</a>
+								<!-- https://soundcloud.com/grustbeats -->
+							</div>
+							<div class="artista">
+								<a href="artista3.html"><img src="https://i1.sndcdn.com/avatars-000241380071-7zswni-t500x500.jpg" type="image/jpeg" />Luis Lima</a>
+								<!-- https://soundcloud.com/luislima-1 -->
+							</div>
+							<div class="artista">
+								<a href="artista4.html"><img src="https://i1.sndcdn.com/avatars-000564098253-lsujub-t500x500.jpg" type="image/jpeg" />FIREFLIE</a>
+								<!-- https://soundcloud.com/firefliemusic -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="conteudo">
+			
+				<div id="lancamentos">
+					<div class="painel sombra">
+						<h4>Lançamentos de sons</h4>
+						<h2>ORIGINAL MIX</h2>
+						<div class="gradeInicio">
+							<iframe src="https://www.youtube.com/embed/s5ip7UX8dpM"></iframe>
+							<iframe src="https://www.youtube.com/embed/x0DtGMSt9xc"></iframe>
+							<iframe src="https://www.youtube.com/embed/AvTU2sMdKGY"></iframe>
+							<a id="mais" href="originais.html">MAIS <br>...</a>
+						</div>
+					</div>
+				</div>
+			
+				<div id="eventos">
+					<div class="painel sombra">
+						<h4>Ultimos</h4>
+						<h2>REMIXES E SETS</h2>
+						<div class="gradeInicio">
+							<iframe src="https://www.youtube.com/embed/XxlNh6FCCk8"></iframe>
+							<iframe src="https://www.youtube.com/embed/bS4h6B2JNBc"></iframe>
+							<iframe src="https://www.youtube.com/embed/DBQ1dRnKa_Y"></iframe>
+							<a id="mais" href="remixes.html">MAIS <br>...</a>
+						</div>
+					</div>
+				</div>
+			
+				<div id="galeria" class="painelEspecial">
+					<div class="cartao80 sombra">
+						<h4>Calendario de</h4>
+						<h2>EVENTOS PREVISTOS</h2>
+						<div class="gradeInicio">
+							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
+							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
+							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
+							<a id="mais" href="agenda.html">MAIS <br>...</a>
+						</div>
+					</div>
+				</div>
+			
+				
+			
+			</div>
+			<div id="rodape">
+			
+				<div class="itens">
+					<div id="redes">
+						<a href="http://youtube.com">YouTube</a>
+						<a href="http://instagram.com/wutl.records">Instagram.com/wutl.records</a>
+						<a href="http://spotify.com">spotify</a>
+						<a href="http://soundcloud.com">SoudCloud</a>
+					</div>
+					<div id="infos">
+						<h4>Entre em</h4>
+						<h3>Contato</h3>
+						<h1 id="nome">WUTL | Records</h1>
+						<h5>Wake up to life</h5>
+						<a href="mailto://lhslima16@gmail.com" id="email">Enviar e-mail</a>
+					</div>
+				</div>
+					
+				<div style="text-align: center; color: #fff; padding: 50px 0px 50px 0px; font-size: 12px;">
+					&reg; Todos os direitos reservados aos seus respectivos autores.<br/>
+					&reg; All the rights reserved to their respective authors.<br/><br/>
+					Developed by (desenvolvido por) <a href="http://luislimadev.github.io/LLDev/" target="_blank">LLDev</a>
+				</div>
+			
+			</div>
+			
+		</div>
+		<footer>
+		</footer>
+	</body>
+
+	<script>
+		altura = window.innerHeight;
+		largura = window.innerWidth;
+	</script>
+
+	<script type
