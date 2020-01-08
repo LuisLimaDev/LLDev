@@ -14,11 +14,9 @@
 				padding: 0px;
 				font-family: helvetca, verdana;
 			}
-
 			div#logoEbotao {
 				width: 200px;
 			}
-
 			#logoEbotao a{
 				font-size: 36px;
 				color: #fff;
@@ -27,32 +25,28 @@
 				line-height: 80px;
 				background-color: #000a;
 			}
-
 			div#menuBar {
 				background-color: #0000;
 				position: fixed;
 				width: 100%;
 			}
-
 			div#artistas {
 				display: grid;
 				grid-template-columns: 25% 25% 25% 25%;
 				text-align: center;
 			}
-
 			#apresentacao{
 				background-image: url(https://yt3.ggpht.com/a/AGF-l79qcJmjriOIQR6lDqGkfAGT2HbkLQ4CWLqf5Q=s900-c-k-c0xffffffff-no-rj-mo);
 				background-attachment: fixed;
 				background-size: cover;
-				background-position: 50%;
+				background-position: 50% 0%;
 				background-repeat: no-repeat;
 			}
-
 			.bemVindo {
 				text-align: right;
-				padding: 20%;
+				padding: 20% 5%;
 				text-shadow: 0px 2px 20px #fff;
-				font-size: 44px;
+				font-size: 34px;
 			}
 
 			.titulo {
@@ -61,19 +55,18 @@
 				text-shadow: 0px 2px 20px #fff;
 				font-size: 26px;
 			}
-
-			.artistasDestaque{}
+			
+			.bemVindo h1, .titulo h2{
+				font-weight: 100;
+			}
 
 			#apresentacao #artistas a img {
 				width: 80%;
 				border-radius: 50%;
-			}
-
-			#apresentacao #artistas .artista a {
+			}			#apresentacao #artistas .artista a {
 				color: #000;
 				text-decoration: none;
 			}
-
 			div.artistasDestaque {
 				background-image: linear-gradient(rgba(0,0,0,0.0), #fff);
 			}
@@ -83,9 +76,27 @@
 			}
 			
 			.cartao80, .painel{
-			 margin: 15% 5%;
-			 padding: 5%;
+				margin: 15% 5%;
+				padding: 5%;
+			}
 			
+			a.verTodos:hover{
+				background-color: #ccc;
+			}
+			
+			a.verTodos{
+				transition: 0.3s all ease;
+				text-align: center;
+				margin: 25% 0px;
+				border: 3px solid #000;
+				color: #000;
+				text-decoration: none;
+				padding: 10px;
+			}
+
+			div.gradeCartao{
+				display: grid;
+				grid-template-columns: 25% 75%;
 			}
 			
 			.sombra{
@@ -116,6 +127,7 @@
 			
 			#rodape #redes{
 				display: grid;
+				margin: 5%;
 			}
 			
 			.escondido{
@@ -129,7 +141,7 @@
 			#menuNav:target{
 			 width: 320px;
 			 display: block;
-			 font-size: 36px;
+			 font-size: 26px;
 			}
 			
 			#menuNav #menu{
@@ -143,19 +155,19 @@
 			}
 			
 			#menu a, #menuItems a{
-				width: 100%;
 				color: #fff;
 				text-decoration: none;
 				display: block;
 				position: relative;
 				line-height: 50px;
-				border: 1px solid #000;
+				border: solid rgba(255,255,255,0.1);
+				border-width: 0px 0px 1px 0px;
 				padding: 10px;
 			}
 			
 			#menu a:hover{
-			 border-top: #aaa;
-			 border-bottom: #aaa;
+				border-color: #aaa;
+				color: #aaa;
 			}
 			
 			div.gradeInicio{
@@ -172,7 +184,6 @@
 				border: 0px solid;
 				width: 80%;
 			}
-
 		</style>
 		
 	</head>
@@ -209,13 +220,13 @@
 				<div id="menuNav" class="escondido">
 					<div id="menu">
 						<div id="menuItems">
-							<a href="#inicio">Inicio</a>
-							<a href="#lancamentos">lancamentos</a>
-							<a href="#eventos">eventos</a>
-							<a href="#galeria">Galeria</a>
-							<a href="#contato">Contato</a>
+							<a href="#inicio">INICIO</a>
+							<a href="#lancamentos">LANÇAMENTOS</a>
+							<a href="#eventos">EVENTOS</a>
+							<a href="#galeria">GALERIA</a>
+							<a href="#contato">CONTATO</a>
 						</div>
-						<a href="#cancela">&times;</a>
+						<a href="#cancela" style="height: 50px; width: 20px; border-width: 1px">&times;</a>
 					</div>
 				</div>
 			</div>
@@ -224,12 +235,12 @@
 				<div id="apresentacao" class="grade">
 					<div class="bemVindo borda5">
 						<h4>você está em</h4>
-						<h1>WUTL Records</h1>
+						<h1>WUTL | Records</h1>
 					</div>
 					<div class="artistasDestaque">
 						<div class="titulo">
-							<h4>Conheça nossos</h4>
-							<h2>PRINCIPAIS ARTISTAS</h2>
+							<h4>conheça os</h4>
+							<h2>ARTISTAS DA CASA</h2>
 						</div>
 						<div id="artistas" class="grade">
 							<div class="artista">
@@ -256,24 +267,30 @@
 			
 				<div id="lancamentos">
 					<div class="painel sombra">
-						<div class="titulo">
-							<h4>Lançamentos de sons</h4>
-							<h2>ORIGINAL MIX</h2>
+						<div class="gradeCartao">
+							<a href="originais.html" class="verTodos"><span>VER TODOS</span></a>
+							<div class="titulo">
+								<h4>lançamentos de sons</h4>
+								<h2>ORIGINAL MIX</h2>
+							</div>
 						</div>
 						<div class="gradeInicio">
 							<iframe src="https://www.youtube.com/embed/s5ip7UX8dpM"></iframe>
 							<iframe src="https://www.youtube.com/embed/x0DtGMSt9xc"></iframe>
 							<iframe src="https://www.youtube.com/embed/AvTU2sMdKGY"></iframe>
-							<a id="mais" href="originais.html">MAIS <br>...</a>
+							<iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/13211763&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 						</div>
 					</div>
 				</div>
 			
 				<div id="eventos">
 					<div class="painel sombra">
-						<div class="titulo">
-							<h4>Ultimos</h4>
-							<h2>REMIXES E SETS</h2>
+						<div class="gradeCartao">
+							<a href="remixes.html" class="verTodos"><span>VER TODOS</span></a>
+							<div class="titulo">
+								<h4>ultimos</h4>
+								<h2>REMIXES E SETS</h2>
+							</div>
 						</div>
 						<div class="gradeInicio">
 							<iframe src="https://www.youtube.com/embed/XxlNh6FCCk8"></iframe>
@@ -286,9 +303,12 @@
 			
 				<div id="galeria" class="painelEspecial">
 					<div class="cartao80 sombra">
-						<div class="titulo">
-							<h4>Calendario de</h4>
-							<h2>EVENTOS PREVISTOS</h2>
+						<div class="gradeCartao">
+							<a href="agenda.html" class="verTodos"><span>VER TODOS</span></a>
+							<div class="titulo">
+								<h4>calendario de</h4>
+								<h2>EVENTOS</h2>
+							</div>
 						</div>
 						<div class="gradeInicio">
 							<a id="mais" href="agenda.html">MAIS <br>...</a>
@@ -338,12 +358,14 @@
 		largura = window.innerWidth;
 	</script>
 	
-	<script type="text/JavaScript">
-		
-		window.scroll.addEventListener("onload", function(){
-			console.log(window.scroll);
+	<script type="text/javascript">
+
+		window.addEventListener("scroll", function(){
+			//console.log(window.scrollY);
+			apresentacao.style.backgroundPosition = "50% -" + (window.scrollY / 3 ) + "px";
+			//getById("corpo").style.transform = "translate( 0px, -" + ( window.scrollY * 5 ) + "px)";
 		});
-		
+
 	</script>
 
-	<script type
+</html>
