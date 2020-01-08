@@ -48,11 +48,18 @@
 				background-repeat: no-repeat;
 			}
 
-			.titulo {
-				text-align: center;
+			.bemVindo {
+				text-align: right;
 				padding: 20%;
 				text-shadow: 0px 2px 20px #fff;
 				font-size: 44px;
+			}
+
+			.titulo {
+				text-align: right;
+				padding: 5%;
+				text-shadow: 0px 2px 20px #fff;
+				font-size: 26px;
 			}
 
 			.artistasDestaque{}
@@ -63,12 +70,12 @@
 			}
 
 			#apresentacao #artistas .artista a {
-				color: #fff;
+				color: #000;
 				text-decoration: none;
 			}
 
-			div.artista {
-				background-image: linear-gradient(rgba(0,0,0,0.0), #000);
+			div.artistasDestaque {
+				background-image: linear-gradient(rgba(0,0,0,0.0), #fff);
 			}
 			
 			.conteudo{
@@ -97,13 +104,18 @@
 			
 			#rodape .itens{
 			 display: grid;
-			 grid-template-columns: 50% 50%;
+			 grid-template-columns: 65% 35%;
+			}
+			
+			#rodape #infos{
+				display: grid;
+				line-height: 50px;
+				margin: 5%;
+				text-align: right;
 			}
 			
 			#rodape #redes{
 				display: grid;
-				line-height: 30px;
-				margin: 5%;
 			}
 			
 			.escondido{
@@ -132,13 +144,13 @@
 			
 			#menu a, #menuItems a{
 				width: 100%;
-			 color: #fff;
-			 text-decoration: none;
-			 display: block;
-			 position: relative;
-			 line-height: 50px;
-			 border: 1px solid #000;
-			 padding: 10px;
+				color: #fff;
+				text-decoration: none;
+				display: block;
+				position: relative;
+				line-height: 50px;
+				border: 1px solid #000;
+				padding: 10px;
 			}
 			
 			#menu a:hover{
@@ -210,13 +222,15 @@
 			
 			<div id="topo" class="inicio topo banner">
 				<div id="apresentacao" class="grade">
-					<div class="titulo borda5">
-						<h4>Bem vindo à</h4>
+					<div class="bemVindo borda5">
+						<h4>você está em</h4>
 						<h1>WUTL Records</h1>
 					</div>
 					<div class="artistasDestaque">
-						<h4>Conheça nossos</h4>
-						<h1>PRINCIPAIS ARTISTAS</h1>
+						<div class="titulo">
+							<h4>Conheça nossos</h4>
+							<h2>PRINCIPAIS ARTISTAS</h2>
+						</div>
 						<div id="artistas" class="grade">
 							<div class="artista">
 								<a href="artista1.html"><img src="https://i1.sndcdn.com/avatars-000599143698-ftm6c2-t500x500.jpg" type="image/jpeg" />SIFER</a>
@@ -242,8 +256,10 @@
 			
 				<div id="lancamentos">
 					<div class="painel sombra">
-						<h4>Lançamentos de sons</h4>
-						<h2>ORIGINAL MIX</h2>
+						<div class="titulo">
+							<h4>Lançamentos de sons</h4>
+							<h2>ORIGINAL MIX</h2>
+						</div>
 						<div class="gradeInicio">
 							<iframe src="https://www.youtube.com/embed/s5ip7UX8dpM"></iframe>
 							<iframe src="https://www.youtube.com/embed/x0DtGMSt9xc"></iframe>
@@ -255,8 +271,10 @@
 			
 				<div id="eventos">
 					<div class="painel sombra">
-						<h4>Ultimos</h4>
-						<h2>REMIXES E SETS</h2>
+						<div class="titulo">
+							<h4>Ultimos</h4>
+							<h2>REMIXES E SETS</h2>
+						</div>
 						<div class="gradeInicio">
 							<iframe src="https://www.youtube.com/embed/XxlNh6FCCk8"></iframe>
 							<iframe src="https://www.youtube.com/embed/bS4h6B2JNBc"></iframe>
@@ -268,12 +286,14 @@
 			
 				<div id="galeria" class="painelEspecial">
 					<div class="cartao80 sombra">
-						<h4>Calendario de</h4>
-						<h2>EVENTOS PREVISTOS</h2>
+						<div class="titulo">
+							<h4>Calendario de</h4>
+							<h2>EVENTOS PREVISTOS</h2>
+						</div>
 						<div class="gradeInicio">
-							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
-							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
-							<iframe src="https://www.youtube.com/watch?v=s5ip7UX8dpM"></iframe>
+							<a id="mais" href="agenda.html">MAIS <br>...</a>
+							<a id="mais" href="agenda.html">MAIS <br>...</a>
+							<a id="mais" href="agenda.html">MAIS <br>...</a>
 							<a id="mais" href="agenda.html">MAIS <br>...</a>
 						</div>
 					</div>
@@ -285,18 +305,18 @@
 			<div id="rodape">
 			
 				<div class="itens">
-					<div id="redes">
-						<a href="http://youtube.com">YouTube</a>
-						<a href="http://instagram.com/wutl.records">Instagram</a>
-						<a href="http://spotify.com">spotify</a>
-						<a href="http://soundcloud.com">SoudCloud</a>
-					</div>
-					<div id="infos">
-						<h4>Entre em</h4>
-						<h3>Contato</h3>
+					<div id="infos" class="titulo">
+						<h4>assista, ouça,</h4>
+						<h3>SIGA</h3>
 						<h1 id="nome">WUTL | Records</h1>
 						<h5>Wake up to life</h5>
 						<a href="mailto://lhslima16@gmail.com" id="email">Enviar e-mail</a>
+					</div>
+					<div id="redes">
+						<a href="http://youtube.com" style="">YouTube</a>
+						<a href="http://instagram.com/wutl.records">Instagram</a>
+						<a href="http://spotify.com">Spotify</a>
+						<a href="http://soundcloud.com">SoudCloud</a>
 					</div>
 				</div>
 					
@@ -316,6 +336,14 @@
 	<script>
 		altura = window.innerHeight;
 		largura = window.innerWidth;
+	</script>
+	
+	<script type="text/JavaScript">
+		
+		window.scroll.addEventListener("onload", function(){
+			console.log(window.scroll);
+		});
+		
 	</script>
 
 	<script type
