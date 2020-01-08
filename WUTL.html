@@ -36,6 +36,7 @@
 				text-align: center;
 			}
 			#apresentacao{
+				transition: 1s background-image ease;
 				background-image: url(https://yt3.ggpht.com/a/AGF-l79qcJmjriOIQR6lDqGkfAGT2HbkLQ4CWLqf5Q=s900-c-k-c0xffffffff-no-rj-mo);
 				background-attachment: fixed;
 				background-size: cover;
@@ -54,6 +55,12 @@
 				padding: 5%;
 				text-shadow: 0px 2px 20px #fff;
 				font-size: 26px;
+			}
+			
+			.animarSombra{
+				animation-name: sombrasTitulos;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
 			}
 			
 			.bemVindo h1, .titulo h2{
@@ -190,6 +197,19 @@
 					font-size: 22px;
 				}
 			}
+			
+			@keyframes sombrasTitulos{
+				0%{
+					text-shadow: 0px 0px 0px #000;
+				}
+				
+				50%{
+					text-shadow: 0px 2px 20px #fff;
+				}
+				100%{
+					text-shadow: 0px 0px 0px #000;
+				}
+			}
 
 		</style>
 		
@@ -203,6 +223,21 @@
 	
 		function getByClass(cl){
 			return document.getElementById(cl);
+		}
+
+		function slide1(){
+			getById('apresentacao').style.backgroundImage = "url('images/tribalSong.png')";
+			setTimeout("slide2()", 3000)
+		}
+		  
+		function slide2(){
+			getById('apresentacao').style.backgroundImage = "url('images/narguile.png')";
+			setTimeout("slide3()", 3000)
+		}
+		  
+		function slide3(){
+			getById('apresentacao').style.backgroundImage = "url('images/dreams.png')";
+			setTimeout("slide1()", 3000)
 		}
 	
 	</script>
@@ -240,7 +275,7 @@
 			
 			<div id="topo" class="inicio topo banner">
 				<div id="apresentacao" class="grade">
-					<div class="bemVindo borda5">
+					<div class="bemVindo animarSombra">
 						<h4>você está em</h4>
 						<h1>WUTL | Records</h1>
 					</div>
@@ -303,7 +338,7 @@
 							<iframe src="https://www.youtube.com/embed/XxlNh6FCCk8"></iframe>
 							<iframe src="https://www.youtube.com/embed/bS4h6B2JNBc"></iframe>
 							<iframe src="https://www.youtube.com/embed/DBQ1dRnKa_Y"></iframe>
-							<a id="mais" href="remixes.html">MAIS <br>...</a>
+							<iframe src="https://www.youtube.com/embed/VcIMnVp1HXU"></iframe>
 						</div>
 					</div>
 				</div>
@@ -332,7 +367,7 @@
 			<div id="rodape">
 			
 				<div class="itens">
-					<div id="" class="titulo">
+					<div id="" class="titulo animarSombra">
 						<h4>assista, ouça,</h4>
 						<h3>SIGA</h3>
 						<h1 id="nome">WUTL | Records</h1>
@@ -369,9 +404,11 @@
 
 		window.addEventListener("scroll", function(){
 			//console.log(window.scrollY);
-			apresentacao.style.backgroundPosition = "50% -" + (window.scrollY / 3 ) + "px";
+			apresentacao.style.backgroundPosition = "50% -" + (window.scrollY / 15 ) + "px";
 			//getById("corpo").style.transform = "translate( 0px, -" + ( window.scrollY * 5 ) + "px)";
 		});
+		
+		slide1();
 
 	</script>
 
