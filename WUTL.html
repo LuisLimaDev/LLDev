@@ -15,15 +15,18 @@
 				font-family: helvetca, verdana;
 			}
 			div#logoEbotao {
-				width: 200px;
+				background-color: rgba(0,0,0,0.8);
+				display: inline-flex;
+				width: 100%;
+				justify-content: space-between;
+				color: #fff;
 			}
 			#logoEbotao a{
-				font-size: 36px;
 				color: #fff;
+				font-size: 36px;
 				text-decoration: none;
 				padding: 24px;
-				line-height: 80px;
-				background-color: #000a;
+				//background-color: rgba(0,0,0,0.8);
 			}
 			div#menuBar {
 				background-color: #0000;
@@ -43,11 +46,13 @@
 				background-position: 50% 0%;
 				background-repeat: no-repeat;
 			}
+			.bemVindo h2{ font-weight: 100 }
 			.bemVindo {
 				text-align: right;
-				padding: 20% 5%;
-				text-shadow: 0px 2px 20px #fff;
-				font-size: 34px;
+				padding: 0% 5%;
+				font-size: 26px;
+				font-weight: 100;
+				line-height: 100px;
 			}
 
 			.titulo {
@@ -94,7 +99,7 @@
 			a.verTodos{
 				transition: 0.3s all ease;
 				text-align: center;
-				margin: 25% 0px;
+				margin: 20% 0px;
 				border: 3px solid #000;
 				color: #000;
 				text-decoration: none;
@@ -192,9 +197,14 @@
 				width: 80%;
 			}
 
-			@media screen and (max-width: 600px) {
+			@media screen and (min-width: 600px) {
 				.bemVindo, .titulo{
 					font-size: 22px;
+				}
+				
+				.gradeInicio{
+					display: grid;
+					grid-template-columns: 50% 50%;
 				}
 			}
 			
@@ -249,6 +259,11 @@
 			<div id="menuBar">
 				<div id="logoEbotao">
 					<a href="#menuNav">&#9776;</a>
+				
+					<div class="animarSombra bemVindo">
+						<h2>WUTL | Records</h2>
+					</div>
+
 				</div>
 				
 				<!--<div id="pesquisa" class="escondido">
@@ -257,7 +272,6 @@
 						<input type="button" id="vai" value="Encontrar"/>
 					</form>
 				</div>-->
-				
 				
 				<div id="menuNav" class="escondido">
 					<div id="menu">
@@ -275,14 +289,13 @@
 			
 			<div id="topo" class="inicio topo banner">
 				<div id="apresentacao" class="grade">
-					<div class="bemVindo animarSombra">
-						<h4>você está em</h4>
-						<h1>WUTL | Records</h1>
-					</div>
 					<div class="artistasDestaque">
-						<div class="titulo">
-							<h4>conheça os</h4>
-							<h2>ARTISTAS DA CASA</h2>
+						<div class="gradeCartao">
+							<a href="originais.html" class="verTodos"><span>VER TODOS</span></a>
+							<div class="titulo">
+								<h4>conheça os</h4>
+								<h2>ARTISTAS DA CASA</h2>
+							</div>
 						</div>
 						<div id="artistas" class="grade">
 							<div class="artista">
@@ -398,13 +411,15 @@
 	<script>
 		altura = window.innerHeight;
 		largura = window.innerWidth;
+		
+		getById("apresentacao").style.paddingTop = (altura - 120)+"px";
 	</script>
 	
 	<script type="text/javascript">
 
 		window.addEventListener("scroll", function(){
 			//console.log(window.scrollY);
-			apresentacao.style.backgroundPosition = "50% -" + (window.scrollY / 15 ) + "px";
+			apresentacao.style.backgroundPosition = "50% -" + (window.scrollY / 10 ) + "px";
 			//getById("corpo").style.transform = "translate( 0px, -" + ( window.scrollY * 5 ) + "px)";
 		});
 		
