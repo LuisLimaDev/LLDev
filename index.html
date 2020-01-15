@@ -52,18 +52,20 @@
 				background-color: rgba(0,0,150,0.8);
 			}
 			
-			#lista li, #lista a{
+			#lista li, #lista a, #janelaParalax span{
 				text-align: center;
 				list-style: none;
 				text-decoration: none;
 				color: #fff;
 				line-height: 100px;
+				transition: 0.5s all ease;
 			}
 			
 			#lista a:hover{
 				background-color: rgba(255,255,255,0.8);
 				background-size: 90px;
 				color: #003;
+				text-shadow: 0px 0px 20px #000;
 			}
 
 			/** configurações do Banner **/
@@ -147,6 +149,29 @@
 			.cartao div{
 				margin: 30px;
 				line-height: 30px;
+			}
+
+			#fundo{
+				background-image: url(https://luislimadev.github.io/LLDev/img/print1.png);
+				background-attachment: fixed;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			#janelaParalax{
+				width: 100%;
+				display: grid;
+				//grid-template-columns: 33.33333% 33.33333% 33.33333%;
+			}
+			#janelaParalax span{
+				background-image: repeating-linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,0.0) 2px);
+				line-height: 200px;
+				text-align: center;
+				color: #fff;
+				text-shadow: 0px 3px 10px #000;
+				font-size: 26px;
+				font-weight: x-large;
+				background-attachment: fixed;
 			}
 
 			@keyframes darZoom{
@@ -290,6 +315,13 @@
 					o mais rápido possível em qualquer dispositivo que estiver acessando.</p>
 					</div>
 				</div>
+				<div id="fundo">
+					<div id="janelaParalax">
+						<span>INTERATIVIDADE</span>
+						<span>RAPIDEZ</span>
+						<span>FUNCIONAL</span>
+					</div>
+				</div>
 				<div class="cartao sombraLeve" style="background-image: url('https://luislimadev.github.io/LLDev/img/tv.png')">
 					<div>
 					<h2>Compatibilidade</h2>
@@ -384,7 +416,7 @@
 		}
 
 		window.addEventListener("scroll", function(){
-			console.log(window.scrollY);
+			//console.log(window.scrollY);
 			comandosBanner.style.backgroundPosition = "50% -" + (window.scrollY / 8 ) + "px";
 		})
 
