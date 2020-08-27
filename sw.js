@@ -35,6 +35,7 @@ const PRECACHE_URLS = [
   'index.html',
   'jquery.min.js', // Alias for index.html
   'jquery.js',
+  'sw.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.
