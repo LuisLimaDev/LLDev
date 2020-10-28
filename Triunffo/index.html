@@ -233,6 +233,8 @@ margin-top: 20px;
 }
 
 #final{
+    background-color: #222;
+    color: white;
 }
 
 form#formulario, form#formulario div {
@@ -247,8 +249,32 @@ font-size: 12pt;
 padding: 10px 0px;
 border: 1px solid;
 border-color: transparent transparent gray transparent;
-background-color:
+background-color: var(--branco7)
 }
+
+    @media only screen and ( max-width : 950px ){
+        #itensMenuBarra{ display: none }
+        div#itensBarra{
+            display: grid;
+            grid-template-columns: 260px 80px;
+            justify-content: space-between;
+        }
+        div#banner1 div p{ font-size: 30pt }
+        div#banner1 div img{ width: 90% }
+    }
+
+    @media only screen and ( max-width : 650px ){
+        div#banner1 div img{ width: 100% }
+        div#banner1 div p{
+            font-size: 20pt;
+        }
+        div.cartao{
+            width: 85%;
+        }
+        div.itens{
+            padding: 20px 5px;
+        }
+    }
 
 .escondido{
 display: none;
@@ -312,7 +338,7 @@ display: none;
 
                         </div>
                     </div>
-<div>
+<div style="background-color: var(--preto7); padding: 20px 0px; text-align: center;">
 <section class="cartao direitos">
 <p>®Todos os direitos reservados aos seu respectivos autores.</p>
 <p>®All the rights reserved to their respective authors.</p>
