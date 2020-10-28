@@ -53,7 +53,7 @@ numeradorProdutos = 0;
 while ( numeradorProdutos < produtos.length ){
         fotoProd = el.novaImagem( produtos[numeradorProdutos].foto[0], produtos[numeradorProdutos].tipo + " " + produtos[numeradorProdutos].descricao );
        
-        el.acrescentar( divQueRecebeOsItens, el.novaDiv( el.novoLink( fotoProd.outerHTML + produtos[numeradorProdutos].tipo + " " + produtos[numeradorProdutos].descricao ,"#").outerHTML + el.novoSpan( produtos[numeradorProdutos].valor.toLocaleString("pt-BR", { style: "currency" , currency:"BRL"}) ).outerHTML + el.novoButton( "Adicionar", "addItemAoCarrinho("+ numeradorProdutos +")", "btPadrao1").outerHTML ) );
+        el.acrescentar( divQueRecebeOsItens, el.novaDiv( el.novoLink( fotoProd.outerHTML + produtos[numeradorProdutos].tipo + " " + produtos[numeradorProdutos].descricao ,"#").outerHTML ) );
         numeradorProdutos++
     }
 }
