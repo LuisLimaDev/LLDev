@@ -29,14 +29,14 @@ divisorBanner.id = "parte" + cntBanner;
         el.acrescentar( divDoBanner, divisorBanner );
         cntBanner++
     }
-    //temporizadorBanner( 3000 );
+    temporizadorBanner(  );
 }
 
 temporizadorBanner = function(){
 repetirTemporizador = true;
 setTimeout(function(){
 if( repetirTemporizador == true ){
-console.log("A repetição está " + repetirTemporizador + ", Com o valor: " + bannerAtivo );
+//console.log("A repetição está " + repetirTemporizador + ", Com o valor: " + bannerAtivo );
 // COMANDOS PARA ALTERNAR O BANNER
     
     getById( "banner1" ).scrollTo( ( window.innerWidth * bannerAtivo),0 );
