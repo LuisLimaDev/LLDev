@@ -57,7 +57,7 @@
         {
             "idItemEstoque": estoqueGeral[1],
             "imgBanner":"https://images.freeimages.com/images/premium/previews/3342/33424806-man-standing-on-a-caribbean-beach.jpg",
-            "textoApresentacao": "Bermudas personalizadas, vários tamanhos e cores."
+            "textoApresentacao": "Bermudas para o verão, vários tamanhos e cores."
         },
         {
             "idItemEstoque": estoqueGeral[3],
