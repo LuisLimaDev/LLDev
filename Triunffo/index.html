@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" content="manifest.json">
 <link rel="icon" type="image/x-icon" content="icone.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <!--
 <script src="FileSaver.js"></script>
 <script src="jquery.js"></script>
@@ -25,8 +26,8 @@
 :root{
 --corPadrao1: #6ce7ff;
 --corPadrao2: #51b9c5;
-                --branco7: rgba(255,255,255,0.75);
-                --preto7: rgba(0,0,0,0.75);
+--branco7: rgba(255,255,255,0.75);
+--preto7: rgba(0,0,0,0.75);
 }
 
 @keyframes animCarregando{
@@ -44,9 +45,9 @@ padding: 0px;
 }
 *{
 transition: all 0.3s ease !important;
-font-family: sans-serif;
-                margin: 0px;
-                padding: 0px;
+font-family: 'Montserrat', sans-serif;
+margin: 0px;
+padding: 0px;
 }
 .pagina{ display: none }
 #centralizarAnimLoad{
@@ -82,117 +83,117 @@ color: #4400ff;
 width: 100%;
 line-height: 70px;
 font-size: 15pt;
-                box-shadow: 0px 3px 8px #222;
+box-shadow: 0px 3px 8px #222;
 }
 
-            div#itensBarra {
-                display: grid;
-                grid-template-columns: 260px auto 80px;
-                text-align: center;
-            }
-
-            div#itensBarra #logo {
-                background-size: 100%;
-                background-position: 50%;
-                background-repeat: no-repeat;
-            }
-
-            div#itensBarra a:hover {
-                background-color: var(--corPadrao1);
-                color: black;
-            }
-            div#itensBarra a {
-                padding: 24px 2%;
-                text-decoration: none;
-                color: #ffffff;
-            }
-
-            @keyframes animBanner{
-                0%{ grid-template-columns: 100% 0% 0%}
-                32%{ grid-template-columns: 100% 0% 0% }
-
-                33%{ grid-template-columns: 0% 100% 0% }
-                65%{ grid-template-columns: 0% 100% 0% }
-
-                66%{ grid-template-columns: 0% 0% 100% }
-                99%{ grid-template-columns: 0% 0% 100%}
-
-                100%{ grid-template-columns: 100% 0% 0% }
-            }
-
-            div#banner1 {
-                display: grid;
-                //animation: animBanner 9s infinite;
-                grid-template-columns: 100% 100% 100%;
-                overflow-x: hidden;
-                padding: 70px 0px 0px 0px;
-            }
-
-            div#banner1 div{
-                background: linear-gradient(90deg, transparent, white);
-                display: grid;
-                grid-template-columns: 60% 40%;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            div#banner1 div p{
-                margin: 20% 5%;
+div#itensBarra {
+display: grid;
+grid-template-columns: 260px auto 80px;
+text-align: center;
 }
-            div#banner1 div img{
-                width: 50%;
-                margin: 5% 25%;
-            }
 
-            div#banner1 div p{
-                font-size: 50pt;
-                display: grid;
-                color: white;
-            }
-            div#banner1 div p span, div#banner1 div p a{
-                text-shadow: 0px 3px 5px #555555;
-            }
-            div#banner1 div p a{
-                color: var( --corPadrao2 );
-                text-decoration: none;
-                border: 5px solid;
-                padding: 5px;
-            }
+div#itensBarra #logo {
+background-size: 100%;
+background-position: 50%;
+background-repeat: no-repeat;
+}
 
-            .itens{
-                background-attachment: fixed;
-                background-position: 0% 50%;
-                background-repeat: no-repeat;
-                background-size: cover;
-                padding: 130px 50px 50px 50px;
-                display: inline-grid;
-                grid-template-columns: 48% 48%;
-                grid-gap: 4%;
-                width: 92.4%;
-            }
+div#itensBarra a:hover {
+background-color: var(--corPadrao1);
+color: black;
+}
+div#itensBarra a {
+padding: 24px 2%;
+text-decoration: none;
+color: #ffffff;
+}
 
-            .itens div {
-                background-color: rgba(255,255,255,0.9);
-                padding: 10px;
-                display: grid;
-                box-shadow: 0PX 3PX 10PX #aaa;
-                border-radius: 10px;
-            }
+@keyframes animBanner{
+0%{ grid-template-columns: 100% 0% 0%}
+32%{ grid-template-columns: 100% 0% 0% }
 
-            .itens div img {
-                width: 100%;
-                margin: 0px 0px 10px 0px;
-            }
+33%{ grid-template-columns: 0% 100% 0% }
+65%{ grid-template-columns: 0% 100% 0% }
+
+66%{ grid-template-columns: 0% 0% 100% }
+99%{ grid-template-columns: 0% 0% 100%}
+
+100%{ grid-template-columns: 100% 0% 0% }
+}
+
+div#banner1 {
+display: grid;
+//animation: animBanner 9s infinite;
+grid-template-columns: 100% 100% 100%;
+overflow-x: hidden;
+padding: 70px 0px 0px 0px;
+}
+
+div#banner1 div{
+background: linear-gradient(90deg, transparent, white);
+display: grid;
+grid-template-columns: 60% 40%;
+background-repeat: no-repeat;
+background-size: cover;
+}
+div#banner1 div p{
+margin: 20% 5%;
+}
+div#banner1 div img{
+width: 50%;
+margin: 5% 25%;
+}
+
+div#banner1 div p{
+font-size: 50pt;
+display: grid;
+color: white;
+}
+div#banner1 div p span, div#banner1 div p a{
+text-shadow: 0px 3px 5px #555555;
+}
+div#banner1 div p a{
+color: var( --corPadrao2 );
+text-decoration: none;
+border: 5px solid;
+padding: 5px;
+}
+
+.itens{
+background-attachment: fixed;
+background-position: 0% 50%;
+background-repeat: no-repeat;
+background-size: cover;
+padding: 130px 50px 50px 50px;
+display: inline-grid;
+grid-template-columns: 48% 48%;
+grid-gap: 4%;
+width: 92.4%;
+}
+
+.itens div {
+background-color: rgba(255,255,255,0.9);
+padding: 10px;
+display: grid;
+box-shadow: 0PX 3PX 10PX #aaa;
+border-radius: 10px;
+}
+
+.itens div img {
+width: 100%;
+margin: 0px 0px 10px 0px;
+}
 #quadroDestaque h1, #quadroDestaque h2{
 font-weight: 900;
 font-variant-caps: small-caps;
 margin: 10px
 }
 
-            .itens div a{
-                color: var(--corPadrao2);
-            }
+.itens div a{
+color: var(--corPadrao2);
+}
 
-            .itens div{
+.itens div{
 background: white;
 display: grid;
 text-align: right;
@@ -206,7 +207,7 @@ background-color: var( --corPadrao1);
 button.btPadrao1, a.btPadrao1{
 margin: 10px;
 padding: 10px;
-                background-color: white;
+background-color: white;
 border: 3px solid var(--corPadrao1);
 text-decoration: none;
 color: var(--corPadrao2);
@@ -231,8 +232,8 @@ margin-top: 20px;
 }
 
 #final{
-    background-color: #222;
-    color: white;
+background-color: #222;
+color: white;
 }
 
 form#formulario, form#formulario div {
@@ -250,33 +251,33 @@ border-color: transparent transparent gray transparent;
 background-color: var(--branco7)
 }
 
-    @media only screen and ( max-width : 950px ){
-        #itensMenuBarra{ display: none }
-        div#itensBarra{
-            display: grid;
-            grid-template-columns: 260px 80px;
-            justify-content: space-between;
-        }
-        div#banner1 div p{ font-size: 30pt }
-        div#banner1 div img{ width: 90% }
-    }
+@media only screen and ( max-width : 950px ){
+#itensMenuBarra{ display: none }
+div#itensBarra{
+display: grid;
+grid-template-columns: 260px 80px;
+justify-content: space-between;
+}
+div#banner1 div p{ font-size: 30pt }
+div#banner1 div img{ width: 90% }
+}
 
-    @media only screen and ( max-width : 650px ){
-        div#banner1 div img{
-            width: 100%;
-            margin: 35% auto;
-        }
-        div#banner1 div p{
-            font-size: 20pt;
-            margin: 45% 0%;
-        }
-        div.cartao{
-            width: 85%;
-        }
-        div.itens{
-            padding: 20px 5px;
-        }
-    }
+@media only screen and ( max-width : 650px ){
+div#banner1 div img{
+width: 100%;
+margin: 35% auto;
+}
+div#banner1 div p{
+font-size: 20pt;
+margin: 45% 0%;
+}
+div.cartao{
+width: 85%;
+}
+div.itens{
+padding: 20px 5px;
+}
+}
 
 .escondido{
 display: none;
@@ -300,10 +301,10 @@ display: none;
 <div id="banner1" class="banner" style="background-image: url('img/bg.jpg')">
 </div>
 </div>
-                <div id="" class="expor cartao">
-                    <h1 class="tituloCentralizado">Veja nosso catálogo</h1>
-                    <div id="segundo" class="itens"></div>
-                </div>
+<div id="" class="expor cartao">
+    <h1 class="tituloCentralizado">Veja nosso catálogo</h1>
+    <div id="segundo" class="itens"></div>
+</div>
 <div id="primeiro" class="conteudo">
 <div class="cartao">
 <h3>Você está visualizando</h3>
@@ -313,33 +314,33 @@ display: none;
 <p>Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.</p>
 </div>
 </div>
-                <div id="final" style="">
-                    <div id="contatoForm" class=" cartao">
-                        <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
-                       
-                        <div id="divForm">
-                            <form id="formulario" action="envio.php" method="POST">
-                                <div id="campos" class="campos">
-                                    <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
-                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="DDD TELEFONE" maxlength="13"/></label>
-                                    <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
-                                    <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
-                                </div>
-                                <div class="resto">
-                                    <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
-                                </div>
-                                    <div class="botoesFim">
-                                        <input type="submit" class="botao montserrat" value="ENVIAR"/>
-                                        <div class="sociais" id="sociaisFim" style="">
-                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
-                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
-                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
-                                        </div>
-                                    </div>
-                            </form>
+<div id="final" style="">
+    <div id="contatoForm" class=" cartao">
+        <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
 
+        <div id="divForm">
+            <form id="formulario" action="envio.php" method="POST">
+                <div id="campos" class="campos">
+                    <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
+                    <label for="telefone"><input name="telefone" id="telefone" placeholder="DDD TELEFONE" maxlength="13"/></label>
+                    <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
+                    <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
+                </div>
+                <div class="resto">
+                    <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
+                </div>
+                    <div class="botoesFim">
+                        <input type="submit" class="botao montserrat" value="ENVIAR"/>
+                        <div class="sociais" id="sociaisFim" style="">
+                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
+                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
+                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
                         </div>
                     </div>
+            </form>
+
+        </div>
+    </div>
 <div style="background-color: var(--preto7); padding: 20px 0px; text-align: center;">
 <section class="cartao direitos">
 <p>®Todos os direitos reservados aos seu respectivos autores.</p>
@@ -347,50 +348,50 @@ display: none;
 <p>Developed by (desenvolvido por) <a href="https://luislima.github.io/LLDev">LLDev</a>.</p>
 </section>
 </div>
-                </div>
+</div>
 
-                <script>
-
-
-                getById("telefone").addEventListener("keydown", function(evento){
-                    getById("origem").value = window.location.href;
-                    //console.log( evento.keyCode );
-                    // tecla 'WINDOW' = 91
-                    // tecla 'CTRL' = 17
-                    // tecla 'TAB' = 9
-                    // tecla 'SHIFT' = 16
-                    // tecla 'BACKSPACE' = 8
-                    // tecla 'ESC' = 27
-
-                    if( evento.keyCode < 65 ){
-                        ckNumero = this.value;
-                        if ( ckNumero.length == 2 ){
-                            this.value = ckNumero.slice(0,2) + " " + ckNumero.slice(2, ckNumero.length );
-                        } else if ( ckNumero.length == 8 ){
-                            this.value = ckNumero.slice(0,8) + "-" + ckNumero.slice(8, ckNumero.length );
-                        }
-                    } else {
-                    evento.preventDefault();
-                    }
-                });
+<script>
 
 
+getById("telefone").addEventListener("keydown", function(evento){
+    getById("origem").value = window.location.href;
+    //console.log( evento.keyCode );
+    // tecla 'WINDOW' = 91
+    // tecla 'CTRL' = 17
+    // tecla 'TAB' = 9
+    // tecla 'SHIFT' = 16
+    // tecla 'BACKSPACE' = 8
+    // tecla 'ESC' = 27
+
+    if( evento.keyCode < 65 ){
+        ckNumero = this.value;
+        if ( ckNumero.length == 2 ){
+            this.value = ckNumero.slice(0,2) + " " + ckNumero.slice(2, ckNumero.length );
+        } else if ( ckNumero.length == 8 ){
+            this.value = ckNumero.slice(0,8) + "-" + ckNumero.slice(8, ckNumero.length );
+        }
+    } else {
+    evento.preventDefault();
+    }
+});
 
 
-                </script>
+
+
+</script>
 <div id="menuBar">
 <div id="itensBarra">
 <div id="logo" style="background-image: url(img/logo.png)"></div>
 <div class="itensMenuBarra" id="itensMenuBarra">
-                       
-                            <a href="#">Inicio</a>
-                            <a href="#">Camisetas</a>
-                            <a href="#">Calsas</a>
-                            <a href="#">Chinelos</a>
-                            <a href="#">Bonés</a>
-                       
-                        </div>
-                        <div class="btMenu">
+
+            <a href="#">Inicio</a>
+            <a href="#">Camisetas</a>
+            <a href="#">Calsas</a>
+            <a href="#">Chinelos</a>
+            <a href="#">Bonés</a>
+
+        </div>
+        <div class="btMenu">
 <a href="#menuBlock" id="btMenuBlock">&#9776;</a>
 </div>
 </div>
@@ -403,29 +404,29 @@ display: none;
 <script>
 
 tudo = new Padrao;
-           
-            carregarBanner("banner1", destaqueBanner );
-            mostrarProdutos("segundo", estoqueGeral );
 
-            //tudo.alturaMinima( tudo.getById("apresentacao"));
+carregarBanner("banner1", destaqueBanner );
+mostrarProdutos("segundo", estoqueGeral );
+
+//tudo.alturaMinima( tudo.getById("apresentacao"));
 tudo.alturaMinima( tudo.getById("banner1") );
 //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
 //tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
 //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
 tudo.centralizarLarguraTotalPadding( tudo.getById("centralizarAnimLoad"));
 tudo.centralizarAlturaTotalPadding( tudo.getById("centralizarAnimLoad"));
-           
-            window.document.addEventListener("resize", function(){
-                larguraTotal = janela.innerWidth;
-	           alturaTotal = janela.innerHeight - 170;
-                //tudo.alturaMinima( tudo.getById("apresentacao"));
-                tudo.centralizarAlturaTotalPadding( tudo.getById("banner1") );
-                //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
-                tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
-                //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
-                tudo.centralizarLarguraTotalPadding( tudo.getById("centralizarAnimLoad"));
-                tudo.centralizarAlturaTotalPadding( tudo.getById("centralizarAnimLoad"));
-            });
+
+window.document.addEventListener("resize", function(){
+larguraTotal = janela.innerWidth;
+alturaTotal = janela.innerHeight - 170;
+//tudo.alturaMinima( tudo.getById("apresentacao"));
+tudo.centralizarAlturaTotalPadding( tudo.getById("banner1") );
+//tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
+//tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+tudo.centralizarLarguraTotalPadding( tudo.getById("centralizarAnimLoad"));
+tudo.centralizarAlturaTotalPadding( tudo.getById("centralizarAnimLoad"));
+});
 
 setTimeout( function(){
 tudo.getById("centralizarAnimLoad").style.display = "none";
