@@ -7,7 +7,7 @@
 		"descricao":"",
 		"valor":"40,00",
 		"disponibilidade": true,
-		"foto":["imagens/brazucaFront.png", "imagens/buttons/brazuca.png"],
+		"foto":["imagens/brazucaFront.png", "imagens/logos/brazuca.png"],
 		"cores":[ "#fffc00", "#19b040", "verde", "branco", "preto" ]
 	},{
 		"tipo":"MUNDI",
@@ -16,7 +16,7 @@
 		"disponibilidade": true,
 		"foto":[
             "imagens/mundiFront.png",
-            "imagens/buttons/mundi.png"
+            "imagens/logos/mundi.png"
 		],
 		"cores":[ "rgb(191 235 230)", "#bfebe6", "verde", "branco", "preto" ]
 	},{
@@ -25,7 +25,7 @@
 		"valor":"45,00",
 		"disponibilidade": true,
 		"foto":["imagens/houseFront.png",
-			"imagens/buttons/house.png"
+			"imagens/logos/house.png"
 		],
 		"cores":[ "#fff", "#0ac9fe", "verde", "branco", "preto" ]
 	}],
