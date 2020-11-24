@@ -210,7 +210,13 @@
             .itens a{
                 text-decoration: none;
             }
-
+div#itensMenuBarra:target {
+    width: 320px;
+    display: grid;
+    background: black;
+    position: absolute;
+    top: 70px;
+            }
             button.btPadrao1:hover, a.btPadrao1:hover{
                 color: white;
                 border-color: var(--corPadrao2);
@@ -449,7 +455,7 @@
                             <a href="#" style="color: transparent; background-image: url(logos/instragramLight.png);  padding: 20px" class="icone">ig</a>
                         </div>
                         <div id="btMenu" class="btMenu escondido">
-                            <a href="#menuBlock" id="btMenuBlock">&#9776;</a>
+                            <a href="#itensMenuBarra" id="btMenuBlock">&#9776;</a>
                         </div>
                     </div>
                 <div id="menuBlock"></div>
