@@ -133,6 +133,7 @@
             grid-template-columns: 100% 100% 100%;
             overflow-x: hidden;
             padding: 70px 0px 0px 0px;
+                min-height: var(--alturaTotal)
             }
 
             div#banner1 div{
@@ -255,8 +256,12 @@ div#itensMenuBarra:target {
 
             .expor .cartao{
                 text-align: center;
-                margin: 100px auto 25px;
+                margin: 10px auto 25px;
                 font-size: 14pt;
+            }
+            
+            #catalogo{
+                padding: 100px 0px 0px
             }
 
             .imagemTranspasssadaDireita{
@@ -363,7 +368,7 @@ div#itensMenuBarra:target {
                         </ul>
                     </div>
                 </div>
-                <div id="" class="expor cartao">
+                <div id="catalogo" class="expor cartao">
                     <div id="" class="expor cartao">
                     <h1 class="tituloCentralizado">CATÁLOGO</h1>
                     <p>Esse é nosso catálogo de produtos, nele você encontra nossa linha e informações sobre materiais e aplicações.</p>
@@ -401,7 +406,7 @@ div#itensMenuBarra:target {
 
                         </div>
                     </div>
-                    <div style="background-color: var(--preto7); padding: 20px 0px; text-align: center;">
+                    <div style="background-color: var(--preto7); padding: 50px 0px; text-align: center;">
                         <section class="cartao direitos">
                             <p>®Todos os direitos reservados aos seu respectivos autores.</p>
                             <p>®All the rights reserved to their respective authors.</p>
@@ -445,9 +450,9 @@ div#itensMenuBarra:target {
                         <div class="itensMenuBarra" id="itensMenuBarra">
 
                             <a href="#">HOME</a>
-                            <a href="#">SOBRE</a>
-                            <a href="#">CATÁLOGO</a>
-                            <a href="#">CONTATO</a>
+                            <a href="#primeiro">SOBRE</a>
+                            <a href="#catalogo">CATÁLOGO</a>
+                            <a href="#final">CONTATO</a>
 
                         </div>
                         <div id="sociais">
@@ -472,7 +477,7 @@ div#itensMenuBarra:target {
         mostrarProdutos("segundo", estoqueGeral );
 
         //tudo.alturaMinima( tudo.getById("apresentacao"));
-        tudo.alturaMinima( tudo.getById("banner1") );
+        //tudo.alturaMinima( tudo.getById("banner1") );
         //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
         //tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
         //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
