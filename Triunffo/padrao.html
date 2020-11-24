@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Padrão</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" content="manifest.json">
+<link rel="icon" type="image/x-icon" content="icone.png">
+<!--
+<script src="FileSaver.js"></script>
+<script src="jquery.js"></script>
+<script src="java.js" type="text/Javascript" async></script>
+<script src="pre.js"></script>
+-->
+<script src="jquery.min.js"></script>
+<script src="padrao.js"></script>
+<script src="elemental.js"></script>
+<script src="produtos.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"></script>
+
+<script src="exibirProdutos.js"></script>
+<style>
+
+:root{
+--corPadrao1: #6ce7ff;
+--corPadrao2: #51b9c5;
+                --branco7: rgba(255,255,255,0.75);
+                --preto7: rgba(0,0,0,0.75);
+}
+
+@keyframes animCarregando{
+0%{
+transform: rotate(0deg)
+}
+100%{
+transform: rotate(360deg)
+}
+}
+
+body{
+margin:0px;
+padding: 0px;
+}
+*{
+transition: all 0.3s ease !important;
+font-family: sans-serif;
+                margin: 0px;
+                padding: 0px;
+}
+.pagina{ display: none }
+#centralizarAnimLoad{
+width: 100px;
+margin-right: auto;
+margin-left: auto;
+position: fixed;
+background-color: #fff;
+}
+
+.circuloAnimLoad{
+border-radius: 50%;
+border: solid;
+border-width: 25px;
+}
+
+#circuloInterno{
+border-color: transparent;
+}
+
+#circuloExterno{
+//position: absolute;
+//left: var(--mouse-x);
+//top: var(--mouse-y);
+border-color: var(--corPadrao1) var(--corPadrao2);
+animation: 3s animCarregando infinite;
+}
+#menuBar{
+position: fixed;
+top: 0px;
+background-color: var( --preto7 );
+color: #4400ff;
+width: 100%;
+line-height: 70px;
+font-size: 15pt;
+                box-shadow: 0px 3px 8px #222;
+}
+
+            div#itensBarra {
+                display: grid;
+                grid-template-columns: 260px auto 80px;
+                text-align: center;
+            }
+
+            div#itensBarra #logo {
+                background-size: 100%;
+                background-position: 50%;
+                background-repeat: no-repeat;
+            }
+
+            div#itensBarra a:hover {
+                background-color: var(--corPadrao1);
+                color: black;
+            }
+            div#itensBarra a {
+                padding: 24px 2%;
+                text-decoration: none;
+                color: #ffffff;
+            }
+
+            @keyframes animBanner{
+                0%{ grid-template-columns: 100% 0% 0%}
+                32%{ grid-template-columns: 100% 0% 0% }
+
+                33%{ grid-template-columns: 0% 100% 0% }
+                65%{ grid-template-columns: 0% 100% 0% }
+
+                66%{ grid-template-columns: 0% 0% 100% }
+                99%{ grid-template-columns: 0% 0% 100%}
+
+                100%{ grid-template-columns: 100% 0% 0% }
+            }
+
+            div#banner1 {
+                display: grid;
+                //animation: animBanner 9s infinite;
+                grid-template-columns: 100% 100% 100%;
+                overflow-x: hidden;
+                padding: 70px 0px 0px 0px;
+            }
+
+            div#banner1 div{
+                background: linear-gradient(90deg, transparent, white);
+                display: grid;
+                grid-template-columns: 60% 40%;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            div#banner1 div p{
+                margin: 20% 5%;
+}
+            div#banner1 div img{
+                width: 50%;
+                margin: 5% 25%;
+            }
+
+            div#banner1 div p{
+                font-size: 50pt;
+                display: grid;
+                color: white;
+            }
+            div#banner1 div p span, div#banner1 div p a{
+                text-shadow: 0px 3px 5px #555555;
+            }
+            div#banner1 div p a{
+                color: var( --corPadrao2 );
+                text-decoration: none;
+                border: 5px solid;
+                padding: 5px;
+            }
+
+            .itens{
+background-attachment: fixed;
+background-position: 0% 50%;
+background-repeat: no-repeat;
+background-size: cover;
+                padding: 130px 50px 50px 50px;
+                display: inline-grid;
+                grid-template-columns: 30% 30% 30% 30% 30% 30%;
+                overflow-x: scroll;
+                grid-gap: 3%;
+                width: 92.4%;
+            }
+
+            .itens div {
+                background-color: rgba(255,255,255,0.9);
+                padding: 10px;
+                display: grid;
+                box-shadow: 0PX 3PX 10PX #aaa;
+                border-radius: 10px;
+            }
+
+            .itens div img {
+                width: 100%;
+                margin: 0px 0px 10px 0px;
+            }
+#quadroDestaque h1, #quadroDestaque h2{
+font-weight: 900;
+font-variant-caps: small-caps;
+margin: 10px
+}
+
+            .itens div a{
+                color: var(--corPadrao2);
+            }
+
+            .itens div{
+background: white;
+width: 280px;
+display: grid;
+text-align: right;
+}
+button.btPadrao1:hover, a.btPadrao1:hover{
+color: white;
+border-color: var(--corPadrao2);
+background-color: var( --corPadrao1);
+}
+
+button.btPadrao1, a.btPadrao1{
+margin: 10px;
+padding: 10px;
+                background-color: white;
+border: 3px solid var(--corPadrao1);
+text-decoration: none;
+color: var(--corPadrao2);
+text-align: center;
+}
+.conteudo{
+padding: 10% 20%;
+background: radial-gradient(300px 300px, #aaa, white);
+background-position-x: var(--mouse-x-cent);
+background-position-y: var(--mouse-y-cent);
+background-size: 400%;
+}
+.cartao{
+width: 75%;
+margin-right: auto;
+margin-left: auto;
+padding: 20px;
+margin-bottom: 20px;
+margin-top: 20px;
+//background-color: rgba(255,255,255,0.8);
+//box-shadow: 0px 25px 50px #aaa;
+}
+
+#final{
+}
+
+form#formulario, form#formulario div {
+display: grid;
+width: 100%;
+}
+
+form#formulario input, form#formulario textarea, form#formulario button {
+width: 100%;
+margin: 20px 0px;
+font-size: 12pt;
+padding: 10px 0px;
+border: 1px solid;
+border-color: transparent transparent gray transparent;
+background-color:
+}
+
+.escondido{
+display: none;
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="tudo" class="tudo">
+<div id="animCarregando">
+<div id="centralizarAnimLoad">
+<div id="circuloExterno" class="circuloAnimLoad">
+<div id="circuloInterno" class="circuloAnimLoad"></div>
+</div>
+</div>
+</div>
+<div id="pagina" class="pagina">
+<div id="apresentacao">
+<div id="banner1" class="banner" style="background-image: url('img/bg.jpg')">
+</div>
+</div>
+                <div id="" class="expor cartao">
+                    <h2 class="tituloCentralizado">Veja nosso catálogo</h2>
+                    <div id="segundo" class="itens"></div>
+                </div>
+<div id="primeiro" class="conteudo">
+<div class="cartao">
+<h3>Você está visualizando</h3>
+<h1>Algum texto</h1>
+<p>O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro.</p>
+<p>Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada.</p>
+<p>Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.</p>
+</div>
+</div>
+                <div id="final" style="">
+                    <div id="contatoForm" class=" cartao">
+                        <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
+                       
+                        <div id="divForm">
+                            <form id="formulario" action="envio.php" method="POST">
+                                <div id="campos" class="campos">
+                                    <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
+                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="DDD TELEFONE" maxlength="13"/></label>
+                                    <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
+                                    <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
+                                </div>
+                                <div class="resto">
+                                    <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
+                                </div>
+                                    <div class="botoesFim">
+                                        <input type="submit" class="botao montserrat" value="ENVIAR"/>
+                                        <div class="sociais" id="sociaisFim" style="">
+                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
+                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
+                                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
+                                        </div>
+                                    </div>
+                            </form>
+
+                        </div>
+                    </div>
+<div>
+<section class="cartao direitos">
+<p>®Todos os direitos reservados aos seu respectivos autores.</p>
+<p>®All the rights reserved to their respective authors.</p>
+<p>Developed by (desenvolvido por) <a href="https://luislima.github.io/LLDev">LLDev</a>.</p>
+</section>
+</div>
+                </div>
+
+                <script>
+
+
+                getById("telefone").addEventListener("keydown", function(evento){
+                    getById("origem").value = window.location.href;
+                    //console.log( evento.keyCode );
+                    // tecla 'WINDOW' = 91
+                    // tecla 'CTRL' = 17
+                    // tecla 'TAB' = 9
+                    // tecla 'SHIFT' = 16
+                    // tecla 'BACKSPACE' = 8
+                    // tecla 'ESC' = 27
+
+                    if( evento.keyCode < 65 ){
+                        ckNumero = this.value;
+                        if ( ckNumero.length == 2 ){
+                            this.value = ckNumero.slice(0,2) + " " + ckNumero.slice(2, ckNumero.length );
+                        } else if ( ckNumero.length == 8 ){
+                            this.value = ckNumero.slice(0,8) + "-" + ckNumero.slice(8, ckNumero.length );
+                        }
+                    } else {
+                    evento.preventDefault();
+                    }
+                });
+
+
+
+
+                </script>
+<div id="menuBar">
+<div id="itensBarra">
+<div id="logo" style="background-image: url(img/logo.png)"></div>
+<div class="itensMenuBarra" id="itensMenuBarra">
+                       
+                            <a href="#">Inicio</a>
+                            <a href="#">Camisetas</a>
+                            <a href="#">Calsas</a>
+                            <a href="#">Chinelos</a>
+                            <a href="#">Bonés</a>
+                       
+                        </div>
+                        <div class="btMenu">
+<a href="#menuBlock" id="btMenuBlock">&#9776;</a>
+</div>
+</div>
+<div id="menuBlock"></div>
+</div>
+</div>
+
+</div><!--tudo-->
+
+<script>
+
+tudo = new Padrao;
+           
+            carregarBanner("banner1", destaqueBanner );
+            mostrarProdutos("segundo", estoqueGeral );
+
+            //tudo.alturaMinima( tudo.getById("apresentacao"));
+tudo.alturaMinima( tudo.getById("banner1") );
+//tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+//tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
+//tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+tudo.centralizarLarguraTotalPadding( tudo.getById("centralizarAnimLoad"));
+tudo.centralizarAlturaTotalPadding( tudo.getById("centralizarAnimLoad"));
+           
+            window.document.addEventListener("resize", function(){
+                larguraTotal = janela.innerWidth;
+	           alturaTotal = janela.innerHeight - 170;
+                //tudo.alturaMinima( tudo.getById("apresentacao"));
+                tudo.centralizarAlturaTotalPadding( tudo.getById("banner1") );
+                //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+                tudo.centralizarLarguraTotalMargin( tudo.getById("quadroDestaque") );
+                //tudo.centralizarAlturaTotalMargin( tudo.getById("quadroDestaque") );
+                tudo.centralizarLarguraTotalPadding( tudo.getById("centralizarAnimLoad"));
+                tudo.centralizarAlturaTotalPadding( tudo.getById("centralizarAnimLoad"));
+            });
+
+setTimeout( function(){
+tudo.getById("centralizarAnimLoad").style.display = "none";
+tudo.getById("pagina").style.display = "block";
+//tudo.getById("centralizarAnimLoad").style.display = "none";
+}, 5000 );
+
+</script>
+
+</body>
+</html>

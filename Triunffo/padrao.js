@@ -10,6 +10,8 @@
 	marginCentroAltura = "";
 	
 	let root = document.documentElement;
+    root.style.setProperty('--alturaTotal', (screen.availHeight * 1.1) + "px");
+    root.style.setProperty('--larguraTotal', larguraTotal + "px");
 
 	root.addEventListener("mousemove", e => {
 		root.style.setProperty('--mouse-x', e.clientX + "px");
