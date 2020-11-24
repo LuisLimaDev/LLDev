@@ -23,7 +23,7 @@ carregarBanner = function( divDoBanner ){
     cntBanner = 0;
     while( cntBanner < destaqueBanner.length ){
         imagemDeBanner = el.novaImagem( destaqueBanner[ cntBanner ].idItemEstoque.foto[0], destaqueBanner[ cntBanner ].textoApresentacao );
-        btCatalogo = el.novoLink( destaqueBanner[ cntBanner ].idItemEstoque.tipo,"#" );
+        btCatalogo = el.novoLink( destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
         btCatalogo.style.borderColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
         btCatalogo.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
         divisorBanner = el.novaDiv( imagemDeBanner.outerHTML + btCatalogo.outerHTML );
@@ -70,7 +70,7 @@ numeradorProdutos = 0;
 while ( numeradorProdutos < produtos.length ){
         fotoProd = el.novaImagem( produtos[numeradorProdutos].foto[1], produtos[numeradorProdutos].tipo + " " + produtos[numeradorProdutos].descricao );
        
-        el.acrescentar( divQueRecebeOsItens, el.novoLink( fotoProd.outerHTML + el.novoSpan( produtos[numeradorProdutos].tipo ).outerHTML ,"#") );
+        el.acrescentar( divQueRecebeOsItens, el.novoLink( fotoProd.outerHTML + el.novoSpan( produtos[numeradorProdutos].tipo ).outerHTML ,"catalogo/index.html") );
         numeradorProdutos++
     }
 }
