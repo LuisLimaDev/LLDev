@@ -2,7 +2,7 @@
 
 	janela = window;
 	larguraTotal = janela.innerWidth;
-	alturaTotal = janela.innerHeight - 180;
+	alturaTotal = janela.innerHeight - 80;
 	corPadrao = "rgb(255 102 0)"; //
 
 	paddingCentroAltura = "";
