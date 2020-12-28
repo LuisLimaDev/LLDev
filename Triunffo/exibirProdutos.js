@@ -22,11 +22,12 @@ addItemAoCarrinho = function( identificaItem ){
 carregarBanner = function( divDoBanner ){
     cntBanner = 0;
     while( cntBanner < destaqueBanner.length ){
-        imagemDeBanner = el.novaImagem( destaqueBanner[ cntBanner ].idItemEstoque.foto[0], destaqueBanner[ cntBanner ].textoApresentacao );
-        btCatalogo = el.novoLink( destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
-        btCatalogo.style.borderColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
-        btCatalogo.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
-        divisorBanner = el.novaDiv( imagemDeBanner.outerHTML + btCatalogo.outerHTML );
+        textoDoBanner = el.novoParagrafo( destaqueBanner[ cntBanner ].textoApresentacao );
+        textoDoBanner.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
+        btCatalogo = el.novoLink( "VER A LINHA " + destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
+        btCatalogo.style.backgroundColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
+        btCatalogo.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[1];
+        divisorBanner = el.novaDiv( textoDoBanner.outerHTML + btCatalogo.outerHTML );
         divisorBanner.style.backgroundImage = "url(" + destaqueBanner[ cntBanner ].imgBanner + ")";
         divisorBanner.id = "parte" + cntBanner;
         divisorBanner.setAttribute("class", "escondido" );

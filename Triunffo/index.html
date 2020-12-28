@@ -7,7 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="manifest" content="manifest.json">
         <link rel="icon" type="image/x-icon" content="icone.png">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <!--
         <script src="FileSaver.js"></script>
         <script src="jquery.js"></script>
@@ -27,7 +28,12 @@
                 --corPadrao1: #6ce7ff;
                 --corPadrao2: #51b9c5;
                 --branco7: rgba(255,255,255,0.75);
+                --branco2: rgba(255,255,255,0.25);
                 --preto7: rgba(0,0,0,0.75);
+            }
+
+            svg{
+                width: 100%;
             }
 
             @keyframes animCarregando{
@@ -77,36 +83,62 @@
                 animation: 3s animCarregando infinite;
             }
 
-            #menuBar{
+            #margemBarraMenu{
                 position: fixed;
                 top: 0px;
                 background-color: black;
-                color: #4400ff;
                 width: 100%;
-                line-height: 70px;
-                font-size: 15pt;
             }
 
             div#itensBarra {
-            display: grid;
-            grid-template-columns: 260px auto 160px;
-            text-align: center;
+                display: grid;
+                grid-template-columns: 360px auto 160px;
+                text-align: center;
+                color: #4400ff;
+                width: 90%;
+                margin: 0px auto;
+                line-height: 75px;
+                height: 75px;
+                font-size: 15pt;
+
+            }
+            
+            svg g#logoTriunffo path {
+                fill: white
             }
 
-            div#itensBarra #logo {
-            background-size: 90%;
-            background-position: 55% 50%;
-            background-repeat: no-repeat;
+            div#itensBarra a:hover, #logo:hover svg g#logoTriunffo path {
+                color: var(--corPadrao1);
+                fill: var(--corPadrao1);
+                cursor: pointer;
             }
 
-            div#itensBarra a:hover {
-            background-color: var(--corPadrao1);
-            color: black;
-            }
             div#itensBarra a {
-            padding: 24px 2%;
-            text-decoration: none;
-            color: #ffffff;
+                padding: 24px 5px;
+                text-decoration: none;
+                color: #ffffff;
+                line-height: 35px;
+            }
+
+            #itensMenuBarra:target{
+                width: 100%;
+                display: grid;
+            }
+
+            div#sociais{
+                line-height: 0px;
+                display: grid;
+                grid-template-columns: 50% 50%;
+            }
+            
+            div#sociais a img{
+                min-height: 40px;
+                height: 40px;
+            }
+
+            div#sociais a{
+                color: transparent;
+                padding: 20px;
             }
 
             @keyframes animBanner{
@@ -129,7 +161,6 @@
 
             div#banner1 {
             display: grid;
-            //animation: animBanner 9s infinite;
             grid-template-columns: 100% 100% 100%;
             overflow-x: hidden;
             padding: 70px 0px 0px 0px;
@@ -145,31 +176,31 @@
                 background-position: center;
             }
             div#banner1 div p{
-            margin: 20% 5%;
-            }
-            div#banner1 div img{
-            width: 90%;
-            margin: 1% 5% 0% 5%;
+                margin: 15% 6% 5% 0%;
+                font-family: 'Roboto';
+                text-shadow: 0px 2px 3px black;
+                font-weight: 900;
+                font-size: 50pt;
+                display: grid;
+                color: white;
+                text-align: right;
             }
 
-            div#banner1 div p{
-            font-size: 50pt;
-            display: grid;
-            color: white;
+            div#banner1 div img{
+                width: 90%;
             }
-            div#banner1 div a{
-            text-shadow: 0px 3px 5px #555555;
-            }
+
             div#banner1 div a{
                 width: fit-content;
                 color: var( --corPadrao2 );
                 text-decoration: none;
-                border: 5px solid;
-                padding: 15px 30px;
+                border-radius: 40px;
+                padding: 10px 30px;
                 position: relative;
                 left: 70%;
                 top: -100%;
                 height: 20px;
+                box-shadow: 0px 2px 3px black;
             }
 
             .itens{
@@ -211,12 +242,12 @@
             .itens a{
                 text-decoration: none;
             }
-div#itensMenuBarra:target {
-    width: 320px;
-    display: grid;
-    background: black;
-    position: absolute;
-    top: 70px;
+            div#itensMenuBarra:target {
+                width: 320px;
+                display: grid;
+                background: black;
+                position: absolute;
+                top: 70px;
             }
             button.btPadrao1:hover, a.btPadrao1:hover{
                 color: white;
@@ -244,6 +275,11 @@ div#itensMenuBarra:target {
                 grid-template-columns: 50% 50%;
             }
 
+            #primeiro .cartao p{
+                margin: 20px 0px;
+                word-spacing: 10px;
+            }
+
             #primeiro .cartao{
                 width: 75%;
                 margin-right: auto;
@@ -251,7 +287,6 @@ div#itensMenuBarra:target {
                 padding: 20px;
                 margin-bottom: 20px;
                 margin-top: 20px;
-                text-align: justify;
             }
 
             .expor .cartao{
@@ -267,16 +302,47 @@ div#itensMenuBarra:target {
             .imagemTranspasssadaDireita{
                 position: absolute;
                 right: 0px;
-                height: 100%;
+                height: 80%;
             }
 
             #final{
-                background-color: #222;
+                background: linear-gradient(45deg, #8af, #def);
+                padding: 100px 0px;
                 color: white;
             }
+
+            #gradeContato{
+                display: grid;
+                grid-template-columns: 50% 50%;
+            }
             
-            #final #divForm{
-                padding: 100px 20px;
+            #contatoMaps{
+                padding: 0px 50px;
+                display: grid;
+            }
+
+            #final #fundoContato{
+                width: 80%;
+                margin: 0px auto;
+                background: black;
+                border-radius: 30px;
+                box-shadow: 0px 10px 20px -10px black;
+                padding: 50px 20px;
+            }
+
+            #final a{
+                color: white;
+                font-size: 15pt;
+            }
+            
+            #final div img{
+                height: 15px;
+                width: 40px;
+            }
+
+            div#camposTelefone {
+                grid-template-columns: 20% 70%;
+                justify-content: space-between;
             }
 
             form#formulario, form#formulario div {
@@ -284,33 +350,66 @@ div#itensMenuBarra:target {
                 width: 100%;
             }
 
+            form#formulario input, form#formulario textarea, form#formulario button, #contatoMaps iframe {
+                border-radius: 20px;
+                border: 2px solid gray;
+            }
             form#formulario input, form#formulario textarea, form#formulario button {
                 width: 100%;
-                margin: 20px 0px;
+                margin: 10px 0px;
                 font-size: 12pt;
-                padding: 10px 0px;
-                border: 1px solid;
-                border-color: transparent transparent gray transparent;
-                background-color: var(--branco7)
+                padding: 10px;
+                background-color: var(--branco2);
+                color: white;
             }
             
-            #sociais a{
-                background-size: cover;
+            input.enviar:hover{ cursor: pointer }
+            input.enviar{
+                background: linear-gradient(195deg, #8af, #def);
             }
 
-            @media only screen and ( max-width : 950px ){
+            @media only screen and ( max-width : 1030px ){
                 #btMenu{ display: block}
-                #itensMenuBarra{ display: none }
+                #itensMenuBarra, #primeiro img{ display: none }
+
+                #primeiro{ grid-template-columns: auto }
+
                 div#itensBarra{
                     display: grid;
-                    grid-template-columns: 260px auto 80px;
+                    grid-template-columns: 50% 160px 10%;
                     justify-content: space-between;
+                    width: 100%;
                 }
-                div#banner1 div p{ font-size: 30pt }
-                div#banner1 div img{ width: 90% }
+                div#banner1 div p{ 
+                    font-size: 40pt;
+                    margin: 30% 10% 5% 0%;
+                }
+
+                div#banner1 div a{
+					left: 0%;
+					margin: 0px auto;
+				}
+
+                #gradeContato{
+                    grid-template-columns: 90%;
+                    width: 90%;
+                    margin: 0px auto;
+                }
             }
 
             @media only screen and ( max-width : 650px ){
+
+                div#itensBarra{
+                    display: grid;
+                    grid-template-columns: 50% 40% 10%;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
+				#logo svg{
+					transform: scale(0.5) translate(-50%, 0px);
+					width: 335px;
+				}
 
                 div#banner1 div img{
                     width: 100%;
@@ -322,10 +421,12 @@ div#itensMenuBarra:target {
                 }
                 div.cartao{
                     width: 85%;
-                    margin: 35% auto 0px;
+                    margin: 50px auto 0px;
                 }
                 div.itens{
-                    padding: 20px 5px;
+					padding: 20px 5px;
+					grid-template-columns: 90%;
+					justify-content: space-around;
                 }
             }
 
@@ -351,21 +452,13 @@ div#itensMenuBarra:target {
                     <div id="banner1" class="banner" style="background-image: url('img/bg.jpg')"></div>
                 </div>
                 <div id="primeiro" class="conteudo" style="background-image: url(imagens/sobre.png); color: white">
-                    <img src="imagens/sobreFront.png" class="imagemTranspasssadaDireita" type="image/png" alt="Homem com roupa esportiva com intenção de jogo de futebol."/>
+                    <img src="troph.png" class="imagemTranspasssadaDireita" type="image/png" alt="Homem com roupa esportiva com intenção de jogo de futebol."/>
                     <div class="cartao">
-                        <h2><b>PARA CAMPEÕES</b></h2>
-                        <p>Na <b>TRIUNFFO</b>, você encontra os melhores uniformes, com o que há de mais moderno em design tecnológico.</p>
-                        <p>Uniformes especiais para sua atividade, visando atender a necessidade de praticantes de esporte casuais e de esportistas de alto desempenho.</p>
-                        <p> A tecnologia envolvida em tecidos esportivos consegue melhorar consideravelmente o desempenho nos esportes e o conforto do esportista durante a atividade.</p>
-                        <h2><B>VANTAGENS</B></h2>
-                        <ul>
-                            <li>Aumento de produtividade</li>
-                            <li>Melhores resultados</li>
-                            <li>Desempenho elevado</li>
-                            <li>Controle de temperatura corporal</li>
-                            <li>Leveza</li>
-                            <li>Sofisticação</li>
-                        </ul>
+                        <h1><b>PARA CAMPEÕES</b></h1>
+                        <p>Na <b>TRIUNFFO</b>, você encontra os melhores uniformes, com o que há de mais moderno em design tecnológico. 
+						Uniformes especiais para sua atividade, visando atender a necessidade de praticantes de esporte casuais e de 
+						esportistas de alto desempenho. A tecnologia envolvida em tecidos esportivos consegue melhorar consideravelmente 
+						o desempenho nos esportes e o conforto do esportista durante a atividade.</p>
                     </div>
                 </div>
                 <div id="catalogo" class="expor cartao">
@@ -376,95 +469,121 @@ div#itensMenuBarra:target {
                     <div id="segundo" class="itens"></div>
                 </div>
                 <div id="final" style="">
-                    <div id="contatoForm" class=" cartao">
+                    <div id="contatoForm" class=" ">
 
-                        <div id="divForm">
-                            <div style="text-align: center">
-                                <h3>SIGA NAS REDES SOCIAIS</h3>
-                                <h2 class="icone insta"><a href="#" style="color: white; text-decoration: none"><span style="background-image: url(logos/instragramLight.png); background-size: cover; padding: 0px 12px; color: transparent">.</span> /triunffo_sports</a></h2>
-                            </div>
-                            <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
-                            <form id="formulario" action="envio.php" method="POST">
-                            <div id="campos" class="campos">
-                            <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
-                            <label for="telefone"><input name="telefone" id="telefone" placeholder="DDD TELEFONE" maxlength="13"/></label>
-                            <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
-                            <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
-                            </div>
-                            <div class="resto">
-                            <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
-                            </div>
-                            <div class="botoesFim">
-                            <input type="submit" class="botao montserrat" value="ENVIAR"/>
-                            <div class="sociais" id="sociaisFim" style="">
-                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
-                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
-                            <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
-                            </div>
-                            </div>
-                            </form>
+                        <div id="fundoContato">
+                                <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
+                            <div id="gradeContato">
+                            <div id="divForm">
+                                <form id="formulario" action="envio.php" method="POST">
+                                <div id="campos" class="campos">
+                                <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
+                                <div id="camposTelefone">
+                                    <label for="ddd"><input name="ddd" type="number" id="ddd" placeholder="DDD" maxlength="2"/></label>
+                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="TELEFONE" maxlength="10"/></label>
+                                </div>
+                                <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
+                                <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
+                                </div>
+                                <div class="resto">
+                                <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
+                                </div>
+                                <div class="botoesFim">
+                                <input type="submit" class="botao enviar montserrat" value="ENVIAR"/>
+                                <div class="sociais" id="sociaisFim" style="">
+                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
+                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
+                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
+                                </div>
+                                </div>
+                                </form>
 
+                            </div>
+                            <div id="contatoMaps" >
+                                    <a href="#" style="" class="icone"><img src="whatsapp.svg" width="100%"/>99999-8877</a>
+                                    <a href="#" style="" class="icone"><img src="email.svg" width="100%"/>contato@triunffo.com</a>
+                                    <a href="#" style="" class="icone"><img src="placeholder.svg" width="100%"/>Rua Moraes Salles, 121 Campinas - SP</a>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470463.8099806683!2d-47.31122699019879!3d-22.894976458363956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c8f6a2552649%3A0x7475001c58043536!2sCampinas%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1608779512439!5m2!1spt-BR!2sbr" width="100%" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                
+                            </div>
+                            </div>
                         </div>
                     </div>
-                    <div style="background-color: var(--preto7); padding: 50px 0px; text-align: center;">
+                </div>
+                    <div style="background-color: black; padding: 50px 0px; text-align: center; font-size: 10pt; color: gray">
                         <section class="cartao direitos">
                             <p>®Todos os direitos reservados aos seu respectivos autores.</p>
                             <p>®All the rights reserved to their respective authors.</p>
-                            <p>Developed by (desenvolvido por) <a href="https://luislima.github.io/LLDev">LLDev</a>.</p>
+                            <br>
+                            <br>
+                            <p>Developed by (desenvolvido por) <a href="https://rastrourbano.com">rastrourbano.com</a> Arte e Fotografia.</p>
                         </section>
                     </div>
-                </div>
 
                 <script>
+                
+                    var ckNumero;
 
-
-                getById("telefone").addEventListener("keydown", function(evento){
-                    getById("origem").value = window.location.href;
-                    //console.log( evento.keyCode );
-                    // tecla 'WINDOW' = 91
-                    // tecla 'CTRL' = 17
-                    // tecla 'TAB' = 9
-                    // tecla 'SHIFT' = 16
-                    // tecla 'BACKSPACE' = 8
-                    // tecla 'ESC' = 27
-
-                    if( evento.keyCode < 65 ){
-                        ckNumero = this.value;
-                            if ( ckNumero.length == 2 ){
-                                this.value = ckNumero.slice(0,2) + " " + ckNumero.slice(2, ckNumero.length );
-                            } else if ( ckNumero.length == 8 ){
-                                this.value = ckNumero.slice(0,8) + "-" + ckNumero.slice(8, ckNumero.length );
-                            }
+                    getById("telefone").addEventListener("blur", function(evento){
+                        if( getById("telefone").value.length == 9 ){
+                            getById("telefone").value =  ckNumero.slice(0, 5) + "-" + ckNumero.slice(5, 9);
                         } else {
-                        evento.preventDefault();
+                            getById("telefone").value =  ckNumero.slice(0, 4) + "-" + ckNumero.slice(4, 8);
                         }
-                });
+                    });
+
+                    getById("telefone").addEventListener("keydown", function(evento){
+                        ckNumero = getById("telefone").value;
+                        if( evento.keyCode < 65 || evento.keyCode > 123 ){
+                            ckNumero = this.value;
+                        } else {
+                            evento.preventDefault();
+                        }
+                    });
 
 
 
 
                 </script>
-                <div id="menuBar">
-                    <div id="itensBarra">
-                        <div id="logo" style="background-image: url(img/logo.png)"></div>
-                        <div class="itensMenuBarra" id="itensMenuBarra">
+                <div id="margemBarraMenu">
+                <div id="itensBarra">
+                    <div id="logo" style="height:75px">
+                        <a href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="75" fill="white">
+                    <g id="logoTriunffo" transform="translate(0 25)">
+                        <path id="Caminho_4" data-name="Caminho 4" class="cls-3" d="M26.974,22.261c-.091-4.537.077-9.106-.059-13.653a7.854,7.854,0,0,1,.059-1.27V5.228H39.1v.191h.113c-.091-1.688-.154-2.908-.222-4.111H0V5.437H11.77V27.4c4.279,0,8.063-.168,11.819.054,2.11.127,3.135-.322,3.385-1.965Z" transform="translate(0 -1.069)"/>
+<g id="reduzir">                        <path id="Caminho_1" data-name="Caminho 1" class="cls-3" d="M251.834,4.742V22.46c0,4.006,0,4.011-4.084,4.011-2.9,0-5.794-.068-8.689,0-1.656.05-2.35-.549-2.341-2.228q.05-10.935,0-21.874c-.045-1.72.767-2.164,2.359-2.16,10.889.041,21.779-.041,32.668.05,4.351.036,7.3,2.3,7.845,5.581.653,3.9-1.425,6.506-7.26,8.621l11.475,11.974c-5.653,0-10.3.073-14.946-.068a4.427,4.427,0,0,1-2.486-1.456c-1.03-1.016-3.339-2.232-10.436-10.721-.535-.644-1.6-1.942-1.2-2.8.358-.771,1.865-1.166,2.078-1.221a5.613,5.613,0,0,1,.776-.141,14.728,14.728,0,0,1,2.763.023,4.668,4.668,0,0,0,2.6-.29,2.722,2.722,0,0,0,1.2-1.815,3.175,3.175,0,0,0-1.4-2.722,3.231,3.231,0,0,0-.767-.39C259.965,4.188,252.728,4.678,251.834,4.742Z" transform="translate(-195.659 -0.16)"/>
+                        <path id="Caminho_2" data-name="Caminho 2" class="cls-3" d="M1685.83.16c3.094,0,6.2-.045,9.283.018,7.6.172,12.881,5.7,12.8,13.312a12.7,12.7,0,0,1-12.927,12.9q-9.138.118-18.276,0c-8.167-.1-13.417-5.445-13.3-13.358.109-7.822,5.286-12.8,13.439-12.877C1679.836.115,1682.83.156,1685.83.16Zm6.651,12.818h-.063c0-1.493.063-2.99,0-4.478-.141-2.682-1.815-4.124-4.292-3.938s-5.626-.263-7.645.372c-.808.254-1.361,1.13-1.915,2.223a2.624,2.624,0,0,0-.24,1.166c.036,3.371-.027,6.751.2,10.113a3.714,3.714,0,0,0,4.006,3.63c7.473.136,10.29.907,9.959-8.789Z" transform="translate(-1374.875 -0.103)"/>
+                        <path id="Caminho_3" data-name="Caminho 3" class="cls-3" d="M1543.543,61.94c-2.7,0-5.395-.032-8.09,0-1.543.032-2.092-.626-2.1-2.155s.59-2.169,2.105-2.16q8.244.041,16.479,0c1.656,0,2.232.976,1.815,2.3-.231.776-1.157,1.842-1.842,1.9C1549.147,62.063,1546.338,61.94,1543.543,61.94Z" transform="translate(-1267.385 -47.618)"/>
+                        <path id="Caminho_5" data-name="Caminho 5" class="cls-3" d="M930.769,12.765V1.077h6.806V6.431c0,5.9-.122,11.8.054,17.654.077,2.591-.907,3.494-3.28,3.072a36.874,36.874,0,0,1-6.057-1.429c-9.279-3.358-18.512-6.833-27.763-10.259-.454-.168-.935-.268-1.933-.549,0,3.367-.145,6.493.041,9.6.154,2.509-1.148,2.818-3.1,2.654-1.751-.145-3.956.712-3.916-2.491.1-7.182,0-14.369.1-21.547,0-.74,1.107-2.11,1.656-2.087,2.945.113,6.057.059,8.784,1.007C910.628,5,918.95,8.377,927.33,11.58,928.224,11.925,929.158,12.207,930.769,12.765Z" transform="translate(-736.961 -0.851)"/>
+                        <path id="Caminho_6" data-name="Caminho 6" class="cls-3" d="M628.2.186h16.334V10.9c0,9.909,1.125,11.053,10.889,11.03,6.951,0,8.716-1.674,8.884-8.548.091-3.589.145-7.187,0-10.771C664.2-.2,665.956.041,667.825-.059,669.89-.159,671,.309,670.9,2.7c-.154,3.684.027,7.382-.05,11.071-.168,7.6-4.083,11.947-11.724,12.337-6.352.327-12.777.34-19.143.032-8.167-.395-11.756-4.478-11.8-12.7C628.188,9.152,628.2,4.868,628.2.186Z" transform="translate(-519.221 0.071)"/>
+                        <path id="Caminho_7" data-name="Caminho 7" class="cls-3" d="M1198.355.277c4.6,0,9.188.05,13.784,0,1.72-.027,2.573.454,2.564,2.346,0,1.969-1.221,1.965-2.591,1.96-4.991,0-9.982-.032-14.973,0s-6.225,1.293-6.257,6.2c-.027,4.4-.077,8.789,0,13.181.041,1.91-.544,2.677-2.554,2.613-3.888-.132-7.786-.082-11.679,0-1.67.027-2.586-.345-2.541-2.309.109-4.691-.1-9.392.063-14.065.2-5.526,3.7-9.074,9.528-9.705,2.468-.268,4.991-.15,7.477-.172C1193.564.259,1195.951.277,1198.355.277Z" transform="translate(-970.45 -0.215)"/>
+                        <path id="Caminho_8" data-name="Caminho 8" class="cls-3" d="M1443.7.255c4.6,0,9.192.05,13.784,0,1.724-.027,2.573.454,2.563,2.346,0,1.969-1.216,1.965-2.591,1.96-4.991,0-9.982-.032-14.973,0s-6.221,1.293-6.257,6.2c-.027,4.4-.077,8.789,0,13.181.045,1.91-.54,2.677-2.55,2.613-3.893-.132-7.791-.082-11.683,0-1.67.027-2.586-.345-2.541-2.309.109-4.691-.1-9.392.068-14.065.209-5.572,3.721-9.12,9.51-9.751,2.473-.268,4.991-.15,7.482-.172C1438.907.237,1441.3.255,1443.7.255Z" transform="translate(-1173.238 -0.193)"/>
+                        <path id="Caminho_9" data-name="Caminho 9" class="cls-3" d="M517.419.342c4.828,0,9.2-.073,13.566.091.549.018,1.488,1.266,1.488,1.956.109,7.387.122,14.778-.032,22.16,0,.69-1.361,1.883-2.133,1.928a101.548,101.548,0,0,1-10.771,0c-.721-.036-2.037-1.089-2.037-1.706C517.374,16.812,517.419,8.836,517.419.342Z" transform="translate(-427.664 -0.257)"/>
+                        <path id="Caminho_10" data-name="Caminho 10" class="cls-3" d="M1298.282,61.94c-2.7,0-5.395-.032-8.09,0-1.543.032-2.092-.626-2.1-2.155s.59-2.169,2.105-2.16q8.235.041,16.479,0c1.652,0,2.228.976,1.815,2.3-.236.776-1.162,1.842-1.842,1.9C1303.886,62.063,1301.082,61.94,1298.282,61.94Z" transform="translate(-1064.669 -47.618)"/>
 
-                            <a href="#">HOME</a>
-                            <a href="#primeiro">SOBRE</a>
-                            <a href="#catalogo">CATÁLOGO</a>
-                            <a href="#final">CONTATO</a>
+                    </g></g>
+                </svg>
 
-                        </div>
-                        <div id="sociais">
-                            <a href="#" style="color: transparent; background-image: url(logos/facebookbranco.png); padding: 20px" class="icone">fb</a>
-                            <a href="#" style="color: transparent; background-image: url(logos/instragramLight.png);  padding: 20px" class="icone">ig</a>
-                        </div>
-                        <div id="btMenu" class="btMenu escondido">
-                            <a href="#itensMenuBarra" id="btMenuBlock">&#9776;</a>
-                        </div>
+						</a>
                     </div>
-                <div id="menuBlock"></div>
-                </div>
+            <div class="itensMenuBarra" id="itensMenuBarra">
+
+                <a href="#">HOME</a>
+                <a href="#primeiro">SOBRE</a>
+                <a href="#catalogo">CATÁLOGO</a>
+                <a href="#final">CONTATO</a>
+
+            </div>
+            <div id="sociais">
+                <a href="#" style="" class="icone"><img src="whatsapp.svg" width="100%"/></a>
+                <a href="#" style="" class="icone"><img src="facebook.svg" width="100%"/></a>
+            </div>
+            <div id="btMenu" class="btMenu escondido">
+                <a href="#itensMenuBarra" id="btMenuBlock">&#9776;</a>
+            </div>
+        </div>
+        </div>
             </div>
 
         </div><!--tudo-->

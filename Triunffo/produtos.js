@@ -18,7 +18,7 @@
             "imagens/mundiFront.png",
             "imagens/logos/mundi.png"
 		],
-		"cores":[ "rgb(191 235 230)", "#bfebe6", "verde", "branco", "preto" ]
+		"cores":[ "rgb(191 235 230)", "#0000e6", "verde", "branco", "preto" ]
 	},{
 		"tipo":"HOUSE",
 		"descricao":"",
@@ -33,17 +33,17 @@
         {
             "idItemEstoque": estoqueGeral[0],
             "imgBanner":"imagens/brazucaBack.png",
-            "textoApresentacao": ""
+            "textoApresentacao": "CADA GRAMADO <br>UMA <br>HISTÓRIA"
         },
         {
             "idItemEstoque": estoqueGeral[1],
             "imgBanner":"imagens/mundiBack.png",
-            "textoApresentacao": ""
+            "textoApresentacao": "MANTOS <br>SAGRADOS <br>INTERNACIONAIS."
         },
         {
             "idItemEstoque": estoqueGeral[2],
             "imgBanner":"imagens/houseBack.png",
-            "textoApresentacao": ""
+            "textoApresentacao": "LINHA DOS<br>DONOS DA <br>CASA"
         }
     ]
 }
