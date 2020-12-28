@@ -31,6 +31,10 @@
                 --branco2: rgba(255,255,255,0.25);
                 --preto7: rgba(0,0,0,0.75);
             }
+			
+			:target{
+				scroll-behavior: smooth;
+			}
 
             svg{
                 width: 100%;
@@ -92,7 +96,8 @@
 
             div#itensBarra {
                 display: grid;
-                grid-template-columns: 360px auto 160px;
+                grid-template-columns: 360px auto;
+				justify-content: space-between;
                 text-align: center;
                 color: #4400ff;
                 width: 90%;
@@ -107,17 +112,16 @@
                 fill: white
             }
 
-            div#itensBarra a:hover, #logo:hover svg g#logoTriunffo path {
+            div#itensBarra #itensMenuBarra a:hover, #logo:hover svg g#logoTriunffo path {
                 color: var(--corPadrao1);
                 fill: var(--corPadrao1);
                 cursor: pointer;
             }
 
-            div#itensBarra a {
+            div#itensBarra #itensMenuBarra a {
                 padding: 24px 5px;
                 text-decoration: none;
                 color: #ffffff;
-                line-height: 35px;
             }
 
             #itensMenuBarra:target{
@@ -126,9 +130,13 @@
             }
 
             div#sociais{
+				background-color: #5f3;
+				position: absolute;
+				top: var(--alturaTotal);
+				right: 20px;
                 line-height: 0px;
-                display: grid;
-                grid-template-columns: 50% 50%;
+				padding: 15px;
+				border-radius: 50%;
             }
             
             div#sociais a img{
@@ -136,9 +144,32 @@
                 height: 40px;
             }
 
-            div#sociais a{
-                color: transparent;
-                padding: 20px;
+            #whatsChat { transition: 0.3s all ease }
+            #whatsChat div, #whatsChat section{
+				display: grid;
+			}
+			
+			@keyframes anmChat{
+				0%{transform: translate(600px, 0px) }
+				100%{transform: translate(0px, 0px) }
+			}
+
+            #whatsChat:target{
+				position: absolute;
+				display: grid;
+				height: 320px;
+				bottom: 0px;
+				right: 20px;
+				width: 280px;
+				animation-name: anmChat;
+				animation-duration: 0.3s;
+			}
+
+            div#sociais div a, div#sociais div b{
+				background-color: #5f3;
+				line-height: 50px
+				text-decoration: none;
+				color: white;
             }
 
             @keyframes animBanner{
@@ -166,6 +197,8 @@
             padding: 70px 0px 0px 0px;
                 min-height: var(--alturaTotal)
             }
+			
+			#sobre, #catalogo{ min-height: var(--alturaTotal) }
 
             div#banner1 div{
                 background: linear-gradient(90deg, transparent, white);
@@ -275,7 +308,7 @@
                 grid-template-columns: 50% 50%;
             }
 
-            #primeiro .cartao p{
+            #primeiro .cartao p, #catalogo .cartao p{
                 margin: 20px 0px;
                 word-spacing: 10px;
             }
@@ -296,7 +329,7 @@
             }
             
             #catalogo{
-                padding: 100px 0px 0px
+                padding: 100px 5% 0px
             }
 
             .imagemTranspasssadaDireita{
@@ -374,12 +407,6 @@
 
                 #primeiro{ grid-template-columns: auto }
 
-                div#itensBarra{
-                    display: grid;
-                    grid-template-columns: 50% 160px 10%;
-                    justify-content: space-between;
-                    width: 100%;
-                }
                 div#banner1 div p{ 
                     font-size: 40pt;
                     margin: 30% 10% 5% 0%;
@@ -388,6 +415,9 @@
                 div#banner1 div a{
 					left: 0%;
 					margin: 0px auto;
+				}
+                div.itens{
+					padding: 20px 5%;
 				}
 
                 #gradeContato{
@@ -398,13 +428,6 @@
             }
 
             @media only screen and ( max-width : 650px ){
-
-                div#itensBarra{
-                    display: grid;
-                    grid-template-columns: 50% 40% 10%;
-                    justify-content: space-between;
-                    width: 100%;
-                }
 
 				#logo svg{
 					transform: scale(0.5) translate(-50%, 0px);
@@ -424,7 +447,7 @@
                     margin: 50px auto 0px;
                 }
                 div.itens{
-					padding: 20px 5px;
+					padding: 0px 5px;
 					grid-template-columns: 90%;
 					justify-content: space-around;
                 }
@@ -472,7 +495,7 @@
                     <div id="contatoForm" class=" ">
 
                         <div id="fundoContato">
-                                <h1 class="monoSpace" style="font-size: 42px;">CONTATOS</h1>
+                                <h1 class="monoSpace" style="font-size: 42px; width: 90%; margin: 0px auto">CONTATOS</h1>
                             <div id="gradeContato">
                             <div id="divForm">
                                 <form id="formulario" action="envio.php" method="POST">
@@ -480,7 +503,7 @@
                                 <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
                                 <div id="camposTelefone">
                                     <label for="ddd"><input name="ddd" type="number" id="ddd" placeholder="DDD" maxlength="2"/></label>
-                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="TELEFONE" maxlength="10"/></label>
+                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="TELEFONE" maxlength="11"/></label>
                                 </div>
                                 <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
                                 <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
@@ -488,14 +511,8 @@
                                 <div class="resto">
                                 <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
                                 </div>
-                                <div class="botoesFim">
                                 <input type="submit" class="botao enviar montserrat" value="ENVIAR"/>
-                                <div class="sociais" id="sociaisFim" style="">
-                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/fblogo.png')"></a>
-                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/instalogo.png')"></a>
-                                <a href="#primeiro" style="background-image:url('https://rastrourbano.com/portfolio/logos/youtubeQuadradoBranco.png')"></a>
-                                </div>
-                                </div>
+                                
                                 </form>
 
                             </div>
@@ -575,12 +592,19 @@
                 <a href="#final">CONTATO</a>
 
             </div>
-            <div id="sociais">
-                <a href="#" style="" class="icone"><img src="whatsapp.svg" width="100%"/></a>
-                <a href="#" style="" class="icone"><img src="facebook.svg" width="100%"/></a>
-            </div>
             <div id="btMenu" class="btMenu escondido">
                 <a href="#itensMenuBarra" id="btMenuBlock">&#9776;</a>
+            </div>
+            <div id="sociais">
+                <a href="#whatsChat" style="" class="icone"><img src="whatsapp.svg" width="40px"/></a>
+					<div class="">
+				<div id="whatsChat" class="escondido cartao">
+						<b>Olá, o que precisa?</b>
+							<a href="#">Nada!</a>
+							<a href="#">Tudo!</a>
+							<a href="#">Talvez!</a>
+					</div>
+				</div>
             </div>
         </div>
         </div>
