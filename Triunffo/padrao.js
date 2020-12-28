@@ -2,7 +2,7 @@
 
 	janela = window;
 	larguraTotal = janela.innerWidth;
-	alturaTotal = janela.innerHeight - 170;
+	alturaTotal = janela.innerHeight - 80;
 	corPadrao = "rgb(255 102 0)"; //
 
 	paddingCentroAltura = "";
@@ -10,7 +10,7 @@
 	marginCentroAltura = "";
 	
 	let root = document.documentElement;
-    root.style.setProperty('--alturaTotal', (screen.availHeight * 1.1) + "px");
+    root.style.setProperty('--alturaTotal', alturaTotal + "px");
     root.style.setProperty('--larguraTotal', larguraTotal + "px");
 
 	root.addEventListener("mousemove", e => {
