@@ -112,13 +112,13 @@
                 fill: white
             }
 
-            div#itensBarra #itensMenuBarra a:hover, #logo:hover svg g#logoTriunffo path {
+            div#itensBarra #itensMenuBarra a:hover, #logo:hover svg g#logoTriunffo path, #btMenuBlock:hover {
                 color: var(--corPadrao1);
                 fill: var(--corPadrao1);
                 cursor: pointer;
             }
 
-            div#itensBarra #itensMenuBarra a {
+            div#itensBarra #itensMenuBarra a, #btMenuBlock {
                 padding: 24px 5px;
                 text-decoration: none;
                 color: #ffffff;
@@ -127,6 +127,8 @@
             #itensMenuBarra:target{
                 width: 100%;
                 display: grid;
+				animation-name: anmChat;
+				animation-duration: 0.3s;
             }
 
             div#sociais{
@@ -165,11 +167,18 @@
 				animation-duration: 0.3s;
 			}
 
-            div#sociais div a, div#sociais div b{
+            div#sociais div a:hover{
+				background-color: #55f;
+			}
+
+			div#sociais div a, div#sociais div b{
 				background-color: #5f3;
-				line-height: 50px
+				padding: 30px 0px;
+				line-height: 20px;
 				text-decoration: none;
 				color: white;
+				border: solid var(--branco2);
+				border-width: 0px 0px 1px 0px;
             }
 
             @keyframes animBanner{
@@ -599,10 +608,9 @@
                 <a href="#whatsChat" style="" class="icone"><img src="whatsapp.svg" width="40px"/></a>
 					<div class="">
 				<div id="whatsChat" class="escondido cartao">
-						<b>Olá, o que precisa?</b>
-							<a href="#">Nada!</a>
-							<a href="#">Tudo!</a>
-							<a href="#">Talvez!</a>
+						<b>Olá, o que acha de iniciar uma conversa com nosso atendimento?</b>
+							<a href="#">Aceito!</a>
+							<a href="#recusarChat">Não, obrigado!</a>
 					</div>
 				</div>
             </div>
