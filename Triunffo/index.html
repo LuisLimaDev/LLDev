@@ -290,6 +290,7 @@
                 background: black;
                 position: absolute;
                 top: 70px;
+				line-height: 10px;
             }
             button.btPadrao1:hover, a.btPadrao1:hover{
                 color: white;
@@ -415,8 +416,14 @@
             }
 
             @media only screen and ( max-width : 1030px ){
+
                 #btMenu{ display: block}
+
                 #itensMenuBarra, #primeiro img{ display: none }
+
+				div#itensBarra {
+					grid-template-columns: 360px 80px;
+				}
 
                 #primeiro{ grid-template-columns: auto }
 
@@ -438,6 +445,14 @@
                     width: 90%;
                     margin: 0px auto;
                 }
+
+				#contatoMaps a img{
+					margin: 0px 10px 0px 0px;
+				}
+
+				#contatoMaps{
+					padding: 0px;
+				}
             }
 
             @media only screen and ( max-width : 650px ){
@@ -447,13 +462,17 @@
 					width: 335px;
 				}
 
+				div#itensBarra {
+					grid-template-columns: 160px 80px;
+				}
+
                 div#banner1 div img{
                     width: 100%;
                     margin: 35% auto;
                 }
                 div#banner1 div p{
                     font-size: 20pt;
-                    margin: 45% 0%;
+                    margin: 45% 5%;
                 }
                 div.cartao{
                     width: 85%;
