@@ -1,0 +1,462 @@
+// estilo.css
+
+
+body{
+    margin:0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+@keyframes animCarregando{
+    0%{
+        transform: rotate(0deg)
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+}
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+.pagina{ display: none }
+#centralizarAnimLoad{
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    position: fixed;
+    background-color: #fff;
+}
+
+.circuloAnimLoad{
+    border-radius: 50%;
+    border: solid;
+    border-width: 25px;
+}
+
+#circuloInterno{
+    border-color: transparent;
+}
+
+#circuloExterno{
+    //position: absolute;
+    //left: var(--mouse-x);
+    //top: var(--mouse-y);
+    border-color: var(--corPadrao1) var(--corPadrao2);
+    animation: 3s animCarregando infinite;
+}
+
+#margemBarraMenu{
+    position: fixed;
+    top: 0px;
+    background-color: black;
+    width: 100%;
+}
+
+div#itensBarra {
+    display: grid;
+    grid-template-columns: 360px auto;
+    justify-content: space-between;
+    text-align: center;
+    color: #4400ff;
+    width: 90%;
+    margin: 0px auto;
+    line-height: 75px;
+    height: 75px;
+    font-size: 15pt;
+
+}
+
+svg g#logoTriunffo path {
+    fill: white
+}
+
+div#itensBarra #itensMenuBarra a:hover, #logo:hover svg g#logoTriunffo path, #btMenuBlock:hover {
+    color: var(--corPadrao1);
+    fill: var(--corPadrao1);
+    cursor: pointer;
+}
+
+div#itensBarra #itensMenuBarra a, #btMenuBlock {
+    padding: 24px 5px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#itensMenuBarra:target{
+    width: 100%;
+    display: grid;
+    animation-name: anmChat;
+    animation-duration: 0.3s;
+}
+
+div#sociais{
+    background-color: #5f3;
+    position: absolute;
+    top: var(--alturaTotal);
+    right: 20px;
+    line-height: 0px;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+div#sociais a img{
+    min-height: 40px;
+    height: 40px;
+}
+
+#whatsChat { transition: 0.3s all ease }
+#whatsChat div, #whatsChat section{
+    display: grid;
+}
+
+@keyframes anmChat{
+    0%{transform: translate(600px, 0px) }
+    100%{transform: translate(0px, 0px) }
+}
+
+#whatsChat:target{
+    position: absolute;
+    display: grid;
+    height: 320px;
+    bottom: 0px;
+    right: 0px;
+    width: 280px;
+    animation-name: anmChat;
+    animation-duration: 0.3s;
+}
+
+div#sociais div a:hover{
+    background-color: #55f;
+}
+
+div#sociais div a, div#sociais div b{
+    background-color: #5f3;
+    padding: 30px 0px;
+    line-height: 20px;
+    text-decoration: none;
+    color: white;
+    border: solid var(--branco2);
+    border-width: 0px 0px 1px 0px;
+}
+
+@keyframes animBanner{
+0%{ grid-template-columns: 100% 0% 0%}
+32%{ grid-template-columns: 100% 0% 0% }
+
+33%{ grid-template-columns: 0% 100% 0% }
+65%{ grid-template-columns: 0% 100% 0% }
+
+66%{ grid-template-columns: 0% 0% 100% }
+99%{ grid-template-columns: 0% 0% 100%}
+
+100%{ grid-template-columns: 100% 0% 0% }
+}
+
+@keyframes bannerInd{
+    0%{ background-size: 110% }
+    100%{ background-size: 130% }
+}
+
+div#banner1 {
+display: grid;
+grid-template-columns: 100% 100% 100%;
+overflow-x: hidden;
+padding: 70px 0px 0px 0px;
+    min-height: var(--alturaTotal)
+}
+
+#sobre, #catalogo{ min-height: var(--alturaTotal) }
+
+div#banner1 div{
+    background: linear-gradient(90deg, transparent, white);
+    display: grid;
+    background-repeat: no-repeat;
+    background-size: cover;
+    //animation: bannerInd 5s infinite;
+    background-position: center;
+}
+div#banner1 div p{
+    margin: 15% 6% 5% 0%;
+    font-family: 'Roboto';
+    text-shadow: 0px 2px 3px black;
+    font-weight: 900;
+    font-size: 50pt;
+    display: grid;
+    color: white;
+    text-align: right;
+}
+
+div#banner1 div img{
+    width: 90%;
+}
+
+div#banner1 div a{
+    width: fit-content;
+    color: var( --corPadrao2 );
+    text-decoration: none;
+    border-radius: 40px;
+    padding: 10px 30px;
+    position: relative;
+    left: 70%;
+    top: -100%;
+    height: 20px;
+    box-shadow: 0px 2px 3px black;
+}
+
+.itens{
+    background-attachment: fixed;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 130px 20px;
+    display: grid;
+    grid-template-columns:  30% 30% 30%;
+    justify-content: space-between;
+    width: 90%;
+    margin: 25px auto;
+}
+
+.itens a img {
+    width: 100%;
+    margin: 0px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 15px gray;
+}
+#quadroDestaque h1, #quadroDestaque h2{
+    font-weight: 900;
+    font-variant-caps: small-caps;
+    margin: 10px
+}
+
+.itens a{
+    color: var(--corPadrao2);
+}
+
+.itens a span{
+    position: relative;
+    color: white;
+    top: -30px;
+    left: 10px;
+}
+
+.itens a{
+    text-decoration: none;
+}
+div#itensMenuBarra:target {
+    width: 320px;
+    display: grid;
+    background: black;
+    position: absolute;
+    top: 70px;
+    line-height: 10px;
+}
+button.btPadrao1:hover, a.btPadrao1:hover{
+    color: white;
+    border-color: var(--corPadrao2);
+    background-color: var( --corPadrao1);
+}
+
+button.btPadrao1, a.btPadrao1{
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 3px solid var(--corPadrao1);
+    text-decoration: none;
+    color: var(--corPadrao2);
+    text-align: center;
+}
+.conteudo{
+    padding: 10% 5%;
+    font-size: 14pt;
+    background-size: cover;
+}
+
+#primeiro{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: space-around;
+}
+
+#primeiro .cartao p, #catalogo .cartao p{
+    margin: 20px 0px;
+    word-spacing: 10px;
+}
+
+#primeiro .cartao{
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.expor .cartao{
+    text-align: center;
+    margin: 10px auto 25px;
+    font-size: 14pt;
+}
+
+#catalogo{
+    padding: 100px 5% 0px
+}
+
+#catalogo div a:hover img {
+    filter: brightness(0.5);
+}
+
+.imagemTranspasssadaDireita{
+    margin: 0px auto;
+    height: 80%;
+}
+
+#final{
+    background: linear-gradient(45deg, #8af, #def);
+    padding: 100px 0px;
+    color: white;
+}
+
+#gradeContato{
+    width: 90%;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#contatoMaps{
+    padding: 0px 50px;
+    display: grid;
+}
+
+#contatoMaps a {
+    padding: 20px 0px;
+}
+
+#final #fundoContato{
+    width: 80%;
+    margin: 0px auto;
+    background: black;
+    border-radius: 30px;
+    box-shadow: 0px 10px 20px -10px black;
+    padding: 50px 20px;
+}
+
+#final a:hover{
+    text-decoration: underline;
+}
+
+#final a{
+    text-decoration: none;
+    color: white;
+    font-size: 15pt;
+}
+
+#final div img{
+    height: 15px;
+    width: 40px;
+}
+
+div#camposTelefone {
+    grid-template-columns: 20% 70%;
+    justify-content: space-between;
+}
+
+form#formulario, form#formulario div {
+    display: grid;
+    width: 100%;
+}
+
+form#formulario input, form#formulario textarea, form#formulario button, #contatoMaps iframe {
+    border-radius: 20px;
+    border: 2px solid gray;
+}
+form#formulario input, form#formulario textarea, form#formulario button {
+    width: 100%;
+    margin: 10px 0px;
+    font-size: 12pt;
+    padding: 10px;
+    background-color: var(--branco2);
+    color: white;
+}
+
+input.enviar:hover{ cursor: pointer }
+input.enviar{
+    background: linear-gradient(195deg, #8af, #def);
+}
+
+@media only screen and ( max-width : 1030px ){
+
+    #btMenu{ display: block}
+
+    #itensMenuBarra, #primeiro img{ display: none }
+
+    div#itensBarra {
+        grid-template-columns: 360px 80px;
+    }
+
+    #primeiro{ grid-template-columns: auto }
+
+    div#banner1 div p{ 
+        font-size: 40pt;
+        margin: 30% 10% 5% 0%;
+    }
+
+    div#banner1 div a{
+        left: 0%;
+        margin: 0px auto;
+    }
+    div.itens{
+        padding: 20px 5%;
+    }
+
+    #gradeContato{
+        grid-template-columns: 90%;
+        width: 90%;
+        margin: 0px auto;
+    }
+
+    #contatoMaps a img{
+        margin: 0px 10px 0px 0px;
+    }
+
+    #contatoMaps{
+        padding: 0px;
+    }
+}
+
+@media only screen and ( max-width : 650px ){
+
+    #logo svg{
+        transform: scale(0.5) translate(-50%, 0px);
+        width: 335px;
+    }
+
+    div#itensBarra {
+        grid-template-columns: 160px 80px;
+    }
+
+    div#banner1 div img{
+        width: 100%;
+        margin: 35% auto;
+    }
+    div#banner1 div p{
+        font-size: 20pt;
+        margin: 45% 5%;
+    }
+    div.cartao{
+        width: 85%;
+        margin: 50px auto 0px;
+    }
+    div.itens{
+        padding: 0px 5px;
+        grid-template-columns: 90%;
+        justify-content: space-around;
+    }
+}
+
+.escondido{
+display: none;
+}
