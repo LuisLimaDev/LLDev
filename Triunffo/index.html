@@ -72,7 +72,7 @@
                                 <label for="nome"><input name="nome" id="nome" placeholder="NOME"/></label>
                                 <div id="camposTelefone">
                                     <label for="ddd"><input name="ddd" type="number" id="ddd" placeholder="DDD" maxlength="2"/></label>
-                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="TELEFONE" maxlength="11"/></label>
+                                    <label for="telefone"><input name="telefone" id="telefone" placeholder="TELEFONE" maxlength="9"/></label>
                                 </div>
                                 <input type="text" id="origem" name="origem" value="Página inicial" class="escondido"/>
                                 <label for="email"><input name="email" id="email" placeholder="EMAIL"/></label>
@@ -111,17 +111,24 @@
                     var ckNumero;
 
                     getById("telefone").addEventListener("blur", function(evento){
-                        if( getById("telefone").value.length == 9 ){
-                            getById("telefone").value =  ckNumero.slice(0, 5) + "-" + ckNumero.slice(5, 9);
+                        if ( ckNumero == "Numero alterado"){
+                            if( getById("telefone").value.length == 9 ){
+                                parte1 = getById("telefone").value.slice(0, 5);
+                                parte2 = getById("telefone").value.slice(5, 9);
+                            } else {
+                                parte1 = getById("telefone").value.slice(0, 4);
+                                parte2 = getById("telefone").value.slice(4, 8);
+                            }
+                            getById("telefone").value = parte1 + "-" + parte2;
                         } else {
-                            getById("telefone").value =  ckNumero.slice(0, 4) + "-" + ckNumero.slice(4, 8);
+                            ckNumero = "Não feito";
                         }
                     });
 
                     getById("telefone").addEventListener("keydown", function(evento){
-                        ckNumero = getById("telefone").value;
+                        ckNumero = "Numero alterado"
                         if( evento.keyCode < 65 || evento.keyCode > 123 ){
-                            ckNumero = this.value;
+                            ckNumero = "Numero alterado";
                         } else {
                             evento.preventDefault();
                         }
