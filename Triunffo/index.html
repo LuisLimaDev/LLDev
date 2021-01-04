@@ -111,17 +111,19 @@
                     var ckNumero;
 
                     getById("telefone").addEventListener("blur", function(evento){
-                        if ( ckNumero == "Numero alterado"){
-                            if( getById("telefone").value.length == 9 ){
-                                parte1 = getById("telefone").value.slice(0, 5);
-                                parte2 = getById("telefone").value.slice(5, 9);
+                        if( getById("telefone").value.match("-") == null ){
+                            if ( ckNumero == "Numero alterado"){
+                                if( getById("telefone").value.length == 9 ){
+                                    parte1 = getById("telefone").value.slice(0, 5);
+                                    parte2 = getById("telefone").value.slice(5, 9);
+                                } else {
+                                    parte1 = getById("telefone").value.slice(0, 4);
+                                    parte2 = getById("telefone").value.slice(4, 8);
+                                }
+                                getById("telefone").value = parte1 + "-" + parte2;
                             } else {
-                                parte1 = getById("telefone").value.slice(0, 4);
-                                parte2 = getById("telefone").value.slice(4, 8);
+                                ckNumero = "Não feito";
                             }
-                            getById("telefone").value = parte1 + "-" + parte2;
-                        } else {
-                            ckNumero = "Não feito";
                         }
                     });
 
