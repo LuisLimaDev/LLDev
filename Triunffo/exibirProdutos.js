@@ -11,18 +11,18 @@
     repetirTemporizador = true;
 let el = new Elementos;
 let itensNoCarrinho = new Array;
-var divisorBanner, repetirTemporizador;
+var divisorBanner, repetirTemporizador, bannerAtivo;
 
-addItemAoCarrinho = function( identificaItem ){
-    quantidadeDeItens = itensNoCarrinho.length;
-    itensNoCarrinho[ quantidadeDeItens ] = identificaItem ;
-    getById("quantidadeDeItensNoCarrinho").innerText = itensNoCarrinho.length
+alternarBotaoBaner = function( numeroDoBanner ){
+    if (numeroDoBanner == 0 ) return [2,1];
+    if ( numeroDoBanner == 1 ) return [0,2];
+    if ( numeroDoBanner == 2 ) return [1,0];
 }
 
 carregarBanner = function( divDoBanner ){
     cntBanner = 0;
     while( cntBanner < destaqueBanner.length ){
-        textoDoBanner = el.novoParagrafo( destaqueBanner[ cntBanner ].textoApresentacao );
+        textoDoBanner = el.novaDiv( el.novoLink("<", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[0] + " )" ).outerHTML + el.novoParagrafo( destaqueBanner[ cntBanner ].textoApresentacao ).outerHTML +  el.novoLink(">", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[1] + " )"  ).outerHTML );
         textoDoBanner.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
         btCatalogo = el.novoLink( "VER A LINHA " + destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
         btCatalogo.style.backgroundColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
@@ -49,7 +49,14 @@ numeradorDeTransicao = function( numeroInicial, numeroFinal, saltosDeContagem ){
     }
 }
 
-temporizadorBanner = function( bannerAtivo ){
+escolherBanner = function( bannerEscolhido ){
+    repetirTemporizador = false;
+    getById( "banner1" ).scrollTo( ( window.innerWidth * bannerEscolhido),0 );
+    temporizadorBanner( bannerEscolhido );
+}
+
+temporizadorBanner = function( bannerRecebido ){
+    bannerAtivo = bannerRecebido;
     //getById( "banner1" ).scrollTo( ( window.innerWidth * bannerAtivo),0 );
     
         if( repetirTemporizador == true ){ setTimeout(function(){
