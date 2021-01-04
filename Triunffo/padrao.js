@@ -1,84 +1,141 @@
-/** exibirProdutos.js **/
-/** usar "variável".toLocaleString("pt-BR", { style: "currency" , currency:"BRL"}) **/
+/** padrao.js **/
 
-/**  **/
-/**  **/
-/** Esse script deve ser inserido por ultimo na pagina **/
-/**  **/
-/**  **/
+	janela = window;
+	larguraTotal = janela.innerWidth;
+	alturaTotal = janela.innerHeight;
+	corPadrao = "rgb(255 102 0)"; //
 
-//bannerAtivo = 0;
-    repetirTemporizador = true;
-let el = new Elementos;
-let itensNoCarrinho = new Array;
-var divisorBanner, repetirTemporizador, bannerAtivo;
+	paddingCentroAltura = "";
+	paddingCentroLargura = "";
+	marginCentroAltura = "";
+	
+	let root = document.documentElement;
+    root.style.setProperty('--alturaTotal', alturaTotal - 71 + "px");
+    root.style.setProperty('--larguraTotal', larguraTotal + "px");
+    root.style.setProperty('scroll-behavior', 'smooth');
 
-alternarBotaoBaner = function( numeroDoBanner ){
-    if (numeroDoBanner == 0 ) return [2,1];
-    if ( numeroDoBanner == 1 ) return [0,2];
-    if ( numeroDoBanner == 2 ) return [1,0];
-}
-
-carregarBanner = function( divDoBanner ){
-    cntBanner = 0;
-    while( cntBanner < destaqueBanner.length ){
-        textoDoBanner = el.novaDiv( el.novoLink("<", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[0] + " )" ).outerHTML + el.novoParagrafo( destaqueBanner[ cntBanner ].textoApresentacao ).outerHTML +  el.novoLink(">", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[1] + " )"  ).outerHTML );
-        textoDoBanner.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
-        btCatalogo = el.novoLink( "VER A LINHA " + destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
-        btCatalogo.style.backgroundColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
-        btCatalogo.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[1];
-        divisorBanner = el.novaDiv( textoDoBanner.outerHTML + btCatalogo.outerHTML );
-        divisorBanner.style.backgroundImage = "url(" + destaqueBanner[ cntBanner ].imgBanner + ")";
-        divisorBanner.id = "parte" + cntBanner;
-        divisorBanner.setAttribute("class", "escondido" );
-        el.acrescentar( divDoBanner, divisorBanner );
-        cntBanner++
-    }
-    temporizadorBanner( 0 );
-}
-
-numeradorDeTransicao = function( numeroInicial, numeroFinal, saltosDeContagem ){
-    a=numeroInicial;
-    b=numeroFinal;
-    c=saltosDeContagem;
-    while( a<=b){
-        setTimeout(function(){ getById( "banner1" ).scrollTo( a,0 ) }, 100 );
-        
-        //console.log(a)
-        a=a+c;
-    }
-}
-
-escolherBanner = function( bannerEscolhido ){
-    repetirTemporizador = false;
-    getById( "banner1" ).scrollTo( ( window.innerWidth * bannerEscolhido),0 );
-    temporizadorBanner( bannerEscolhido );
-}
-
-temporizadorBanner = function( bannerRecebido ){
-    bannerAtivo = bannerRecebido;
-    //getById( "banner1" ).scrollTo( ( window.innerWidth * bannerAtivo),0 );
+    /*****************************************************/
+    /************** PERSONALIZAÇÃO DE CORES **************/
+    /*****************************************************/
+    root.style.setProperty('--corPadrao1', '#6ce7ff');
+    root.style.setProperty('--corPadrao2', '#51b9c5');
+    root.style.setProperty('--branco7', 'rgba(255,255,255,0.75)');
+    root.style.setProperty('--branco2', 'rgba(255,255,255,0.25)');
+    root.style.setProperty('--preto7', 'rgba(0,0,0,0.75)');
     
-        if( repetirTemporizador == true ){ setTimeout(function(){
-            //console.log("A repetição está " + repetirTemporizador + ", Com o valor: " + bannerAtivo );
-            // COMANDOS PARA ALTERNAR O BANNER
 
-            
-            getById( "banner1" ).scrollTo( ( window.innerWidth * bannerAtivo),0 );
+	root.addEventListener("mousemove", e => {
+		root.style.setProperty('--mouse-x', e.clientX + "px");
+		root.style.setProperty('--mouse-x-cent', "-" + Math.round( ( e.clientX / 100 ) * 10 ) + "%");
+		root.style.setProperty('--mouse-y', e.clientY + "px");
+		root.style.setProperty('--mouse-y-cent', "-" + Math.round( ( e.clientY /100) * 15 ) + "%");
 
-            // FIM DA ALTERNAÇÃO NO BANNER
-            bannerAtivo++;
-            if( bannerAtivo == 3 ){ bannerAtivo = 0; temporizadorBanner( bannerAtivo ) } else { temporizadorBanner( bannerAtivo ) }
-    }, 5000 );    } else{ console.log("A repetição está " + repetirTemporizador + ", agora será reativada." ); repetirTemporizador = true } 
-    
-}
+/**
+	// pra usar isso, a classe e o CSS precisam estar aplicados
+	.itemQueSeguirMouse{
+		width: 50px;
+		height: 50px;
+		background: red;
+		position: absolute;
+		left: var(--mouse-x);
+		top: var(--mouse-y);
+	}
 
-mostrarProdutos = function( divQueRecebeOsItens, produtos ){
-numeradorProdutos = 0;
-while ( numeradorProdutos < produtos.length ){
-        fotoProd = el.novaImagem( produtos[numeradorProdutos].foto[1], produtos[numeradorProdutos].tipo + " " + produtos[numeradorProdutos].descricao );
-       
-        el.acrescentar( divQueRecebeOsItens, el.novoLink( fotoProd.outerHTML + el.novoSpan( produtos[numeradorProdutos].tipo ).outerHTML ,"catalogo/index.html") );
-        numeradorProdutos++
-    }
-}
+**/
+	});
+
+
+	class Padrao{
+		
+		coresPadrao(){
+			document.style.setProperty('--corPadrao1', corPadrao );
+		}
+
+		getById(id){
+			return document.getElementById(id);
+		}
+
+		getByClass(cl){
+			return document.getElementsByClassName(cl);
+		}
+
+		criarNovoEl(el){
+			return document.createElement(el);
+		}
+
+		alturaMinima( elementoParaAjustarAltura ){
+			elementoParaAjustarAltura.style.minHeight = alturaTotal + "px";
+		}
+
+		ajustarAlturaDoQuadrado( elementoParaAjustarAlturaPraQuadrado ){
+			elementoParaAjustarAlturaPraQuadrado.style.minHeight = elementoParaAjustarAlturaPraQuadrado.offsetWidth + "px";
+		}
+
+		centralizarPositionFixed( elementoPraCentralizarFixed ){
+			elementoPraCentralizarFixed.style.top = Math.round( alturaTotal / 2 ) + "px";
+			elementoPraCentralizarFixed.style.left = Math.round( larguraTotal / 2 ) + "px";
+		}
+
+		centralizarLarguraTotalMargin( elementoPraAplicarMarginL ){
+			elementoPraAplicarMarginL.style.marginLeft = Math.round( (larguraTotal / 2 ) - elementoPraAplicarMarginL.offsetWidth ) + "px";
+			elementoPraAplicarMarginL.style.marginRight = Math.round( (larguraTotal / 2 ) - elementoPraAplicarMarginL.offsetWidth ) + "px";
+		}
+
+		centralizarAlturaTotalMargin( elementoPraAplicarMarginA ){
+			elementoPraAplicarMarginA.style.marginTop = Math.round( (alturaTotal - elementoPraAplicarMarginA.offsetHeight) / 2 ) + "px";
+			elementoPraAplicarMarginA.style.marginBottom = Math.round( (alturaTotal - elementoPraAplicarMarginA.offsetHeight) / 2 ) + "px";
+		}
+
+		centralizarAlturaTotalPadding( elementoPraAplicarPaddingA ){
+			elementoPraAplicarPaddingA.style.paddingTop = Math.round( (alturaTotal / 2 ) - elementoPraAplicarPaddingA.offsetHeight ) + "px";
+			elementoPraAplicarPaddingA.style.paddingBottom = Math.round( (alturaTotal / 2 ) - elementoPraAplicarPaddingA.offsetHeight ) + "px";
+		}
+
+		centralizarLarguraTotalPadding( elementoPraAplicarPaddingL ){
+			elementoPraAplicarPaddingL.style.paddingLeft = Math.round( (larguraTotal - elementoPraAplicarPaddingL.offsetWidth) / 2 ) + "px";
+			elementoPraAplicarPaddingL.style.paddingRight = Math.round( (larguraTotal - elementoPraAplicarPaddingL.offsetWidth) / 2 ) + "px";
+		}
+		
+		alinharPaddingCentroAlturaElementoPai( elementoFilhoA ){
+			elementoFilhoA.parentElement.style.paddingTop = Math.round( ( alturaTotal - elementoFilhoA.offsetHeight ) / 2) + "px";
+			elementoFilhoA.parentElement.style.paddingBottom = Math.round( ( alturaTotal - elementoFilhoA.offsetHeight ) / 2) + "px";
+		}
+		
+		alinharPaddingCentroLarguraElementoPai( elementoFilhoL ){
+			elementoFilhoL.parentElement.style.paddingLeft = Math.round( ( larguraTotal - elementoFilhoL.offsetHeight ) / 2) + "px";
+			elementoFilhoL.parentElement.style.paddingRight = Math.round( ( larguraTotal - elementoFilhoL.offsetHeight ) / 2) + "px";
+		}
+		
+		alinharMarginCentroAlturaElementoPai( elementoFilhoA ){
+			elementoFilhoA.parentElement.style.marginTop = Math.round( ( alturaTotal - elementoFilhoA.offsetHeight ) / 2) + "px";
+			elementoFilhoA.parentElement.style.marginBottom = Math.round( ( alturaTotal - elementoFilhoA.offsetHeight ) / 2) + "px";
+		}
+		
+		alinharMarginCentroLarguraElementoPai( elementoFilhoL ){
+			elementoFilhoL.parentElement.style.marginLeft = Math.round( ( larguraTotal - elementoFilhoL.offsetHeight ) / 2) + "px";
+			elementoFilhoL.parentElement.style.marginRight = Math.round( ( larguraTotal - elementoFilhoL.offsetHeight ) / 2) + "px";
+		}
+
+		verVazio( texto ){
+			if (texto == ""){
+				texto = "vazio";
+			}
+			return texto;
+		}
+
+		de0a9( numeroParaVer ){
+			if ( numeroParaVer < 10 ){
+				return "0"+numeroParaVer;
+			} else {
+				return numeroParaVer;
+			}
+		}
+
+
+		/** animações **/
+
+		animLoad(){
+			
+		}
+
+	}
