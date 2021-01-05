@@ -80,6 +80,7 @@
                                 <div class="resto">
                                 <label for="mensagem"><textarea rows='4' id="mensagem" name="mensagem" placeholder="Digite sua mensagem"></textarea></label>
                                 </div>
+                                <input name="local" id="local" style="display: none" />
                                 <input type="submit" class="botao enviar montserrat" value="ENVIAR"/>
                                 
                                 </form>
@@ -121,6 +122,7 @@
                                     parte2 = getById("telefone").value.slice(4, 8);
                                 }
                                 getById("telefone").value = parte1 + "-" + parte2;
+                                getById("local").value = window.location.href;
                             } else {
                                 ckNumero = "Não feito";
                             }
