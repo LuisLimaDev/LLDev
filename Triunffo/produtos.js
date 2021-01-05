@@ -8,7 +8,8 @@
 		"valor":"40,00",
 		"disponibilidade": true,
 		"foto":["imagens/brazucaFront.png", "imagens/logos/brazuca.png"],
-		"cores":[ "#fffc00", "#19b040", "verde", "branco", "preto" ]
+        "camisetas": ["catalogo/brazuca/brazuca1.png", "catalogo/brazuca/brazuca2.png", "catalogo/brazuca/brazuca3.png", "catalogo/brazuca/brazuca4.png", "catalogo/brazuca/brazuca5.png", "catalogo/brazuca/brazuca6.png", "catalogo/brazuca/brazuca7.png", "catalogo/brazuca/brazuca8.png", "catalogo/brazuca/brazuca9.png"],
+		"cores":[ "#fffc00", "#19b040", "verde", "amarelo"]
 	},{
 		"tipo":"MUNDI",
 		"descricao":"",
@@ -18,6 +19,29 @@
             "imagens/mundiFront.png",
             "imagens/logos/mundi.png"
 		],
+        "camisetas":[
+            "catalogo/mundi/mundi01.png",
+            "catalogo/mundi/mundi02.png",
+            "catalogo/mundi/mundi03.png",
+            "catalogo/mundi/mundi04.png",
+            "catalogo/mundi/mundi05.png",
+            "catalogo/mundi/mundi06.png",
+            "catalogo/mundi/mundi07.png",
+            "catalogo/mundi/mundi08.png",
+            "catalogo/mundi/mundi09.png",
+            "catalogo/mundi/mundi10.png",
+            "catalogo/mundi/mundi12.png",
+            "catalogo/mundi/mundi13.png",
+            "catalogo/mundi/mundi14.png",
+            "catalogo/mundi/mundi15.png",
+            "catalogo/mundi/mundi16.png",
+            "catalogo/mundi/mundi17.png",
+            "catalogo/mundi/mundi18.png",
+            "catalogo/mundi/mundi19.png",
+            "catalogo/mundi/mundi20.png",
+            "catalogo/mundi/mundi21.png",
+            "catalogo/mundi/mundi22.png"
+                    ],
 		"cores":[ "rgb(191 235 230)", "#0000e6", "verde", "branco", "preto" ]
 	},{
 		"tipo":"HOUSE",
