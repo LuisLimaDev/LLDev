@@ -92,7 +92,7 @@ div#itensBarra #itensMenuBarra a, #btMenuBlock {
 }
 
 div#sociais{
-    background-color: #5f3;
+    background-color: #5c3;
     position: absolute;
     top: var(--alturaTotal);
     right: 20px;
@@ -125,10 +125,14 @@ div#sociais a img{
     width: 280px;
     animation-name: anmChat;
     animation-duration: 0.3s;
+    background-color: #5f3;
+    border: 30px solid #5f3;
+    border-radius: 30px;
 }
 
 div#sociais div a:hover{
     background-color: #55f;
+    border-radius: 30px;
 }
 
 div#sociais div a, div#sociais div b{
@@ -177,7 +181,7 @@ div#banner1 div{
     background-position: center;
 }
 div#banner1 div div{
-    margin: 15% 0% 5% 0%;
+    margin: 5% 0% 5% 0%;
     font-family: 'Roboto';
     text-shadow: 0px 2px 3px black;
     font-weight: 900;
@@ -289,6 +293,7 @@ button.btPadrao1, a.btPadrao1{
 }
 
 #primeiro .cartao{
+    background-position: 50%;
     width: 75%;
     margin-right: auto;
     margin-left: auto;
