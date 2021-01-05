@@ -7,6 +7,7 @@
 /**  **/
 /**  **/
 
+
 //bannerAtivo = 0;
     repetirTemporizador = true;
 let el = new Elementos;
@@ -24,7 +25,7 @@ carregarBanner = function( divDoBanner ){
     while( cntBanner < destaqueBanner.length ){
         textoDoBanner = el.novaDiv( el.novoLink("<", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[0] + " )" ).outerHTML + el.novoParagrafo( destaqueBanner[ cntBanner ].textoApresentacao ).outerHTML +  el.novoLink(">", "javascript:escolherBanner( " + alternarBotaoBaner(cntBanner)[1] + " )"  ).outerHTML );
         textoDoBanner.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
-        btCatalogo = el.novoLink( "VER A LINHA " + destaqueBanner[ cntBanner ].idItemEstoque.tipo,"catalogo/index.html" );
+        btCatalogo = el.novoLink( "VER A LINHA " + destaqueBanner[ cntBanner ].idItemEstoque.tipo, "catalogo/" + destaqueBanner[ cntBanner ].idItemEstoque.tipo.toLocaleLowerCase() );
         btCatalogo.style.backgroundColor = destaqueBanner[ cntBanner ].idItemEstoque.cores[0];
         btCatalogo.style.color = destaqueBanner[ cntBanner ].idItemEstoque.cores[1];
         divisorBanner = el.novaDiv( textoDoBanner.outerHTML + btCatalogo.outerHTML );
