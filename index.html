@@ -42,18 +42,18 @@
 				background-color: #fdfdff;
 			}
 			
-			#lista{
+			#margemMenu{
 				position: fixed;
 				font-size: 16px;
-				//font-weight: 50px;
+				top: 0px;
 				width: 100%;
 				display: grid;
 				grid-template-columns: 30% 30% 30%;
 				justify-content: space-around;
-				background-color: rgba(0,0,150,0.8);
+				background: linear-gradient(45deg, rgba(0,150,150,1.0), rgba(50,80,180,1));
 			}
 			
-			#lista li, #lista a, #janelaParalax span{
+			#margemMenu li, #margemMenu a, #janelaParalax span{
 				text-align: center;
 				list-style: none;
 				text-decoration: none;
@@ -62,7 +62,7 @@
 				transition: 0.5s all ease;
 			}
 			
-			#lista a:hover{
+			#margemMenu a:hover{
 				background-color: rgba(255,255,255,0.8);
 				background-size: 90px;
 				color: #003;
@@ -72,28 +72,36 @@
 			/** configurações do Banner **/
 			#comandosBanner{
 				width: 100%;
-				background-size: cover;
-				background-position: 50%;
-				background-repeat: no-repeat;
-				background-attachment: fixed;
+				background: linear-gradient(45deg, rgba(0,255,150,1), rgba(50,80,180,1));
 				display: grid;
 				grid-template-columns: 1% 98% 1%;
+				color: #fff;
 			}
-			
-			#comandosBanner a{ text-decoration: none; }
-			
-			#comandosBanner a img{ width: 100% }
-			
+
 			#comandosBanner a{
-				//background-color: rgba(200,200,200,0.9);
+				text-decoration: none;
 				color: #fff;
 				text-align: center;
 				font-size: 40px;
 				text-shadow: 0px 5px 8px #333;
 			}
 
-			#aId h2{
-				font-family: monospace;
+			#comandosBanner section.fixo{
+				display: grid;
+				grid-template-columns: 50% 50%;
+			}
+
+			a#aId{ text-align: right }
+
+			#aId svg#desenhoBanner {
+				width: 30%;
+				height: 50%;
+			}
+
+			#comandosBanner section p{
+				font-size: 20pt;
+				margin: 40px;
+				text-shadow: 0px 3px 3px black;
 			}
 
 			div:target a{
@@ -112,16 +120,23 @@
 				width: 90%;
 				margin: 0% 5%;
 				display: grid;
-				grid-template-columns: 90% 5%;
-				padding: 10% 0px;
+				grid-template-columns: auto;
+				padding: 7% 0px;
 				position: fixed;
 				color: #fff;
 				top: 120px;
-				background-color: #004;
+				background: linear-gradient(45deg, rgba(0,134,145,1), rgba(0,160,130,1) );
 				box-shadow: 0px 10px 15px -5px #333;
 				animation-name: darZoom;
 				animation-duration: 0.5s;
 				justify-content: space-around;
+			}
+			
+			.cartao div section.barraTituloJanela{
+				width: 95%;
+				margin: 0px auto;
+				display: grid;
+				grid-template-columns: auto 50px;
 			}
 
 			hr{
@@ -165,7 +180,7 @@
 				//grid-template-columns: 33.33333% 33.33333% 33.33333%;
 			}
 			#janelaParalax span{
-				background-image: repeating-linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,0.0) 2px);
+				background-image: linear-gradient(45deg, rgba(0,125,255,1), rgba(0,255,100,0.85) );
 				line-height: 200px;
 				text-align: center;
 				color: #fff;
@@ -188,7 +203,7 @@
 			#rodape{
 				margin: 20px 0px 0px 0px;
 				padding: 10% 0px;
-				background-color: #127;
+				background: linear-gradient(45deg, rgba(0,150,150,1.0), rgba(50,80,180,1));
 				display: grid;
 				grid-template-columns: 45% 45%;
 				justify-content: space-around;
@@ -203,6 +218,15 @@
 			#infos{
 				display: grid;
 			}
+			
+			@media screen and (max-width: 600px) {
+				#comandosBanner section.fixo{
+					grid-template-columns: auto;
+					width: 80%;
+					margin: 0px auto;
+				}
+			}
+
 			
 		</style>
 		
@@ -221,28 +245,25 @@
 			}
 
 			function slide1(){
-				document.getElementById("anterior").href = "javascript:slide3()";
-				document.getElementById("proximo").href = "javascript:slide2()";
-				document.getElementById('comandosBanner').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/print1.png')";
-				document.getElementById('aId').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/pc.png')";
+				desenho = '<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="url(#gradPadrao1)" stroke="none"> <path d="M292 8573 c-18 -9 -43 -30 -55 -47 l-22 -31 -3 -2263 c-2 -2509 -8 -2305 62 -2355 l31 -22 1468 -3 1467 -2 0 -275 0 -275 810 0 810 0 0 275 0 275 1378 2 1377 3 31 22 c70 50 64 -154 62 2355 l-3 2263 -22 31 c-13 17 -38 39 -57 48 -31 15 -336 16 -3668 16 -3326 0 -3636 -2 -3666 -17z m7118 -2353 l0 -2070 -3450 0 -3450 0 0 2070 0 2070 3450 0 3450 0 0 -2070z"/> <path d="M8080 2750 l0 -1010 910 0 910 0 0 1010 0 1010 -910 0 -910 0 0 -1010z"/> <path d="M240 2330 l0 -590 3730 0 3730 0 0 590 0 590 -3730 0 -3730 0 0 -590z"/>  </g>';
+				document.getElementById('frase').innerHTML = "Criação de sites";
+				document.getElementById('desenhoBanner').innerHTML = desenho;
 				setTimeout("slide2()", 3000)
 				document.getElementById('aId').href="#primeiro"
 			}
 			  
 			function slide2(){
-				document.getElementById("anterior").href = "javascript:slide1()";
-				document.getElementById("proximo").href = "javascript:slide3()";
-				document.getElementById('comandosBanner').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/print2.png')";
-				document.getElementById('aId').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/phone.png')";
+				desenho = '<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="url(#gradPadrao1)" stroke="none"> <path d="M3265 8641 c-48 -22 -69 -44 -90 -94 -13 -32 -15 -398 -15 -3429 0 -3271 1 -3394 19 -3433 22 -48 44 -69 94 -90 32 -13 236 -15 1807 -15 1571 0 1775 2 1807 15 50 21 72 42 94 90 18 39 19 162 19 3433 0 3031 -2 3397 -15 3429 -21 50 -42 72 -90 94 -38 18 -114 19 -1815 19 -1701 0 -1777 -1 -1815 -19z m2645 -336 l0 -35 -790 0 -790 0 0 35 0 35 790 0 790 0 0 -35z m770 -2765 l0 -2550 -1600 0 -1600 0 0 2550 0 2550 1600 0 1600 0 0 -2550z m-1424 -2945 c265 -119 263 -490 -4 -612 -43 -20 -70 -26 -132 -26 -135 0 -241 68 -302 190 -60 122 -38 266 55 370 95 105 253 137 383 78z"/> </g>';
+				document.getElementById('frase').innerHTML = "Aplicativos Web";
+				document.getElementById('desenhoBanner').innerHTML = desenho;
 				setTimeout("slide3()", 3000)
 				document.getElementById('aId').href="#segundo"
 			}
 			  
 			function slide3(){
-				document.getElementById("anterior").href = "javascript:slide2()";
-				document.getElementById("proximo").href = "javascript:slide1()";
-				document.getElementById('comandosBanner').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/print3.png')";
-				document.getElementById('aId').style.backgroundImage = "url('https://luislimadev.github.io/LLDev/img/tv.png')";
+				desenho = '<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill="url(#gradPadrao1)" stroke="none"> <path d="M75 8810 c-3 -5 -15 -10 -26 -10 -11 0 -22 -8 -25 -17 -3 -10 -10 -26 -15 -35 -13 -25 -12 -6045 1 -6053 6 -3 10 -15 10 -26 0 -11 8 -22 18 -25 9 -3 26 -11 37 -17 15 -9 478 -13 1874 -17 l1854 -5 -1 -115 c-1 -63 -2 -118 -2 -122 0 -5 -566 -9 -1257 -10 l-1258 -3 -3 -132 -3 -133 3736 0 3736 0 -3 133 -3 132 -1220 5 -1220 5 -3 123 -3 122 1832 0 c1543 0 1836 2 1862 14 18 8 40 16 50 20 9 3 17 14 17 25 0 11 5 23 10 26 7 4 10 1023 10 3025 0 2002 -3 3021 -10 3025 -5 3 -10 15 -10 26 0 11 -8 22 -18 25 -9 3 -25 10 -34 15 -25 13 -9925 12 -9933 -1z m9753 -242 c17 -17 17 -5679 0 -5696 -17 -17 -9559 -17 -9576 0 -17 17 -17 5679 0 5696 17 17 9559 17 9576 0z"/> </g>';
+				document.getElementById('frase').innerHTML = "Soluções multi plataforma";
+				document.getElementById('desenhoBanner').innerHTML = desenho;
 				setTimeout("slide1()", 3000)
 				document.getElementById('aId').href="#terceiro"
 			}
@@ -250,43 +271,54 @@
 		</script>
 		
 	</head>
-	
+
+
+
+	<svg style="position: absolute">
+		<defs>
+			<linearGradient id="gradPadrao1" x1="0%" x2="100%" y1="100%" y2="0%">
+				<stop style="stop-color: rgb(50,80,180); stop-opacity: 1" offset="0%"/>
+				<stop style="stop-color: rgb(0,150,150); stop-opacity: 1" offset="100%"/>
+			</linearGradient>
+		</defs>
+	</svg>
+
+
 	<body onload="slide1()" class="tagCorpo" id="tagCorpo">
-		<header>
-		
-			<div id="lista">
-				<a href="#primeiro">Web Design</a>
-				<a href="#segundo">Gerenciamento</a>
-				<a href="#terceiro">Tecnologia</a>
-			</div>
-		</header>
 		<div id="tudo" class="tudo">		
 			<!--<div id="primeiro" class="escondido cartao" style="background-color: rgba(255,0,0,0.95);">-->
 			<div id="primeiro" class="escondido cartao" style="">
 				<div>
-					<h2>Web Design</h2><hr/>
+					<section class="barraTituloJanela"><h2>Web Design</h2>
+					<a href="#inicio">&times;</a>
+					</section>
+					<hr/>
 					<p>Sites responsivos criados com um 'look and feel' específicamente diferenciado, 
 					com imersão baseada em uma aparência única para cada cliente.</p>
 				</div>
-				<a href="#inicio">&times;</a>
 			</div>
 			<!--<div id="segundo" class="escondido cartao" style="background-color: rgba(0,255,0,0.95);">-->
 			<div id="segundo" class="escondido cartao" style="">
 				<div>
-					<h2>Gerenciamento</h2><hr/>
+					<section class="barraTituloJanela"><h2>Gerenciamento</h2>
+					<a href="#inicio">&times;</a>
+					</section>
+					<hr/>
 					<p>Sistemas construídos em Web, com a facilidade de serem acessados a partir de 
 					qualquer lugar, para gestão de estoque, serviços ou pessoas.</p>
 				</div>
-				<a href="#inicio">&times;</a>
 			</div>
 			<!--<div id="terceiro" class="escondido cartao" style="background-color: rgba(0,0,255,0.95);">-->
 			<div id="terceiro" class="escondido cartao" style="">
 				<div>
-					<h2>Tecnologia</h2><hr/>
+					<section class="barraTituloJanela">
+						<h2>Tecnologia</h2>
+						<a href="#inicio">&times;</a>
+					</section>
+					<hr/>
 					<p>O uso de linguagens de marcação como HTML, PHP e MySQL para manter a integridade dos dados armazenados, 
 					com segurança e rapidez na inicialização das aplicações desenvolvidas.</p>
 				</div>
-				<a href="#inicio">&times;</a>
 			</div>
 			
 			<div class="apresentacao" id="apresentacao">
@@ -294,8 +326,18 @@
 				</div>
 				<div id="comandosBanner" style="">
 					<a id="proximo"><b></b></a>
-					<a id="aId" style="background-size:40%;"><h2>LLDev Sistemas Web</h2></a>
+					<section class="fixo">
+					<a id="aId"><section>
+						<h2>LLDev</h2>
+						Sistemas Web
+						</section>
+						<svg version="1.0" xmlns="http://www.w3.org/2000/svg" id="desenhoBanner" width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000" preserveAspectRatio="xMidYMid meet"></svg>
+					</a>
+					<p id="frase"></p>
+					</section>
 					<a id="anterior"><b></b></a>
+					<a id=""><b></b></a>
+					<a id=""><b></b></a>
 				</div>
 			</div>
 		
@@ -332,12 +374,21 @@
 				</div>
 			</div>
 		</div>
+
+		<header>
+		
+			<div id="margemMenu">
+				<a href="#primeiro">Web Design</a>
+				<a href="#segundo">Gerenciamento</a>
+				<a href="#terceiro">Tecnologia</a>
+			</div>
+		</header>
 		<footer>
 			<div id="rodape">
 				<div id="logo"></div>
 				<div id="infos">
 					<h3 id="nome">Luis Lima</h3>
-					<a href="tel://+5519989706280" id="telefone">+55 19.98970-6280</a>
+					<a href="tel://+5519992760111" id="telefone">+55 19.99276-0111</a>
 					<a href="mailto://lhslima16@gmail.com" id="email">Enviar e-mail</a>
 				</div>
 			</div>
@@ -356,39 +407,6 @@
 			getById("tudo").style.margin = "0% 0%";
 		}, 500)
 
-		$(function() {
-			// Default
-			$.fn.moveIt = function(){
-			  var $window = $(window);
-			  var instances = [];
-			  
-			  $(this).each(function(){
-				instances.push(new moveItItem($(this)));
-			  });
-			  
-			  window.addEventListener('scroll', function(){
-				var scrollTop = $window.scrollTop();
-				instances.forEach(function(inst){
-				  inst.update(scrollTop);
-				});
-			  }, {passive: true});
-			}
-
-			var moveItItem = function(el){
-			  this.el = $(el);
-			  this.speed = parseInt(this.el.attr('data-scroll-speed'));
-			};
-
-			moveItItem.prototype.update = function(scrollTop){
-			  this.el.css('transform', 'translateY(' + -(scrollTop / this.speed) + 'px)');
-			};
-
-			// Initialization
-			$(function(){
-			  $('[data-scroll-speed]').moveIt();
-			});
-		});
-		
 
 /**	
 		$(document).on('click', 'a[href^="#"]', function (event) {
@@ -402,24 +420,7 @@
 	</script>
 	<script type="text/javascript">
 
-		function myMove() {
-		  var elem = document.getElementById("aId");   
-		  var pos = 0;
-		  var id = setInterval(frame, 5);
-		  function frame() {
-			if (pos == 350) {
-			  clearInterval(id);
-			} else {
-			  pos++; 
-			  elem.style.top = pos + 'px'; 
-			}
-		  }
-		}
 
-		window.addEventListener("scroll", function(){
-			//console.log(window.scrollY);
-			comandosBanner.style.backgroundPosition = "50% -" + (window.scrollY / 8 ) + "px";
-		})
 
 	</script>
 </html>
