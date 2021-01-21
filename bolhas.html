@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://luislimadev.github.io/LLDev/Triunffo/jquery.min.js"></script>
+<script src="https://luislimadev.github.io/LLDev/Triunffo/padrao.js"></script>
+<script src="elemental.js"></script>
+
+<style>
+*{
+transition: 0.1s all ease;
+font-family: 'Verdana', sans;
+margin: 0px;
+padding: 0px;
+}
+
+body{
+//background: url('https://img.ibxk.com.br/2019/05/17/a-17202525498312.jpg');
+}
+
+body div.girar {
+position: absolute;
+//animation: 4800s girar infinite linear;
+}
+
+body{ overflow: hidden; }
+
+@keyframes girar{
+0%{ transform: rotateZ(0deg) }
+100%{ transform: rotateZ(360deg) }
+}
+
+#apresentacao{
+    background-color: rgba(255,255,255,0.9);
+    color: black;
+    width: 280px;
+    //left: 47%;
+    padding: 20px;
+    position: absolute;
+    box-shadow: 0px 3px 25px #aaa;
+}
+
+</style>
+
+</head>
+<body>
+
+<script>
+
+let el = new Elementos;
+let pp = new Padrao;
+let nSVG = new ElementosSVG;
+
+objetosDoSistema = [
+"sol",
+
+]
+
+	atmosfera = function(){
+		distancia = 50;
+		while( distancia < 100 ){
+			anguloDeVisao = el.novaDiv("");
+			anguloDeVisao.id = distancia + "metros";
+			anguloDeVisao.setAttribute("class","girar");
+			anguloDeVisao.style.background = "radial-gradient( " + Math.round( Math.random() * (distancia/1.1) ) + "px ,rgb( " +  Math.round( Math.random() * 255 ) + "," +  Math.round( Math.random() * 255 ) + ", " +  Math.round( Math.random() * 255 ) + "), transparent), radial-gradient( " + Math.round( Math.random() * (distancia/8) ) + "px ,rgb( " +  Math.round( Math.random() * 255 ) + "," +  Math.round( Math.random() * 255 ) + ", " +  Math.round( Math.random() * 255 ) + "), transparent), radial-gradient( " + Math.round( Math.random() * (distancia/8) ) + "px ,rgb( " +  Math.round( Math.random() * 255 ) + "," +  Math.round( Math.random() * 255 ) + ", " +  Math.round( Math.random() * 255 ) + "), transparent)";
+			//anguloDeVisao.style.background = "radial-gradient(" + distancia + "px ,white, transparent)";
+			anguloDeVisao.style.backgroundPosition = Math.round( Math.random() * (larguraTotal/1.2) ) + "px " + Math.round( Math.random() * (alturaTotal/1.2) ) + "px";
+			//tamanho = Math.round( Math.random() * (distancia * 2) );
+			//tamanho = Math.round( Math.random() * tamanho );
+			tamanho = distancia;
+			anguloDeVisao.style.height = alturaTotal + "px";
+			anguloDeVisao.style.width = larguraTotal + "px";
+			//anguloDeVisao.style.transform = "rotateZ(" + Math.round( Math.random() * 360 ) + "deg)";
+
+			if( distancia == 50 ){
+				el.acrescentar( document.body, anguloDeVisao );
+			} else {
+				el.acrescentar( ( distancia - 1) + "metros", anguloDeVisao );
+			}
+			distancia = distancia + 1;
+		}
+	}
+
+	bolhas = function(){
+		pai = nSVG.novoSVG("");
+		pai.style.width = window.innerWidth;
+		pai.style.height = window.innerHeight;
+		inicio = 0;
+		while( inicio < 200 ){
+			pai.innerHTML = pai.innerHTML + nSVG.novoCirculo( Math.round( Math.random() * window.innerWidth ), Math.round( Math.random() * window.innerHeight ), Math.round( Math.random() * ( window.innerWidth / 8 ) ), "id"+inicio, "fill: rgba( "+ ( Math.random() * 255 ) +", "+ ( Math.random() * 255 ) +" ,"+ ( Math.random() * 255 ) +","+ ( Math.random() ) +"); transform: translate( " + Math.random() * window.innerWidth + "px , " + Math.random() * window.innerHeight + "px )" );
+			inicio = inicio + 1;
+		}
+		document.body.append( pai );
+	}
+
+//atmosfera();
+painel = el.novaDiv( "<h1>Bem vindo</h1><p>Este é o <b>VORTEX</b></p>" + el.novoLink("Pagina do desenvolvedor","https://luislimadev.github.io/LLDev/").outerHTML );
+painel.id = "apresentacao";
+setTimeout( el.acrescentar( document.body, painel), 3000);
+pp.centralizarAlturaTotalMargin(painel);
+pp.centralizarLarguraTotalMargin(painel);
+bolhas();
+
+</script>
+
+</body>
+</html>
