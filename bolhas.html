@@ -3,7 +3,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<script src="https://luislimadev.github.io/LLDev/Triunffo/jquery.min.js"></script>
-		<script src="https://luislimadev.github.io/LLDev/Triunffo/padrao.js"></script>
+		<script src="padrao.js"></script>
 		<script src="elemental.js"></script>
 
 		<style>
@@ -38,6 +38,10 @@
 				padding: 20px;
 				position: absolute;
 				box-shadow: 0px 3px 25px #aaa;
+			}
+			
+			svg circle{
+				animation: 3s moverBolhas infinite;
 			}
 
 		</style>
@@ -87,7 +91,11 @@
 				pai.style.height = window.innerHeight;
 				inicio = 0;
 				while( inicio < 50 ){
-					pai.innerHTML = pai.innerHTML + nSVG.novoCirculo( 0,0, Math.round( Math.random() * ( window.innerWidth / 8 ) ), "id"+inicio, "fill: rgba( "+ ( Math.random() * 255 ) +", "+ ( Math.random() * 255 ) +" ,"+ ( Math.random() * 255 ) +","+ ( Math.random() ) +"); transform: translate( " + Math.random() * window.innerWidth + "px , " + Math.random() * window.innerHeight + "px )" );
+					posInitX = Math.random() * window.innerWidth;
+					posInitY = Math.random() * window.innerHeight;
+					animBolhasPos( posInitX, posInitY, inicio );
+					bolhaIndividual = nSVG.novoCirculo( 0,0, Math.round( Math.random() * ( window.innerWidth / 16 ) ), "id"+inicio, "fill: rgba( "+ ( Math.random() * 255 ) +", "+ ( Math.random() * 255 ) +" ,"+ ( Math.random() * 255 ) +","+ ( Math.random() ) +"); transform: translate( " + posInitX + "px , " + posInitY + "px ); animation: 30s linear " + inicio + "s infinite normal forwards running moverBolhas" + inicio + "; " );
+					pai.innerHTML = pai.innerHTML + bolhaIndividual;
 					inicio = inicio + 1;
 				}
 				document.body.append( pai );
