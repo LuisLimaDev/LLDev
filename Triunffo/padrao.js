@@ -44,6 +44,27 @@
 **/
 	});
 
+	inverter = function( textoParaInverter ) {
+		var espacoNoTexto = '';
+		for (var i = textoParaInverter.length - 1; i >= 0; i--) {
+			espacoNoTexto += textoParaInverter[i];
+		}
+		return espacoNoTexto;
+	}
+
+	animMoverBolhas = function(){
+		posInicialX = ( Math.random() * window.innerWidth );
+		posInicialY = ( Math.random() * window.innerHeight );
+		animacaoAleatoria = '<style>@keyframes moverBolhas{ 0%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) }50%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }100%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) } }</style>';
+		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
+	}
+
+	animBolhasPos = function( posInicialX, posInicialY, idDaBolha ){
+		//posInicialX = ( Math.random() * window.innerWidth );
+		//posInicialY = ( Math.random() * window.innerHeight );
+		animacaoAleatoria = '<style>@keyframes moverBolhas' + idDaBolha + ' { 0%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) }25%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }50%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }75%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }100%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) } }</style>';
+		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
+	}
 
 	class Padrao{
 		
