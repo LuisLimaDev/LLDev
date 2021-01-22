@@ -6,6 +6,8 @@ let getById = (id) => document.getElementById(id);
 let getByClass = (cl) => document.getElementsByClassName(cl);
 let novoElm = (el) => document.createElement(el);
 
+
+/**
 inverter = function( textoParaInverter ) {
     var espacoNoTexto = '';
     for (var i = textoParaInverter.length - 1; i >= 0; i--) {
@@ -13,6 +15,17 @@ inverter = function( textoParaInverter ) {
     }
     return espacoNoTexto;
 }
+**/
+
+
+
+/**
+
+
+**/
+
+
+
 
 class Elementos {
 
