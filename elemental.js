@@ -121,17 +121,26 @@ class ElementosSVG {
         return patternImage;
     }
 
+    linearGradient2CoresA( idDaGrade, corInicial, corFinal ){ // CRIA UM PLANO DE FUNDO
+		return '<linearGradient id="' + idDaGrade + '" y1="0.024" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="' + corInicial + '" ></stop><stop offset="1" stop-color="' + corFinal + '"></stop></linearGradient>';
+	}
     linearGradient2Cores( idDaGrade, corInicial, corFinal ){ // CRIA UM PLANO DE FUNDO
         nLinearGradient = novoElm("linearGradient");
-        nLinearGradient.setAttributeNS( null, "gradientUnits", "objectBoundingBox" );
+        //nLinearGradient.setAttributeNS( null, "gradientUnits", "objectBoundingBox" );
         nLinearGradient.setAttributeNS( null, "id", idDaGrade );
+        nLinearGradient.setAttributeNS( null, "x1", "0%" );
+        nLinearGradient.setAttributeNS( null, "x2", "100%" );
+        nLinearGradient.setAttributeNS( null, "y1", "0%" );
+        nLinearGradient.setAttributeNS( null, "y2", "100%" );
 
         corDeParada1 = novoElm("linearGradient");
-        corDeParada1.setAttributeNS( null, "offset", "0" );
+        corDeParada1.setAttributeNS( null, "opacity", "1.0" );
+        corDeParada1.setAttributeNS( null, "offset", "0%" );
         corDeParada1.setAttributeNS( null, "stop-color", corInicial );
 
         corDeParada2 = novoElm("linearGradient");
-        corDeParada2.setAttributeNS( null, "offset", "0" );
+        corDeParada2.setAttributeNS( null, "opacity", "1.0" );
+        corDeParada2.setAttributeNS( null, "offset", "100%" );
         corDeParada2.setAttributeNS( null, "stop-color", corFinal );
 
         nLinearGradient.append( corDeParada1, corDeParada2 );
