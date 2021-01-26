@@ -101,6 +101,24 @@
 				document.body.append( pai );
 			}
 
+			bolhasGradient = function( elementoParaPlanoDeFundo ){
+				pai = nSVG.novoSVG("");
+				pai.style.width = elementoParaPlanoDeFundo.offsetWidth;
+				pai.style.height = elementoParaPlanoDeFundo.offsetHeight;
+				inicio = 0;
+				while( inicio < 50 ){
+					posInitX = Math.random() * window.innerWidth;
+					posInitY = Math.random() * window.innerHeight;
+					animBolhasPos( elementoParaPlanoDeFundo, posInitX, posInitY, inicio );
+					gradiente = nSVG.novoDefs("");
+					gradiente.innerHTML = nSVG.linearGradient2CoresA("gradCores" + inicio,"rgba( "+ ( Math.random() * 255 ) +", "+ ( Math.random() * 255 ) +" ,"+ ( Math.random() * 255 ) +","+ ( Math.random() ) +")","rgba( "+ ( Math.random() * 255 ) +", "+ ( Math.random() * 255 ) +" ,"+ ( Math.random() * 255 ) +","+ ( Math.random() ) +")");
+					bolhaIndividual = gradiente.outerHTML + nSVG.novoCirculo( 0,0, Math.round( Math.random() * ( window.innerWidth / 16 ) ), "id"+inicio, "fill: url(#gradCores"+inicio+"); transform: translate( " + posInitX + "px , " + posInitY + "px ); animation: 30s linear " + inicio + "s infinite normal forwards running moverBolhas" + inicio + "; " );
+					pai.innerHTML = pai.innerHTML + bolhaIndividual;
+					inicio = inicio + 1;
+				}
+				elementoParaPlanoDeFundo.append( pai );
+			}
+
 			//atmosfera();
 			painel = el.novaDiv( "<h1>Bem vindo</h1><p>Este é o <b>VORTEX</b></p>" + el.novoLink("Pagina do desenvolvedor","https://luislimadev.github.io/LLDev/").outerHTML );
 			painel.id = "apresentacao";
