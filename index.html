@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html style="">
+<html lang="pt" xml:lang="pt" xmlns="http://www.w3.org/1999/xhtml" style="">
 	<head>
 		<title>LLDev Sistemas Web</title>
 		<meta charset="UTF-8">
 		<meta name="lang" content="pt-BR">
+		<meta name="description" content="Desevoldedor de sistemas web">
 		<link rel="manifest" href="manifest.json">
 		<link rel="serviceworker" href="sw.js">
 		<link rel="icon" type="image/png" href="img/favicon.png"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js" integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="jquery.min.js"></script>
 		<style>
 			*{
 				margin: 0px;
@@ -28,9 +28,9 @@
 				font-family: verdana;
 			}
 			
-			#logo{
-				background-size: contain;
-				background-image: url('https://luislimadev.github.io/LLDev/img/logo144.png');
+			#logo svg{
+				width: 50%;
+				margin-left: 50%;
 			}
 
 			#logo, #aId{
@@ -74,7 +74,7 @@
 				width: 100%;
 				background: linear-gradient(45deg, rgba(0,255,150,1), rgba(50,80,180,1));
 				display: grid;
-				grid-template-columns: 1% 98% 1%;
+				grid-template-columns: auto;
 				color: #fff;
 			}
 
@@ -168,7 +168,7 @@
 			}
 
 			#fundo{
-				background-image: linear-gradient(45deg, rgba(160,100,230,1.0), rgba(0,70,70,0.95) ), url(https://luislimadev.github.io/LLDev/img/print5.png);
+				background-image: linear-gradient(45deg, rgba(160,100,230,1.0), rgba(0,70,70,0.95) ), url(img/print5.png);
 				background-attachment: fixed;
 				background-repeat: no-repeat;
 				background-size: cover;
@@ -325,7 +325,6 @@
 				<div style="">
 				</div>
 				<div id="comandosBanner" style="">
-					<a id="proximo"><b></b></a>
 					<section class="fixo">
 					<a id="aId"><section>
 						<h2>LLDev</h2>
@@ -335,14 +334,11 @@
 					</a>
 					<p id="frase"></p>
 					</section>
-					<a id="anterior"><b></b></a>
-					<a id=""><b></b></a>
-					<a id=""><b></b></a>
 				</div>
 			</div>
 		
 			<div id="corpo">
-				<div class="cartao" style="background-image: url('https://luislimadev.github.io/LLDev/img/phone.png')">
+				<div class="cartao phone" style="background-image: url('img/phone.png')">
 					<div>
 					<h2>Por que escolher entre uma página rápida ou uma página bonita?</h2>
 					<br/>
@@ -350,7 +346,7 @@
 					como estatísticas de visualização e acesso, controle de conteúdo ou até mesmo um aplicativo.</p>
 					</div>
 				</div>
-				<div class="cartao sombraLeve" style="background-image: url('https://luislimadev.github.io/LLDev/img/pc.png')">
+				<div class="cartao sombraLeve" style="background-image: url('img/pc.png')">
 					<div>
 					<h2>Chame a atenção</h2>
 					<hr/>
@@ -365,7 +361,7 @@
 						<span>FUNCIONAL</span>
 					</div>
 				</div>
-				<div class="cartao sombraLeve" style="background-image: url('https://luislimadev.github.io/LLDev/img/tv.png')">
+				<div class="cartao sombraLeve" style="background-image: url('img/tv.png')">
 					<div>
 					<h2>Compatibilidade</h2>
 					<hr/>
@@ -386,6 +382,28 @@
 		<footer>
 			<div id="rodape">
 				<div id="logo">
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="simbLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 612 400" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#ffffff;stroke-width:10;}
+	.branco{ fill: #ffffff }
+</style>
+<g>
+	<rect id="letraL-p1" class="branco" x="27.2" y="35.4" width="81.8" height="318.6"/>
+	<rect id="letraL-p2" class="branco" x="91.5" y="272.6" width="136.3" height="81.4"/>
+	<rect id="letraI" class="branco" x="146.3" y="36.6" width="81.4" height="199.4"/>
+	<rect id="letraS-P1" class="branco" x="263.1" y="36.6" width="319.7" height="81.4"/>
+	<rect id="letraS-p2" class="branco" x="263.1" y="154.6" width="319.7" height="81.4"/>
+	<rect id="letraS-p3" class="branco" x="263.1" y="272.6" width="319.7" height="81.4"/>
+	<rect id="contorno" x="7" y="7" class="st0" width="598.3" height="378.8"/>
+</g>
+</svg>
+
+
 
 				</div>
 				<div id="infos">
