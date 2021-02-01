@@ -1,0 +1,15 @@
+<!-- pc.svg -->
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" id="desenhoBanner" width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000" preserveAspectRatio="xMidYMid meet">
+	<defs>
+		<linearGradient id="gradPadrao1" x1="0%" x2="100%" y1="100%" y2="0%">
+			<stop style="stop-color: rgb(50,80,180); stop-opacity: 1" offset="0%"/>
+			<stop style="stop-color: rgb(0,150,150); stop-opacity: 1" offset="100%"/>
+		</linearGradient>
+	</defs>
+	<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill=" url(#gradPadrao1) " stroke="none">
+		<path d="M292 8573 c-18 -9 -43 -30 -55 -47 l-22 -31 -3 -2263 c-2 -2509 -8 -2305 62 -2355 l31 -22 1468 -3 1467 -2 0 -275 0 -275 810 0 810 0 0 275 0 275 1378 2 1377 3 31 22 c70 50 64 -154 62 2355 l-3 2263 -22 31 c-13 17 -38 39 -57 48 -31 15 -336 16 -3668 16 -3326 0 -3636 -2 -3666 -17z m7118 -2353 l0 -2070 -3450 0 -3450 0 0 2070 0 2070 3450 0 3450 0 0 -2070z"/>
+		<path d="M8080 2750 l0 -1010 910 0 910 0 0 1010 0 1010 -910 0 -910 0 0 -1010z"/>
+		<path d="M240 2330 l0 -590 3730 0 3730 0 0 590 0 590 -3730 0 -3730 0 0 -590z"/>
+	</g>
+
+</svg>
