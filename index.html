@@ -157,6 +157,7 @@
 				top: 120px;
 				background-color: #ffffff;
 				border-radius: 3px;
+				transition: 0.4s all ease;
 			}
 			
 			.sombraLeve{
@@ -358,9 +359,9 @@
 				</div>
 				<div id="fundo">
 					<div id="janelaParalax">
-						<span>INTERATIVO</span>
-						<span>RÁPIDO</span>
-						<span>FUNCIONAL</span>
+						<span id="interativo">INTERATIVO</span>
+						<span id="fast">RÁPIDO</span>
+						<span id="work">FUNCIONAL</span>
 					</div>
 				</div>
 				<div class="cartao sombraLeve" style="background-image: linear-gradient(0deg, white, transparent), url('img/tv.svg')">
@@ -438,15 +439,38 @@
 			getById("tudo").style.margin = "0% 0%";
 		}, 500)
 
+		function rolagem( itemNaTela, posicaoNoMenu ){
+			lista = getById("janelaParalax").children;
+			objetoRecebido = itemNaTela;
+			if ( window.scrollY > (objetoRecebido.offsetTop - (altura / 1.8) ) && window.scrollY < ( (objetoRecebido.offsetHeight - (altura / 1.8)) + objetoRecebido.offsetTop) ){
 
-/**	
-		$(document).on('click', 'a[href^="#"]', function (event) {
-			event.preventDefault();
-			$('html, body').animate({
-				scrollTop: $($.attr(this, 'href')).offset().top -80
-			}, 500);
+				lista[posicaoNoMenu].style.opacity = "1";
+				lista[posicaoNoMenu].style.width = "100%";
+				lista[posicaoNoMenu].style.fontSize = "60pt";
+			} else {
+				lista[posicaoNoMenu].style.width = "50%";
+				lista[posicaoNoMenu].style.opacity = "0";
+				lista[posicaoNoMenu].style.fontSize = "26px";
+			}
+		}
+		
+		function rolagemFundoCartao( posicacaoDocartao ){
+			objetoRecebido = getByClass("cartao")[ posicacaoDocartao ];
+			if ( window.scrollY > (objetoRecebido.offsetTop - (altura / 1.8) ) && window.scrollY < ( (objetoRecebido.offsetHeight - (100)) + objetoRecebido.offsetTop) ){
+				getByClass("cartao")[ posicacaoDocartao ].style.backgroundSize = "30%";
+			} else {
+				getByClass("cartao")[ posicacaoDocartao ].style.backgroundSize = "0%";
+			}
+		}
+
+		window.document.addEventListener("scroll", function(){
+			rolagem( getById("interativo"), 0);
+			rolagem( getById("fast"), 1 );
+			rolagem( getById("work"), 2 );
+			rolagemFundoCartao( 3 );
+			rolagemFundoCartao( 4 );
+			rolagemFundoCartao( 5 );
 		});
-**/
 
 	</script>
 	<script type="text/javascript">
