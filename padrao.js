@@ -66,6 +66,13 @@
 		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
 	}
 
+	animStars = function( posInicialX, posInicialY, idDaBolha ){
+		//posInicialX = ( Math.random() * window.innerWidth );
+		//posInicialY = ( Math.random() * window.innerHeight );
+		animacaoAleatoria = '<style>@keyframes moverBolhas' + idDaBolha + ' { 0%{ transform: translate(' + posInicialX + '%,' + posInicialY + '%) }25%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%) }50%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%)  }75%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%)  }100%{ transform: translate(' + posInicialX + '%,' + posInicialY + '%)  } }</style>';
+		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
+	}
+
 	class Padrao{
 		
 		coresPadrao(){
