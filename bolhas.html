@@ -118,6 +118,35 @@
 				}
 				elementoParaPlanoDeFundo.append( pai );
 			}
+			
+			estrelas = function(){
+				distancia = 1;
+				while( distancia < 80 ){
+					anguloDeVisao = el.novaDiv("");
+					anguloDeVisao.id = distancia + "metros";
+					anguloDeVisao.setAttribute("class","girar");
+					posInitX = Math.random() * window.innerWidth;
+					posInitY = Math.random() * window.innerHeight;
+					animStars( Math.round( ( Math.random() * - 50 ) + (Math.random() * + 50) ), Math.round( ( Math.random() * - 50 ) + (Math.random() * + 50) ), distancia );
+					anguloDeVisao.style.background = "radial-gradient( " + Math.round( Math.random() * (distancia/4) ) + "px ,rgb( " +  Math.round( Math.random() * 255 ) + "," +  Math.round( Math.random() * 255 ) + ", " +  Math.round( Math.random() * 255 ) + "), transparent), radial-gradient( " + Math.round( Math.random() * (distancia/16) ) + "px ,rgb( " +  Math.round( Math.random() * 255 ) + "," +  Math.round( Math.random() * 255 ) + ", " +  Math.round( Math.random() * 255 ) + "), transparent)";
+					anguloDeVisao.style.animation = "30s linear 0." + distancia + "s infinite normal forwards running moverBolhas" + distancia ;
+					anguloDeVisao.style.backgroundPosition = Math.round( Math.random() * (larguraTotal/1.2) ) + "px " + Math.round( Math.random() * (alturaTotal/1.2) ) + "px";
+					//tamanho = Math.round( Math.random() * (distancia * 2) );
+					//tamanho = Math.round( Math.random() * tamanho );
+					tamanho = distancia;
+					anguloDeVisao.style.height = alturaTotal + "px";
+					anguloDeVisao.style.width = larguraTotal + "px";
+					//anguloDeVisao.style.transform = "rotateZ(" + Math.round( Math.random() * 360 ) + "deg)";
+					
+					/**if( distancia == 50 ){
+						el.acrescentar( document.body, anguloDeVisao );
+					} else {
+						el.acrescentar( ( distancia - 1) + "metros", anguloDeVisao );
+					}**/
+					el.acrescentar( document.body, anguloDeVisao );
+					distancia = distancia + 1;
+				}
+			}
 
 			//atmosfera();
 			painel = el.novaDiv( "<h1>Bem vindo</h1><p>Este é o <b>VORTEX</b></p>" + el.novoLink("Pagina do desenvolvedor","https://luislimadev.github.io/LLDev/").outerHTML );
