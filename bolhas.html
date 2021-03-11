@@ -148,13 +148,39 @@
 				}
 			}
 
+			teia = function(){
+				pontos = "";
+				pai = nSVG.novoSVG("");
+				pai.style.width = window.innerWidth;
+				pai.style.height = window.innerHeight;
+
+				defs = nSVG.novoDefs("");
+				defs.innerHTML =  nSVG.linearGradient2CoresA("teste1","#08f","#a08");
+				pai.append( defs )
+
+				inicio = 0;
+				while( inicio < 25 ){
+					posInitX = Math.random() * window.innerWidth;
+					posInitY = Math.random() * window.innerHeight;
+					animBolhasPos( posInitX, posInitY, inicio );
+
+					pontos = " " + Math.round( posInitX ) + "," + Math.round( posInitY ) + " " + pontos;
+					pontoDaTeia = nSVG.novaPolyforma( "id"+inicio, pontos, "fill: transparent; stroke: url(#teste1) " );
+					popPonto = nSVG.novoCirculo( Math.round( posInitX ),  Math.round( posInitY ), 5, "","fill: url(#teste1)");
+					pai.innerHTML = pai.innerHTML + popPonto;
+					inicio = inicio + 1;
+				}
+				pai.innerHTML = pai.innerHTML + pontoDaTeia;
+				document.body.append( pai );
+			}
+
 			//atmosfera();
 			painel = el.novaDiv( "<h1>Bem vindo</h1><p>Este é o <b>VORTEX</b></p>" + el.novoLink("Pagina do desenvolvedor","https://luislimadev.github.io/LLDev/").outerHTML );
 			painel.id = "apresentacao";
 			setTimeout( el.acrescentar( document.body, painel), 3000);
 			pp.centralizarAlturaTotalMargin(painel);
 			pp.centralizarLarguraTotalMargin(painel);
-			bolhas();
+			teia();
 
 		</script>
 
