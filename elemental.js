@@ -147,7 +147,7 @@ class ElementosSVG {
         return nLinearGradient;
     }
 
-    novoGrupo( itensParaAgrupar ){
+    novoGrupo( itensParaAgrupar, idDoGrupo ){
         agrupamentoSVG = novoElm("g")
         agrupamentoSVG.id = idDoGrupo;
         agrupamentoSVG.append( itensParaAgrupar );
@@ -159,7 +159,7 @@ class ElementosSVG {
     }
 	
 	novoCirculo( distanciaX, distanciaY, tamanhoDoRadio, identificacao, estilosDoCirculoCSS ){
-		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaX + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
+		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaY + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
 	}
 }
 
