@@ -12,7 +12,9 @@
 	let root = document.documentElement;
     root.style.setProperty('--alturaTotal', alturaTotal - 71 + "px");
     root.style.setProperty('--larguraTotal', larguraTotal + "px");
+    root.style.setProperty('--larguraTotalInverso', '-' + larguraTotal + "px");
     root.style.setProperty('scroll-behavior', 'smooth');
+    root.style.setProperty('overflow-x', 'hidden');
 
     /*****************************************************/
     /************** PERSONALIZAÇÃO DE CORES **************/
@@ -24,6 +26,13 @@
     root.style.setProperty('--preto7', 'rgba(0,0,0,0.75)');
     
 
+	window.addEventListener("resize", e => {
+		larguraTotal = janela.innerWidth;
+		alturaTotal = janela.innerHeight;
+		root.style.setProperty('--alturaTotal', alturaTotal - 71 + "px");
+		root.style.setProperty('--larguraTotal', larguraTotal + "px");
+		root.style.setProperty('--larguraTotalInverso', '-' + larguraTotal + "px");
+	});
 	root.addEventListener("mousemove", e => {
 		root.style.setProperty('--mouse-x', e.clientX + "px");
 		root.style.setProperty('--mouse-x-cent', "-" + Math.round( ( e.clientX / 100 ) * 10 ) + "%");
@@ -63,6 +72,13 @@
 		//posInicialX = ( Math.random() * window.innerWidth );
 		//posInicialY = ( Math.random() * window.innerHeight );
 		animacaoAleatoria = '<style>@keyframes moverBolhas' + idDaBolha + ' { 0%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) }25%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }50%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }75%{ transform: translate(' + Math.random() * window.innerWidth + 'px,' + Math.random() * window.innerHeight + 'px) }100%{ transform: translate(' + posInicialX + 'px,' + posInicialY + 'px) } }</style>';
+		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
+	}
+
+	animStars = function( posInicialX, posInicialY, idDaBolha ){
+		//posInicialX = ( Math.random() * window.innerWidth );
+		//posInicialY = ( Math.random() * window.innerHeight );
+		animacaoAleatoria = '<style>@keyframes moverBolhas' + idDaBolha + ' { 0%{ transform: translate(' + posInicialX + '%,' + posInicialY + '%) }25%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%) }50%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%)  }75%{ transform: translate(' + Math.random() * posInicialX + '%,' + Math.random() * posInicialY + '%)  }100%{ transform: translate(' + posInicialX + '%,' + posInicialY + '%)  } }</style>';
 		document.head.innerHTML = document.head.innerHTML + animacaoAleatoria;
 	}
 
@@ -152,6 +168,13 @@
 			}
 		}
 
+		inverter = function( textoParaInverter ) {
+			var espacoNoTexto = '';
+			for (var i = textoParaInverter.length - 1; i >= 0; i--) {
+				espacoNoTexto += textoParaInverter[i];
+			}
+			return espacoNoTexto;
+		}
 
 		/** animações **/
 
