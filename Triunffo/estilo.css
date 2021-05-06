@@ -177,8 +177,10 @@ div#banner1 div{
     display: grid;
     background-repeat: no-repeat;
     background-size: cover;
-    //animation: bannerInd 5s infinite;
     background-position: center;
+	position: absolute;
+    width: 100%;
+    height: var(--alturaTotal);
 }
 div#banner1 div div{
     margin: 5% 0% 5% 0%;
