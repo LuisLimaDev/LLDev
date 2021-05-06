@@ -1,6 +1,6 @@
 //elemental.js
 
-let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv;
+let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv, svgTag, novoPattern, patternImage, nLinearGradient, corDeParada2, corDeParada1, estilosSVG, agrupamentoSVG, formaPath;
 
 let getById = (id) => document.getElementById(id);
 let getByClass = (cl) => document.getElementsByClassName(cl);
