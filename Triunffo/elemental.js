@@ -6,6 +6,8 @@ let getById = (id) => document.getElementById(id);
 let getByClass = (cl) => document.getElementsByClassName(cl);
 let novoElm = (el) => document.createElement(el);
 
+
+/**
 inverter = function( textoParaInverter ) {
     var espacoNoTexto = '';
     for (var i = textoParaInverter.length - 1; i >= 0; i--) {
@@ -13,6 +15,17 @@ inverter = function( textoParaInverter ) {
     }
     return espacoNoTexto;
 }
+**/
+
+
+
+/**
+
+
+**/
+
+
+
 
 class Elementos {
 
@@ -148,4 +161,20 @@ class ElementosSVG {
 	novoCirculo( distanciaX, distanciaY, tamanhoDoRadio, identificacao, estilosDoCirculoCSS ){
 		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaY + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
 	}
+}
+
+var personalizar = new Elementos, objetoDeRolagem;
+
+rolagemPersonalizada = function( documentoHTML ){
+	tamanhoTotalDaPagina = documentoHTML.offsetHeight;
+	objetoDeRolagem = personalizar.novaDiv("");
+	objetoDeRolagem.id = "objetoDeRolagem";
+	documentoHTML.append( objetoDeRolagem );
+}
+
+rolarObjeto = function(){
+	var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+	var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	objetoDeRolagem.style.height = ( window.innerHeight / 10 ) + "px";
+	objetoDeRolagem.style.top = Math.round( (winScroll / height) * (document.documentElement.scrollHeight / 6.69 ) ) + "%";
 }
