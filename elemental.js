@@ -124,23 +124,18 @@ class ElementosSVG {
     linearGradient2CoresA( idDaGrade, corInicial, corFinal ){ // CRIA UM PLANO DE FUNDO
 		return '<linearGradient id="' + idDaGrade + '" y1="0.024" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="' + corInicial + '" ></stop><stop offset="1" stop-color="' + corFinal + '"></stop></linearGradient>';
 	}
-    linearGradient2Cores( idDaGrade, corInicial, corFinal ){ // CRIA UM PLANO DE FUNDO
+
+	linearGradient2Cores( idDaGrade, corInicial, corFinal ){ // CRIA UM PLANO DE FUNDO
         nLinearGradient = novoElm("linearGradient");
-        //nLinearGradient.setAttributeNS( null, "gradientUnits", "objectBoundingBox" );
+        nLinearGradient.setAttributeNS( null, "gradientUnits", "objectBoundingBox" );
         nLinearGradient.setAttributeNS( null, "id", idDaGrade );
-        nLinearGradient.setAttributeNS( null, "x1", "0%" );
-        nLinearGradient.setAttributeNS( null, "x2", "100%" );
-        nLinearGradient.setAttributeNS( null, "y1", "0%" );
-        nLinearGradient.setAttributeNS( null, "y2", "100%" );
 
         corDeParada1 = novoElm("linearGradient");
-        corDeParada1.setAttributeNS( null, "opacity", "1.0" );
-        corDeParada1.setAttributeNS( null, "offset", "0%" );
+        corDeParada1.setAttributeNS( null, "offset", "0" );
         corDeParada1.setAttributeNS( null, "stop-color", corInicial );
 
         corDeParada2 = novoElm("linearGradient");
-        corDeParada2.setAttributeNS( null, "opacity", "1.0" );
-        corDeParada2.setAttributeNS( null, "offset", "100%" );
+        corDeParada2.setAttributeNS( null, "offset", "0" );
         corDeParada2.setAttributeNS( null, "stop-color", corFinal );
 
         nLinearGradient.append( corDeParada1, corDeParada2 );
@@ -160,6 +155,82 @@ class ElementosSVG {
 	
 	novoCirculo( distanciaX, distanciaY, tamanhoDoRadio, identificacao, estilosDoCirculoCSS ){
 		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaY + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
+	}
+}
+
+let novoForm, inputTexto, inputNumero, inputCalendario, inputRadio, inputCheckbox, novaLabel, novoFieldset, novoTextarea;
+
+// FORMULARIOS
+class FormLL {
+	novoForm( itensDoFormulario, metodoDeEnvio, destinoAction ){
+		novoForm = novoElm("form");
+		novoForm.method = metodoDeEnvio;
+		novoForm.action = destinoAction;
+		novoForm.innerHMTL = itensDoFormulario;
+		return novoForm;
+	}
+	inputTexto( nomeDeElemento, idDoElemento, valorInterno ){
+		inputTexto = novoElm("input");
+		inputTexto.type = "text";
+		inputTexto.name = nomeDeElemento;
+		inputTexto.id = idDoElemento;
+		inputTexto.value = valorInterno;
+		return inputTexto;
+	}
+	inputNumero( nomeDeElemento, idDoElemento, valorInterno ){
+		inputNumero = novoElm("input");
+		inputNumero.type = "number";
+		inputNumero.name = nomeDeElemento;
+		inputNumero.id = idDoElemento;
+		inputNumero.value = valorInterno;
+		return inputNumero;
+	}
+	inputCalendario( nomeDeElemento, idDoElemento, valorInterno ){
+		inputCalendario = novoElm("input");
+		inputCalendario.type = "date";
+		inputCalendario.name = nomeDeElemento;
+		inputCalendario.id = idDoElemento;
+		inputCalendario.value = valorInterno;
+		return inputCalendario;
+	}
+	inputRadio( nomeDeElemento, idDoElemento, valorInterno ){
+		inputRadio = novoElm("input");
+		inputRadio.type = "radio";
+		inputRadio.name = nomeDeElemento;
+		inputRadio.id = idDoElemento;
+		inputRadio.value = valorInterno;
+		return inputRadio;
+	}
+	inputCheckbox( nomeDeElemento, idDoElemento, valorInterno ){
+		inputCheckbox = novoElm("input");
+		inputCheckbox.type = "check";
+		inputCheckbox.name = nomeDeElemento;
+		inputCheckbox.id = idDoElemento;
+		inputCheckbox.value = valorInterno;
+		return inputCheckbox;
+	}
+	novaLabel( textoInterno, elementoReferente ){
+		novaLabel = novoElm("label");
+		novaLabel.innerText = textoInterno;
+		if( elementoReferente.toString() == "[object HTMLInputElement]"){
+			novaLabel.append( elementoReferente );
+		} else {
+			novaLabel.for = elementoReferente;
+		}
+		return novaLabel;
+	}
+	novoFieldset( nomeDoFieldset, itensInternos ){
+		novoFieldset = novoElm("fieldset");
+		novoFieldset.name = nomeDoFieldset;
+		novoFieldset.innerHMTL = itensInternos;
+		return novoFieldset;
+	}
+	novoTextarea( nomeDeElemento, idDoElemento, valorInterno ){
+		novoTextarea = novoElm("textarea");
+		novoTextarea.name = nomeDeElemento;
+		novoTextarea.id = idDoElemento;
+		novoTextarea.value = valorInterno;
+		return novoTextarea;
 	}
 }
 
