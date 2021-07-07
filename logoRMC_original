@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="180" width="180">
+	<defs><style>
+		.cls-1{font-size:137.27px;}
+		.cls-1,.cls-2,.cls-3,.cls-4,.cls-5{fill:rgb(191, 224, 255);}
+		.cls-1,.cls-3{font-family:ArialMT, Arial;}
+		.cls-2,.cls-4{font-family:Impact, Impact;}
+		.cls-2,.cls-3,.cls-4{font-size:84.94px;}
+	</style></defs>
+	<g id="Layer_1-2" data-name="Layer 1" transform="scale(0.5 0.5)">
+		<text class="cls-4" transform="translate(4.59 76.05) scale(1.12 1)">Central </text>
+		<text class="cls-3" transform="translate(4 144.05) scale(0.95 1)">De</text>
+		<text class="cls-2" transform="translate(4.59 227.31) scale(1.08 1)">Notícias</text>
+		<text class="cls-1" transform="translate(0 331.04) scale(1.12 1)">RMC</text>
+		<circle class="cls-5" cx="296.42" cy="282.31" r="28.5"/>
+		<!-- <g transform="translate(300 -500) scale(2.2 2.2)"> -->
+			<!-- <text class="cls-1" transform="translate(0 331.04) scale(1.12 1)">RMC</text> -->
+			<!-- <circle class="cls-5" cx="296.42" cy="282.31" r="28.5"/> -->
+		<!-- </g> -->
+		<path class="cls-5" d="M22,87.81c-14.23,7.33-12.77,48.36,0,54.33C30.37,146,47.61,136.76,53.61,123h43V105H54.13C48.76,91.22,31.15,83.07,22,87.81Z"/>
+	</g>
+</svg>
