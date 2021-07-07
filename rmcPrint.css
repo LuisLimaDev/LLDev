@@ -1,0 +1,31 @@
+/*****************************************************************/
+/************************** rmcPrint.css *************************/
+/************ MEDIA IMPRESSÃO CENTRAL DE NOTÍCIAS RMC ************/
+/*****************************************************************/
+
+@media print{
+	div.dividir, div#destaque section a img, div#capa img{
+		display: block;
+	}
+	nav{
+		line-height: 7vh;
+	}
+	header{
+		position: absolute;
+	}
+	body{
+		background-color: red;
+	}
+	div.dividir{
+		margin-top: 2vh
+	}
+	div#destaque section{ box-shadow: 0 3px 10px -5px var( --corPadrao2 ) }
+	div#destaque section, div#destaque section h1, div#destaque section h3{ display: block; }
+	div#destaque section h1, div#destaque section h3{ padding: 20px 5px; position: absolute; width: 40% }
+	div#destaque section img, div#capa img{ width: 100% }
+
+	div#outras.materias section a figure{
+		grid-row-start: 1;
+		grid-row-end: 3;
+	}
+}
