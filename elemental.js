@@ -5,7 +5,7 @@ let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv, svgTa
 let getById = (id) => document.getElementById(id);
 let getByClass = (cl) => document.getElementsByClassName(cl);
 let novoElm = (el) => document.createElement(el);
-
+let setID = ( htmlItem, idParaAplicar ) => { htmlItem.id = idParaAplicar }
 
 /**
 inverter = function( textoParaInverter ) {
