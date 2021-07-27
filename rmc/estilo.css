@@ -1,0 +1,276 @@
+// estilo.css
+
+body, *{
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif !important;
+	transition: 2s margin ease;
+}
+
+.escondido{
+	display: none;
+}
+
+header{
+	width: 90%;
+	position: fixed;
+	padding: 0% 5%;
+	background-image: linear-gradient(45deg, var( --corPadrao2 ), var( --corPadrao3 ));
+	box-shadow: 0px 0px 20px #888;
+	border: solid var( --corPadrao3 );
+	border-width: 0 0 5px 0;
+}
+
+nav{
+	display: grid;
+	grid-template-columns: 180px auto 100px;
+	font-size: 5vh;
+	line-height: 15vh;
+	text-align: center;
+	padding: 0;
+}
+
+nav div a img{ transform: translate(0px, 10px) }
+
+nav div a{
+	color: var( --corPadrao1 );
+	text-decoration: none;
+}
+
+nav div#menuBlock:target{
+	font-size: 12pt;
+	display: grid;
+	position: absolute;
+	background: var( --corPadrao3 );
+	top: 100px;
+	width: 280px;
+	padding: 5px 0;
+	box-shadow: 0px 5px 20px -10px black;
+	max-height: 480px;
+	overflow-y: scroll;
+}
+
+nav div#menuBlock div.primeiraLinha {
+	display: grid;
+	grid-template-columns: auto 40px;
+	justify-items: space-between;
+}
+
+nav div#menuBlock div a#btFechar{ background: red; text-align: center; color: white}
+
+nav div#menuBlock a {
+	text-decoration: none;
+	text-align: left;
+	line-height: 5vh;
+	padding: 5px;
+}
+
+nav div#menuBlock a:hover {
+	background-color: var( --corPadrao2 );
+	color: white;
+}
+
+div#tudo{
+	padding: 120px 5% 50px;
+	display: block;
+	grid-gap: 25px;
+}
+
+div#tudo section.quadro0{
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+div#tudo a img{
+	width: 100%;
+}
+
+div#destaque{
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 25px;
+}
+
+div#destaque section {
+	background-position: 50%;
+	background-size: cover;
+}
+
+div#destaque section a {
+	text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
+	background-position: 50%;
+	background-size: cover;
+	color: var(--corBranco1);
+}
+
+div#destaque section a img, div#capa img{
+	display: none;
+}
+
+div#destaque section h1, div#destaque section h3 {
+	padding: 30% 10px 0px;
+}
+div.dividir{
+	display: grid;
+	grid-gap: 5vh;
+	grid-template-columns: auto 30%;
+	margin-top: 5vh;
+}
+div#tudo #capa{
+	background-size: cover;
+	background-position: 50%;
+}
+div.dividir #materia div, div.dividir #materia h1.titulo, div.dividir #materia h5{
+	margin-bottom: 5vh
+}
+div.dividir #materia{
+	//background: var(--corPadrao3);
+	color: #333;
+	padding: 25px 0;
+	border: solid var( --corPadrao3 );
+	border-width: 1px 0 0 0;
+}
+div.dividir #materia div li{
+	margin: 5vh;
+}
+
+iframe{
+	border: 0 solid;
+	width: 100%;
+}
+
+div#outras a figure{
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+div#outras a {
+	padding: 10px 0;
+	color: var(--corPadrao2);
+	background-position: 50%;
+	background-size: cover;
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-gap: 10px;
+}
+
+div#outras.materias section a{
+	display: block;
+}
+
+div#outras section, section#previsaoDoTempo, div#socialMedia {
+    padding: 20px 1px;
+    border: 1px solid;
+    border-color: var(--corPadrao3) transparent transparent transparent;
+}
+
+section{
+	font-size: 12pt;
+	line-height: 20pt;
+	color: #777;
+}
+
+footer {
+	background: linear-gradient(295deg, var( --corPadrao2 ), var( --corPadrao3 ));
+}
+
+form h1 {
+    line-height: 50px;
+}
+
+form input, form button {
+    border: 1px solid #0008;
+    padding: 10px;
+    font-size: 15pt;
+    margin: 5px 0;
+}
+
+@media only screen and ( max-width : 900px ){
+	div#outras a figure {
+		grid-row-start: auto;
+		grid-row-end: auto;
+	}
+	div#outras a p {
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+}
+
+@media only screen and ( max-width : 700px ){
+	div#barraMenu{
+		font-size: 3vh;
+		line-height: 12vh;
+	}
+	div#destaque, div.dividir{
+		grid-template-columns: auto;
+	}
+	div.dividir #materia div{
+		font-size: 10pt;
+	}
+	div.dividir #outras section{
+	}
+}
+
+@media only screen and ( max-width : 500px ){
+	#pesquisa{ width: 100px; overflow: hidden }
+}
+
+/*****************************************************************/
+/************************** rmcPrint.css *************************/
+/************ MEDIA IMPRESSÃO CENTRAL DE NOTÍCIAS RMC ************/
+/*****************************************************************/
+
+@media print{
+	div.dividir, div#destaque section a img, div#capa img{
+		display: block;
+	}
+	nav{
+		line-height: 7vh;
+	}
+	header{
+		position: absolute;
+	}
+	body{
+		background-color: red;
+	}
+	div.dividir{
+		margin-top: 2vh
+	}
+	div#destaque section{ box-shadow: 0 3px 10px -5px var( --corPadrao2 ) }
+	div#destaque section, div#destaque section h1, div#destaque section h3{ display: block; }
+	div#destaque section h1, div#destaque section h3{ padding: 20px 5px; position: absolute; width: 40% }
+	div#destaque section img, div#capa img{ width: 100% }
+
+	div#outras.materias section a {
+		padding: 10px 0;
+		color: var(--corPadrao2);
+		background-position: 50%;
+		background-size: cover;
+		display: grid;
+		grid-template-columns: 40% 60%;
+		grid-gap: 10px;
+	}
+
+	div#outras.materias section a figure{
+		grid-row-start: 1;
+		grid-row-end: 3;
+	}
+}
+
+/******************************************/
+/************ PREVISÃO DO TEMPO ***********/
+/******************************************/
+
+
+
+.WFOT1 {border:0px solid #E1E1E1; background-color:#F1F1F1; padding:10px}
+.WFH1 {font:bold 16px Arial, sans-serif; margin-bottom:6px; color: var( --corPadrao2 )}
+TABLE.WFOT TD {vertical-align:top}
+.FCOVTMP {font:14px Arial, sans-serif; line-height:16px; padding-bottom:4px}
+.FCOVEXP {font:12px Arial, sans-serif; line-height:14px; text-align:center}
+.WFI {background-image: linear-gradient(45deg, var( --corPadrao3 ), var( --corPadrao1 ));padding:0}
+.WTL {color:blue;font-weight:bold}
+.WTH {color:red;float:right;font-weight:bold}
+.WFLK {font-size:11px;color:#900;text-decoration:none}
+.WFDAY {font-size:12px;text-align:center;font-weight:bold}
+tr td { width: 33%; }
+td table { margin: 0 auto; }

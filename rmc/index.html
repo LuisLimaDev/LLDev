@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<title>Central de Notícias RMC</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="content-language" content="pt-BR">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="icon" type="image/png" href="https://github.com/LuisLimaDev/dj/raw/gh-pages/img/favicon.png"/>
+		<link rel="stylesheet" type="text/css" href="estilo.css">
+
+		<script src="../elemental.js"></script>
+		<script type="text/javascript" src="rmcInfos.js"></script>
+		<script type="text/javascript" src="menu.js"></script>
+		<style>
+
+			*{
+				margin: 0px;
+				padding: 0px;
+				font-family: sans-serif;
+				transition: 2s margin ease !important;
+			}
+
+		</style>
+		
+		<script type="text/javascript">
+
+
+		</script>
+		
+	</head>
+	
+	<body class="tagCorpo" id="tagCorpo">
+
+		<header id="tagHeader">
+
+		</header>
+		<div id="tudo" class="tudo">
+			<div id="destaque"></div>
+			<div class="dividir">
+				<div id="outras"></div>
+				<div id="socialMedia">
+
+
+
+						
+						<!--
+						<section id="divPrevisaoDoTempo">
+							<div id="wf_div"></div>
+							<script type="text/javascript" src="https://tools.tititudorancea.com/weather_forecast.js?place=campinas&amp;s=1&amp;days=6&amp;utf8=no&amp;columns=2&amp;lang=pt"></script>
+							<div style="font:10px Arial, sans-serif;color:#000000" align="right"><a href="https://www.tititudorancea.com/z/tempo_pt.htm">Previsão do tempo</a>
+							fornecido por <a href="https://www.tititudorancea.com/">tititudorancea.com</a></div>
+						</section>
+						<!--end of Weather Forecast-->
+
+
+
+					<footer class="fundoCinza"style="">
+					<!--<iframe src="https://facebook.com/centraldenoticiasrmc"></iframe>-->
+						<div style="text-align: center; color: #fff; padding: 50px 0px; font-size: 12px;">
+							&reg; Todos os direitos reservados aos seus respectivos autores.<br/>
+							&reg; All the rights reserved to their respective authors.<br/><br/>
+							Developed by (desenvolvido por) <a href="http://luislimadev.github.io/LLDev/" target="_blank">LLDev</a>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script>
+
+		el = new Elementos;
+		nSVG = new ElementosSVG;
+		
+		function quadros(){
+			//
+		}
+		
+		function carrNotic(){
+			materias = 0;
+			while ( materias < noticias.length ){
+				if( materias == 0 ){
+					linkNoticia = el.novaSessao( el.novoLink( "<figure>" + el.novaImagem( noticias[ materias ].capa, noticias[ materias ].titulo ).outerHTML + "</figure><h1>" + el.novoSpan(  noticias[materias].titulo ).outerHTML + "</h1>", "./materia?id=" + noticias[materias].id ).outerHTML );
+					linkNoticia.setAttribute("class", "quadro" + materias )
+					linkNoticia.setAttribute("style", "background-image: url('" + noticias[ materias ].capa + "');" );
+					getById("destaque").append( linkNoticia );
+					materias++;
+				} else if( materias < 3 ){
+					linkNoticia = el.novaSessao( el.novoLink( "<h3>" + el.novoSpan(  noticias[materias].titulo ).outerHTML + "</h3><figure>" + el.novaImagem( noticias[ materias ].capa, noticias[ materias ].titulo ).outerHTML + "</figure>", "./materia?id=" + noticias[materias].id ).outerHTML );
+					linkNoticia.setAttribute("class", "quadro" + materias );
+					linkNoticia.setAttribute("style", "background-image: url('" + noticias[ materias ].capa + "');" );
+					getById("destaque").append( linkNoticia );
+					materias++;
+				} else{
+					linkNoticia = el.novaSessao( el.novoLink( "<figure>" + el.novaImagem( noticias[materias].capa, noticias[materias].titulo ).outerHTML + "</figure><h3>" + el.novoSpan(  noticias[materias].titulo ).outerHTML + "</h3>" + el.novoParagrafo(  noticias[materias].previa ).outerHTML , "./materia?id=" + noticias[materias].id ).outerHTML );
+					linkNoticia.setAttribute("class", "quadro" + materias );
+					//linkNoticia.setAttribute("style", "background-image: linear-gradient(270deg, white 60%, transparent), url('" + noticias[ materias ].capa + "');" );
+					getById("outras").append( linkNoticia );
+					materias++;
+				}
+			}
+		}
+
+
+	</script>
+		<script type="text/javascript"> menuPrincipal(); </script>
+		<script type="text/javascript">
+		carrNotic();</script>
+</html>
