@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
+		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<style>
+
+			p.gerarNumeros {
+				font-size: 80pt;
+				padding: 0px;
+				text-align: center;
+				margin: 60px 0px;
+			}
+
+			div#editor {
+				display: grid;
+			}
+			
+			div#saida div, div#saida select{
+				box-shadow: 0px 0px 1px #000;
+			}
+
+			div#saida{
+				width: 100%;
+				background: #777;
+			}
+			
+			@keyframes focoDeLeitura{
+				from{ background: blue }
+			}
+
+			div#propriedades div{
+				padding: 1%;
+				margin: 1%;
+				box-shadow: 0 0 5px -3px #000;
+				font-family: monospace;
+			}
+
+			div#topoProps{
+				background: white;
+				position: fixed;
+				right: 40px;
+			}
+
+			div#propriedades{
+				transition: .5s all ease;
+				min-height: 150px;
+				position: fixed;
+				width: 300px;
+				background: #88aaff;
+				top: 0;
+				right: 20px;
+				height: 90vh;
+				border: 15px solid #88aaff;
+				overflow-y: auto;
+				box-shadow: 0px 3px 6px #000;
+				display: none;
+			}
+
+			div#propriedades:target{
+				display: block;
+			}
+
+			#exibirProps a:hover{
+				background-color: #48f;
+				box-shadow: 0px 3px 9px #000;
+			}
+
+			#exibirProps a{
+				transition: .5s all ease;
+				text-decoration: none;
+				color: white;
+				position: fixed;
+				top: 80%;
+				right: 40px;
+				background-color: #88aaff;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 1px 6px -4px #000;
+			}
+
+		</style>
+	
+	</head>
+	<script>
+		
+	</script>
+	<body>
+	
+		<div id="tudo">
+		
+			<div id="divMedia">
+
+
+
+<!-- <svg style="height: 500px" style="display: none"> -->
+<!-- <defs> -->
+
+
+<!-- <filter id="f2" x="0" y="0" width="200%" height="200%"> -->
+<!-- <feOffset result="offOut" in="SourceGraphic" dx="0" dy="20" /> -->
+<!-- <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" /> -->
+<!-- <feBlend in="SourceGraphic" in2="blurOut" mode="normal" /> -->
+<!-- </filter> -->
+
+
+<!-- <linearGradient id="pretoAmarelo"> -->
+<!-- <stop offset="0%" style="stop-color: #000 ;stop-opacity:1" /> -->
+<!-- <stop offset="100%" style="stop-color: #ff0 ;stop-opacity:1" /> -->
+<!-- </linearGradient> -->
+<!-- <linearGradient id="amareloPreto"> -->
+<!-- <stop offset="0%" style="stop-color: #ff0 ;stop-opacity:1" /> -->
+<!-- <stop offset="100%" style="stop-color: #000 ;stop-opacity:1" /> -->
+<!-- </linearGradient> -->
+<!-- </defs> -->
+
+<!-- <g> -->
+<!-- <polygon points="80,190 160,160 250,190 160,210 " style="fill: black" filter="url(#f2)"/> -->
+<!-- <g> -->
+<!-- <polygon points="160,10 80,190 160,210" style="fill: url(#amareloPreto);" /> -->
+<!-- <polygon points="160,10 250,190 160,210" style="fill: url(#pretoAmarelo);" /> -->
+<!-- </g> -->
+<!-- </g> -->
+<!-- </svg> -->
+
+
+
+				<div id="editor">
+					<div style="display: grid" id="ferramentas">
+						<div style="display: block">
+							<a href="javascript:addLink()">LINK</a>
+							<a href="javascript:addImagem()">IMG</a>
+							<a href="javascript:addYT()">YouTube</a>
+							<div id="atributos">
+								<input id="campo1" class="escondido"/>
+								<input id="campo2" class="escondido"/>
+								<button id="adicionarItem">Feito</button>
+							</div>
+						</div>
+						<textarea id="entrada" height="300px"></textarea>
+					</div>
+					<div id="saida" contenteditable="true"></div>
+					<div id="exibirProps"><a href="#propriedades">Propriedades</a>
+					<div id="propriedades"><a href="#Fechar">Fechar</a></div></div>
+				</div>
+				<!--<video id="video" controls loop autoplay width="640" data-playlist="https://gitlab.com/MateusXD/IMDS/raw/master/IMDSLISTA"></video>-->
+			</div>
+		
+		</div>
+	
+	</body>
+	<script>
+	
+		elmnts = new Elementos;
+
+		const gerarNumeros = ( numeroInicial, numeroFinal, pularNumeros ) => {
+			if ( pularNumeros == null ){ pularNumeros = 2 }
+			while ( numeroInicial <= numeroFinal ){
+				paragrafo =  elmnts.novoParagrafo( "De '" + numeroInicial + "' \r\n até '" + ( ( numeroInicial + pularNumeros ) - 1) + "'");
+				paragrafo.setAttribute("class", "gerarNumeros");
+				elmnts.acrescentar("saida", paragrafo );
+				numeroInicial = numeroInicial + pularNumeros;
+			}
+		}
+
+		function testeCores(){
+			nada = 0; total = 255;
+			while (nada <= total){
+				codigoDaCor = "rgb(0,"+nada+",125)";
+				mostragem = novoElm("div");
+				mostragem.style.background = codigoDaCor ;
+				getById("saida").append( mostragem );
+				mostragem.innerText = codigoDaCor;
+				nada = nada + 01;
+			}
+		}
+
+		function playM( urlMusica, tipoDeAudio, elementoDeSaida ){
+			tagAudio = novoElm("audio");
+			tagAudio.setAttribute("controls", "");
+			elmnts.acrescentar( tagAudio, tagSource( urlMusica, "audio/" + tipoDeAudio ) );
+			getById( elementoDeSaida ).append( tagAudio );
+		}
+
+		function playV( urlVideo, tipoDeVideo, elementoDeSaida ){
+			tagVideo = novoElm("video");
+			tagVideo.setAttribute("controls", "");
+			tagVideo.append( tagSource( urlVideo, "video/" + tipoDeVideo ) );
+			getById( elementoDeSaida ).append( tagVideo );
+		}
+
+		function tagSource( urlDoItem, tipoDoItem ){
+			origemDoItem = novoElm("source");
+			origemDoItem.src = urlDoItem;
+			origemDoItem.setAttribute( "type", tipoDoItem );
+			return origemDoItem;
+		}
+
+		function testeRGB( vermelho, verde, azul){
+			nada = 0; total = 255;
+			while (nada <= total){
+				codigoDaCor = "rgb(0,"+nada+",125)";
+				mostragem = novoElm("div");
+				mostragem.style.background = codigoDaCor ;
+				getById("saida").append(mostragem);
+				mostragem.innerText = codigoDaCor;
+				nada = nada + 01;
+			}
+		}
+
+		function addLinkNoPost( textoDeLink ){
+			//getById("entrada").value = getById("entrada").value + elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML;
+			
+			//tamanhoDoTexto = textoDeLink.length;
+			//getById("entrada").value.match( window.document.getSelection().toLocaleString() );
+			console.log(getById("entrada").value.replace( window.document.getSelection().toLocaleString(), elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML ));
+			getById("entrada").value = getById("entrada").value.replace( window.document.getSelection().toLocaleString(), " " + elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML + " " );
+			getById("campo1").value = "";
+			getById("campo2").value = "";
+			gerarHTML();
+		}
+
+		function gerarHTML(){
+			getById("saida").innerHTML = getById("entrada").value;
+		}
+		
+		function addLink(){
+			selecao = window.document.getSelection();
+			textoDoLink = window.document.getSelection().toLocaleString();
+			if( textoDoLink != "" && textoDoLink != null && window.document.getSelection().anchorNode.id === "ferramentas" ){
+				//getById("campo1").class.remove( "escondido" );
+				//getById("campo2").class.remove( "escondido" );
+				getById("atributos").style.animation = "1s focoDeLeitura linear normal";
+				getById("campo1").placeholder = "endereço Do Link";
+				getById("campo2").placeholder = "abrir em nova guia?";
+				getById("adicionarItem").addEventListener( "click", function(){addLinkNoPost( textoDoLink ) });
+			}
+		}
+
+		function elementoPai( elementofilho ){
+			itemSelecionadoEdicao = elementofilho.parentElement;
+			listarAttrs( itemSelecionadoEdicao );
+		}
+
+		function aplicarPropriedade( propNome, valorProp ){
+			itemSelecionadoEdicao.setAttribute(propNome, valorProp);
+			gerarTexto();
+		}
+
+		function listarAttrs( elSelecionado ){
+			quantidadeDeAttrs = elSelecionado.attributes.length;
+			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<a href='#fechar'>X</a>") ;
+			topoProps.style.position = "fixed";
+			topoProps.id = "topoProps";
+			getById("propriedades").innerHTML = topoProps.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.class + "</h4>";
+			contAttrs = 0;
+			while(contAttrs < quantidadeDeAttrs ){
+				editarAttrs = elmnts.novaDiv( elSelecionado.attributes[ contAttrs ].textContent );
+				attrNome = elSelecionado.attributes[ contAttrs ].name;
+				editarAttrs.id = "editarAttr--" + attrNome;
+				editarAttrs.setAttribute("contenteditable", "true");
+				getById("propriedades").append( elmnts.novaDiv( "<h5>" + elSelecionado.attributes[ contAttrs ].name + "</h5>" + editarAttrs.outerHTML + elmnts.novoButton("Aplicar " + attrNome, 'aplicarPropriedade( "' + attrNome + '", getById("editarAttr--' + attrNome + '").innerText )', "").outerHTML ) );
+				contAttrs++;
+			}
+		}
+
+		function gerarTexto(){
+			getById("entrada").value = getById("saida").innerHTML;
+		}
+		
+		getById("saida").addEventListener( "change", function(){
+			gerarTexto();
+		});
+		
+		getById("saida").addEventListener( "keyup", function(){
+			getById("entrada").value = getById("saida").innerHTML;
+		});
+		
+		getById("entrada").addEventListener( "keyup", function(){
+			gerarHTML();
+		});
+		let itemSelecionadoEdicao;
+		document.getElementById("saida").addEventListener('click', function(e) {
+			itemSelecionadoEdicao = e.target;
+			listarAttrs( e.target );
+		});
+
+	</script>
+</html>
