@@ -7,16 +7,27 @@
 		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
 		<style>
+		
+			*, body{
+				padding: 0;
+				margin: 0;
+			}
 
 			p.gerarNumeros {
-				font-size: 80pt;
+				font-size: 30pt; //80pt fica metade de uma folha A4
 				padding: 0px;
 				text-align: center;
 				margin: 60px 0px;
 			}
+			
+			textarea{
+				padding: 10px;
+			}
 
 			div#editor {
 				display: grid;
+				background: #777;
+				padding: 20px;
 			}
 			
 			div#saida div, div#saida select{
@@ -25,7 +36,6 @@
 
 			div#saida{
 				width: 100%;
-				background: #777;
 			}
 			
 			@keyframes focoDeLeitura{
@@ -80,6 +90,14 @@
 				padding: 20px;
 				border-radius: 10px;
 				box-shadow: 0px 1px 6px -4px #000;
+			}
+			button, input, select{
+				background: rgba(255,255,255,0.75);
+				border: 1px solid #fff;
+				font-style: monospace;
+				border-radius: 10px;
+				padding: 10px;
+				margin: 5px;
 			}
 
 		</style>
@@ -140,7 +158,7 @@
 								<button id="adicionarItem">Feito</button>
 							</div>
 						</div>
-						<textarea id="entrada" height="300px"></textarea>
+						<textarea id="entrada" rows="7"></textarea>
 					</div>
 					<div id="saida" contenteditable="true"></div>
 					<div id="exibirProps"><a href="#propriedades">Propriedades</a>
@@ -155,6 +173,7 @@
 	<script>
 	
 		elmnts = new Elementos;
+		forms = new FormLL;
 
 		const gerarNumeros = ( numeroInicial, numeroFinal, pularNumeros ) => {
 			if ( pularNumeros == null ){ pularNumeros = 2 }
@@ -240,6 +259,16 @@
 			}
 		}
 
+		function novoElementoAleatorio( nomeElemento, attr1, valor1, attr2, valor2, valorInterno){
+			novoElemento = document.createElement( nomeElemento );
+			novoElemento.setAttribute( attr1, valor1 );
+			novoElemento.setAttribute( attr2, valor2 );
+			if( valorInterno != "" && valorInterno != null ){
+				novoElemento.innerHTML = valorInterno;
+			}
+			return novoElemento;
+		}
+
 		function elementoPai( elementofilho ){
 			itemSelecionadoEdicao = elementofilho.parentElement;
 			listarAttrs( itemSelecionadoEdicao );
@@ -251,11 +280,24 @@
 		}
 
 		function listarAttrs( elSelecionado ){
+			nomeElemento = forms.inputTexto( "nomeElemento", "nomeElemento",'');
+			nomeAttr1 = forms.inputTexto( "nomeAttr1", "nomeAttr1",'');
+			valAttr1 = forms.inputTexto( "valAttr1", "valAttr1",'');
+			nomeAttr2 = forms.inputTexto( "nomeAttr2", "nomeAttr2",'');
+			valAttr2 = forms.inputTexto( "valAttr2", "valAttr2",'');
+			valInternoElm = forms.inputTexto( "valInternoElm", "valInternoElm",'');
+
 			quantidadeDeAttrs = elSelecionado.attributes.length;
 			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<a href='#fechar'>X</a>") ;
 			topoProps.style.position = "fixed";
 			topoProps.id = "topoProps";
 			getById("propriedades").innerHTML = topoProps.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.class + "</h4>";
+
+			btNovoElemento = elmnts.novaDiv("Adicionar um novo Elemento: ");
+			getById("propriedades").append( btNovoElemento );
+			btNovoElemento.append( nomeElemento, nomeAttr1, valAttr1, nomeAttr2, valAttr2, valInternoElm );
+			btNovoElemento.append( elmnts.novoButton("Add", 'itemSelecionadoEdicao.append( novoElementoAleatorio( getById( "nomeElemento" ).value, getById( "nomeAttr1" ).value, getById( "valAttr1" ).value, getById( "nomeAttr2" ).value, getById( "valAttr2" ).value, getById( "valInternoElm" ).value ) )', '' ) );
+
 			contAttrs = 0;
 			while(contAttrs < quantidadeDeAttrs ){
 				editarAttrs = elmnts.novaDiv( elSelecionado.attributes[ contAttrs ].textContent );
@@ -265,6 +307,12 @@
 				getById("propriedades").append( elmnts.novaDiv( "<h5>" + elSelecionado.attributes[ contAttrs ].name + "</h5>" + editarAttrs.outerHTML + elmnts.novoButton("Aplicar " + attrNome, 'aplicarPropriedade( "' + attrNome + '", getById("editarAttr--' + attrNome + '").innerText )', "").outerHTML ) );
 				contAttrs++;
 			}
+			novoAttrNome = elmnts.novaDiv("add_atributo");
+			novoAttrNome.setAttribute("contenteditable", "true");
+			novoAttrValor = elmnts.novaDiv("valores");
+			novoAttrValor.setAttribute("contenteditable", "true");
+			btAplicaNovoAttr = elmnts.novoButton("Adicionar", "itemSelecionadoEdicao.setAttribute( novoAttrNome.innerText, novoAttrValor.innerText )", "");
+			getById("propriedades").append( novoAttrNome, novoAttrValor, btAplicaNovoAttr );
 		}
 
 		function gerarTexto(){
