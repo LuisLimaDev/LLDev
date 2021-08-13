@@ -30,12 +30,13 @@
 				padding: 20px;
 			}
 			
-			div#saida div, div#saida select{
-				box-shadow: 0px 0px 1px #000;
+			div#saida div, div#saida section{
+				box-shadow: 0px 0px 8px -4px #000;
 			}
 
 			div#saida{
 				width: 100%;
+				background: rgba(255,255,255,0.5);
 			}
 			
 			@keyframes focoDeLeitura{
@@ -112,59 +113,14 @@
 		
 			<div id="divMedia">
 
-
-
-<!-- <svg style="height: 500px" style="display: none"> -->
-<!-- <defs> -->
-
-
-<!-- <filter id="f2" x="0" y="0" width="200%" height="200%"> -->
-<!-- <feOffset result="offOut" in="SourceGraphic" dx="0" dy="20" /> -->
-<!-- <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" /> -->
-<!-- <feBlend in="SourceGraphic" in2="blurOut" mode="normal" /> -->
-<!-- </filter> -->
-
-
-<!-- <linearGradient id="pretoAmarelo"> -->
-<!-- <stop offset="0%" style="stop-color: #000 ;stop-opacity:1" /> -->
-<!-- <stop offset="100%" style="stop-color: #ff0 ;stop-opacity:1" /> -->
-<!-- </linearGradient> -->
-<!-- <linearGradient id="amareloPreto"> -->
-<!-- <stop offset="0%" style="stop-color: #ff0 ;stop-opacity:1" /> -->
-<!-- <stop offset="100%" style="stop-color: #000 ;stop-opacity:1" /> -->
-<!-- </linearGradient> -->
-<!-- </defs> -->
-
-<!-- <g> -->
-<!-- <polygon points="80,190 160,160 250,190 160,210 " style="fill: black" filter="url(#f2)"/> -->
-<!-- <g> -->
-<!-- <polygon points="160,10 80,190 160,210" style="fill: url(#amareloPreto);" /> -->
-<!-- <polygon points="160,10 250,190 160,210" style="fill: url(#pretoAmarelo);" /> -->
-<!-- </g> -->
-<!-- </g> -->
-<!-- </svg> -->
-
-
-
 				<div id="editor">
 					<div style="display: grid" id="ferramentas">
-						<div style="display: block">
-							<a href="javascript:addLink()">LINK</a>
-							<a href="javascript:addImagem()">IMG</a>
-							<a href="javascript:addYT()">YouTube</a>
-							<div id="atributos">
-								<input id="campo1" class="escondido"/>
-								<input id="campo2" class="escondido"/>
-								<button id="adicionarItem">Feito</button>
-							</div>
-						</div>
-						<textarea id="entrada" rows="7"></textarea>
+						<textarea id="entrada" rows="7" ></textarea>
 					</div>
 					<div id="saida" contenteditable="true"></div>
 					<div id="exibirProps"><a href="#propriedades">Propriedades</a>
 					<div id="propriedades"><a href="#Fechar">Fechar</a></div></div>
 				</div>
-				<!--<video id="video" controls loop autoplay width="640" data-playlist="https://gitlab.com/MateusXD/IMDS/raw/master/IMDSLISTA"></video>-->
 			</div>
 		
 		</div>
@@ -281,11 +237,17 @@
 
 		function listarAttrs( elSelecionado ){
 			nomeElemento = forms.inputTexto( "nomeElemento", "nomeElemento",'');
+			nomeElemento.placeholder = "nome do elemento";
 			nomeAttr1 = forms.inputTexto( "nomeAttr1", "nomeAttr1",'');
+			nomeAttr1.placeholder = "primeiro atributo";
 			valAttr1 = forms.inputTexto( "valAttr1", "valAttr1",'');
+			valAttr1.placeholder = "valor do primeiro atributo";
 			nomeAttr2 = forms.inputTexto( "nomeAttr2", "nomeAttr2",'');
+			nomeAttr2.placeholder = "segundo atributo";
 			valAttr2 = forms.inputTexto( "valAttr2", "valAttr2",'');
+			valAttr2.placeholder = "valor do segundo atributo";
 			valInternoElm = forms.inputTexto( "valInternoElm", "valInternoElm",'');
+			valInternoElm.placeholder = "conteudo do elemento";
 
 			quantidadeDeAttrs = elSelecionado.attributes.length;
 			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<a href='#fechar'>X</a>") ;
