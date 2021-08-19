@@ -156,6 +156,10 @@ class ElementosSVG {
 	novoCirculo( distanciaX, distanciaY, tamanhoDoRadio, identificacao, estilosDoCirculoCSS ){
 		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaY + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
 	}
+	formatoPositivo = "0,10, 10,10, 10,0, 10,10, 20,10, 10,10, 10,20, 10,10";
+	formatoX = "3,0, 20,20, 10,10, 20,0, 0,20, 10,10";
+	formaSetaD = "20,10, 10,0, 20,10, 0,10, 20,10, 10,20";
+	formaSetaE = "0,10, 10,0, 0,10, 20,10, 0,10, 10,20";
 }
 
 let novoForm, inputTexto, inputNumero, inputCalendario, inputRadio, inputCheckbox, novaLabel, novoFieldset, novoTextarea;
