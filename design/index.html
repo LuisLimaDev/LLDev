@@ -43,7 +43,7 @@
 				from{ background: blue }
 			}
 
-			div#propriedades div{
+			div#propriedades div, div#propriedades a{
 				padding: 1%;
 				margin: 1%;
 				box-shadow: 0 0 5px -3px #000;
@@ -54,6 +54,11 @@
 				background: white;
 				position: fixed;
 				right: 40px;
+			}
+
+			div.itensFilhos a{
+				background: white;
+				display: block;
 			}
 
 			div#propriedades{
@@ -80,7 +85,7 @@
 				box-shadow: 0px 3px 9px #000;
 			}
 
-			#exibirProps a{
+			#exibirProps a.btflutante{
 				transition: .5s all ease;
 				text-decoration: none;
 				color: white;
@@ -118,8 +123,10 @@
 						<textarea id="entrada" rows="7" ></textarea>
 					</div>
 					<div id="saida" contenteditable="true"></div>
-					<div id="exibirProps"><a href="#propriedades">Propriedades</a>
-					<div id="propriedades"><a href="#Fechar">Fechar</a></div></div>
+					<div id="exibirProps">
+						<a href="javascript:abrirJanela( getById('propriedades') )" class="btflutante">Propriedades +</a>
+						<div id="propriedades"><a href="javascript:fecharJanela( getById('propriedades') )" class="btflutante">Fechar</a></div>
+					</div>
 				</div>
 			</div>
 		
@@ -215,6 +222,9 @@
 			}
 		}
 
+		function abrirJanela( janelaParaAbrir ){ janelaParaAbrir.style.display = "block" }
+		function fecharJanela( janelaParaFechar ){ janelaParaFechar.style.display = "none" }
+
 		function novoElementoAleatorio( nomeElemento, attr1, valor1, attr2, valor2, valorInterno){
 			novoElemento = document.createElement( nomeElemento );
 			novoElemento.setAttribute( attr1, valor1 );
@@ -236,13 +246,14 @@
 		}
 
 		function listarAttrs( elSelecionado ){
+			itemSelecionadoEdicao = elSelecionado;
 			nomeElemento = forms.inputTexto( "nomeElemento", "nomeElemento",'');
 			nomeElemento.placeholder = "nome do elemento";
-			nomeAttr1 = forms.inputTexto( "nomeAttr1", "nomeAttr1",'');
+			nomeAttr1 = forms.inputTexto( "nomeAttr1", "nomeAttr1",'class');
 			nomeAttr1.placeholder = "primeiro atributo";
 			valAttr1 = forms.inputTexto( "valAttr1", "valAttr1",'');
 			valAttr1.placeholder = "valor do primeiro atributo";
-			nomeAttr2 = forms.inputTexto( "nomeAttr2", "nomeAttr2",'');
+			nomeAttr2 = forms.inputTexto( "nomeAttr2", "nomeAttr2",'style');
 			nomeAttr2.placeholder = "segundo atributo";
 			valAttr2 = forms.inputTexto( "valAttr2", "valAttr2",'');
 			valAttr2.placeholder = "valor do segundo atributo";
@@ -250,10 +261,23 @@
 			valInternoElm.placeholder = "conteudo do elemento";
 
 			quantidadeDeAttrs = elSelecionado.attributes.length;
-			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<a href='#fechar'>X</a>") ;
+			btflutanteFechar = elmnts.novoLink("Propriedades -", "javascript:fecharJanela( getById('propriedades') )");
+			btflutanteFechar.setAttribute( "class", "btflutante" );
+			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + btflutanteFechar.outerHTML ) ;
 			topoProps.style.position = "fixed";
 			topoProps.id = "topoProps";
-			getById("propriedades").innerHTML = topoProps.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.class + "</h4>";
+			getById("propriedades").innerHTML = topoProps.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.className + "</h4>";
+
+			if( itemSelecionadoEdicao.children.length > 0){
+				elFilhos=0;
+				itensFilhos = elmnts.novaDiv("<h3>filhos</h3>");
+				itensFilhos.setAttribute("class", "itensFilhos");
+				while( elFilhos < itemSelecionadoEdicao.children.length ){
+					itensFilhos.append( elmnts.novoLink( itemSelecionadoEdicao.children[elFilhos].nodeName + ": " + itemSelecionadoEdicao.children[elFilhos].innerHTML.slice(0,20) , "javascript:listarAttrs( itemSelecionadoEdicao.children[" + elFilhos + "] )", "") );
+					elFilhos++;
+				}
+				getById("propriedades").append( itensFilhos );
+			}
 
 			btNovoElemento = elmnts.novaDiv("Adicionar um novo Elemento: ");
 			getById("propriedades").append( btNovoElemento );
