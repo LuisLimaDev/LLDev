@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta http-equiv="Content-Language" content="pt-br">
+		<title>Jogo teste 01</title>
+		<meta name="theme-color" content="#0af"/>
+		<meta name="description" content="Free Web tutorials">
+		<!-- <script src="padrao.js"></script> -->
+		<!-- <script src="dados.js"></script> -->
+		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
+		<script src="https://luislimadev.github.io/LLDev/padrao.js"></script>
+		<link type="text/css" href="https://luislimadev.github.io/LLDev/estilo.css" rel="stylesheet">
+		<!-- <script src="menu.js"></script> -->
+		
+	</head>
+	<body>
+
+		<div id="telaSaida">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="420px" width="600px">
+				<defs>
+					<style type="text/css">
+					</style>
+				</defs>
+				<g id="fundo">
+					<rect x='0' y='0' width='600' height='480'></rect>
+				</g>
+				<rect id="objeto" fill="red" x='300' y='200' width='20' height='20'></rect>
+			</svg>
+		</div>
+		<div id="lerComandos"></div>
+		<script>
+			var itemAleatorio, posicaoX=300, posicaoY=200;
+			let iPosX = {"min":0,"max":580};
+			let iPosY = {"min":0,"max":400};
+			
+			let el = new Elementos;
+			let pp = new Padrao;
+			let nSVG = new ElementosSVG;
+			
+			function atualizaPos(){
+				//getById( "objeto" ).style.transform = "translate( " + posicaoX + "px, " + posicaoY + "px)";
+				getById( "objeto" ).setAttribute("x", posicaoX);
+				getById( "objeto" ).setAttribute("y", posicaoY);
+			}
+
+
+
+			bolhas = function( saidaElement ){
+				pai = nSVG.novoSVG("");
+				//pai.style.width = iPosX.max;
+				//pai.style.height = iPosY.max;
+				pai.style.width = iPosX.max;
+				pai.style.height = iPosY.max;
+				inicio = 0;
+				while( inicio < 80 ){
+					posInitX = Math.round( Math.random() * iPosX.max );
+					posInitY = Math.round( Math.random() * iPosY.max );
+					animBolhasPos( posInitX, posInitY, inicio );
+					gradiente = nSVG.novoDefs( nSVG.linearGradient2Cores("gradient" + inicio ,"#00a","#85a") );
+					pai.innerHTML = pai.innerHTML + gradiente.outerHTML;
+					bolhaIndividual =  nSVG.novoCirculo( 0,0, Math.round( Math.random() * ( iPosX.max / 16 ) ), "id"+inicio, "fill: rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1); transform: translate( " + posInitX + "px, " + posInitY + "px); animation: 30s linear " + inicio + "s infinite normal forwards running moverBolhas" + inicio + "; " );
+					pai.innerHTML = pai.innerHTML + gradiente + bolhaIndividual;
+					inicio = inicio + 1;
+				}
+				saidaElement.append( pai );
+			}
+
+
+			window.document.addEventListener("load", function(){ atualizaPos() });
+
+			window.document.addEventListener("keydown", function(evento){
+				//itemAleatorio = evento;
+				if( evento.code === "ArrowLeft" && posicaoX > iPosX.min ){ posicaoX = posicaoX - 20
+				} else if( evento.code === "ArrowRight" && posicaoX < iPosX.max ){ posicaoX = posicaoX + 20
+				} else if( evento.code === "ArrowUp" && posicaoY > iPosY.min ){ posicaoY = posicaoY - 20
+				} else if( evento.code === "ArrowDown" && posicaoY < iPosY.max ){ posicaoY = posicaoY + 20
+				}
+				atualizaPos();
+				getById("lerComandos").innerText = evento.code;
+			});
+		
+		</script>
+	</body>
+</html>
