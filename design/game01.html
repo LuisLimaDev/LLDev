@@ -132,12 +132,12 @@
 				while( inicio < 8 ){
 					posInitX = Math.round( Math.random() * iPosX.max );
 					posInitY = Math.round( Math.random() * iPosY.max );
-					animBolhasPos( posInitX, posInitY, inicio );
-					gradiente = nSVG.novoDefs( nSVG.linearGradient2Cores("gradient" + inicio ,"#00a","#85a") );
-					pai.innerHTML = pai.innerHTML + gradiente.outerHTML;
+					//animBolhasPos( posInitX, posInitY, inicio );
+					//gradiente = nSVG.novoDefs( nSVG.linearGradient2Cores("gradient" + inicio ,"#00a","#85a") );
+					//pai.innerHTML = pai.innerHTML + gradiente.outerHTML;
 					posBolhas[inicio] =  { 'x':(Math.round( Math.random() * 30 ) * 20), 'y':(Math.round( Math.random() * 20 ) * 20)} ;
 					bolhaIndividual =  nSVG.novoCirculo( posBolhas[ inicio ].x, posBolhas[ inicio ].y, 10, "id"+inicio, "fill: rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1); " );
-					pai.innerHTML = pai.innerHTML + gradiente + bolhaIndividual;
+					pai.innerHTML = pai.innerHTML + bolhaIndividual;
 					inicio = inicio + 1;
 				}
 				saidaElement.append( pai );
