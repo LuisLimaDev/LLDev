@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
@@ -9,78 +9,161 @@
 		<meta name="description" content="Free Web tutorials">
 		<!-- <script src="padrao.js"></script> -->
 		<!-- <script src="dados.js"></script> -->
-		<script src="../elemental.js"></script>
-		<script src="../padrao.js"></script>
-		<link type="text/css" href="../estilo.css" rel="stylesheet">
+		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
+		<script src="https://luislimadev.github.io/LLDev/padrao.js"></script>
 		<!-- <script src="menu.js"></script> -->
-		
+		<style>
+
+
+			*, body{
+			transition: 0.5s all ease !important;
+			font-family: 'Verdana', sans;
+			margin: 0px;
+			padding: 0px;
+			}
+
+			#telaSaida{
+			width: 600px;
+			margin: 50px auto;
+			}
+
+			div.botoes a, div.botoes button{
+			padding: 10px;
+			background: blue;
+			border: 2px solid #8f8;
+			color: white;
+			text-decoration: none;
+			}
+
+		</style>
+
 	</head>
 	<body>
 
 		<div id="telaSaida">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="420px" width="600px">
 				<defs>
+					<linearGradient id="gradPadrao1" x1="0%" x2="100%" y1="100%" y2="0%">
+						<stop style="stop-color: rgb(50,80,180); stop-opacity: 1" offset="0%"/>
+						<stop style="stop-color: rgb(0,150,150); stop-opacity: 1" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="gradPadrao2" x1="0%" x2="100%" y1="100%" y2="0%">
+						<stop style="stop-color: rgb(250,80,180); stop-opacity: 1" offset="0%"/>
+						<stop style="stop-color: rgb(0,150,150); stop-opacity: 1" offset="100%"/>
+					</linearGradient>
+
 					<style type="text/css">
 					</style>
 				</defs>
 				<g id="fundo">
-					<rect x='0' y='0' width='600' height='480'></rect>
+				<rect x='0' y='0' width='600' height='480' style='fill: url(#gradPadrao1)'></rect>
 				</g>
-				<rect id="objeto" fill="red" x='300' y='200' width='20' height='20'></rect>
+				<rect id="objeto" x='300' y='200' width='1' height='1' style='stroke-width:20px; stroke: blue; '></rect>
 			</svg>
+			<div id="comsGame">
+				<div id="saidaPonto"></div>
+				<div id="saidaTempo"></div>
+				<div id="lerComandos"></div>
+				<div class='botoes'>
+					<a href="javascript:bolhas( getById('fundo') )">Iniciar</a>
+					<a href="">reLoad</a>
+				</div>
+			</div>
 		</div>
-		<div id="lerComandos"></div>
 		<script>
-			var itemAleatorio, posicaoX=300, posicaoY=200;
-			let iPosX = {"min":0,"max":580};
-			let iPosY = {"min":0,"max":400};
-			
+			var itemAleatorio, posicaoX=300, posicaoY=200, contador=true, pntTempo=0;
+			let iPosX = {"min":0,"max":590};
+			let iPosY = {"min":0,"max":410};
+
 			let el = new Elementos;
 			let pp = new Padrao;
 			let nSVG = new ElementosSVG;
-			
+
+			var posBolhas = [];
+
 			function atualizaPos(){
 				//getById( "objeto" ).style.transform = "translate( " + posicaoX + "px, " + posicaoY + "px)";
+				//verSeMata( posicaoX, posicaoY );
 				getById( "objeto" ).setAttribute("x", posicaoX);
 				getById( "objeto" ).setAttribute("y", posicaoY);
+				verSeMata( posicaoX, posicaoY );
 			}
 
+			contarTempo = function() {
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var s = today.getSeconds();
+				var mili = today.getMilliseconds();
+				// add a zero in front of numbers<10
+				m = checkTime(m);
+				s = checkTime(s);
+				//document.getElementById("saidaTempo").innerHTML = h + ":" + m + ":" + s + ":" + mili;
+				pntTempo = pntTempo + 50;
+				if( contador == true ){ var t = setTimeout(function(){ contarTempo() }, 50); }
+			}
 
+			function checkTime(i) {
+			 if (i < 10) {
+			i = "0" + i;
+			 }
+			 return i;
+			}
+
+			verSeMata = function( paramX, paramY ){
+				itensVivos = pai.getElementsByTagName("circle");
+				totalVivos = 0;
+				while( itensVivos.length > totalVivos ){
+					if( paramX == itensVivos[totalVivos].getAttribute("cx") && paramY == itensVivos[totalVivos].getAttribute("cy")  ){
+					itensVivos[totalVivos].outerHTML = '';
+					}
+					totalVivos++;
+				}
+			}
 
 			bolhas = function( saidaElement ){
+				pntTempo = 0;
 				pai = nSVG.novoSVG("");
 				//pai.style.width = iPosX.max;
 				//pai.style.height = iPosY.max;
 				pai.style.width = iPosX.max;
 				pai.style.height = iPosY.max;
 				inicio = 0;
-				while( inicio < 80 ){
+				while( inicio < 8 ){
 					posInitX = Math.round( Math.random() * iPosX.max );
 					posInitY = Math.round( Math.random() * iPosY.max );
 					animBolhasPos( posInitX, posInitY, inicio );
 					gradiente = nSVG.novoDefs( nSVG.linearGradient2Cores("gradient" + inicio ,"#00a","#85a") );
 					pai.innerHTML = pai.innerHTML + gradiente.outerHTML;
-					bolhaIndividual =  nSVG.novoCirculo( 0,0, Math.round( Math.random() * ( iPosX.max / 16 ) ), "id"+inicio, "fill: rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1); transform: translate( " + posInitX + "px, " + posInitY + "px); animation: 30s linear " + inicio + "s infinite normal forwards running moverBolhas" + inicio + "; " );
+					posBolhas[inicio] =  { 'x':(Math.round( Math.random() * 30 ) * 20), 'y':(Math.round( Math.random() * 20 ) * 20)} ;
+					bolhaIndividual =  nSVG.novoCirculo( posBolhas[ inicio ].x, posBolhas[ inicio ].y, 10, "id"+inicio, "fill: rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1); " );
 					pai.innerHTML = pai.innerHTML + gradiente + bolhaIndividual;
 					inicio = inicio + 1;
 				}
 				saidaElement.append( pai );
+				contarTempo();
+
+				window.document.addEventListener("keydown", function(evento){
+					//itemAleatorio = evento;
+					if( evento.code === "ArrowLeft" && posicaoX > iPosX.min ){ posicaoX = posicaoX - 20
+					} else if( evento.code === "ArrowRight" && posicaoX < iPosX.max ){ posicaoX = posicaoX + 20
+					} else if( evento.code === "ArrowUp" && posicaoY > iPosY.min ){ posicaoY = posicaoY - 20
+					} else if( evento.code === "ArrowDown" && posicaoY < iPosY.max ){ posicaoY = posicaoY + 20
+					}
+					getById("lerComandos").innerText = evento.code;
+					atualizaPos();
+					});
+					window.document.addEventListener("keyup", function(evento){
+						if( getById('fundo').getElementsByTagName("circle").length === 0 ){
+						contador = false;
+						getById('saidaPonto').innerHTML = ( pntTempo / 50 ) + ' pontos.'
+					}
+				});
 			}
 
 
-			window.document.addEventListener("load", function(){ atualizaPos() });
+			//window.document.addEventListener("load", function(){ atualizaPos() });
 
-			window.document.addEventListener("keydown", function(evento){
-				//itemAleatorio = evento;
-				if( evento.code === "ArrowLeft" && posicaoX > iPosX.min ){ posicaoX = posicaoX - 20
-				} else if( evento.code === "ArrowRight" && posicaoX < iPosX.max ){ posicaoX = posicaoX + 20
-				} else if( evento.code === "ArrowUp" && posicaoY > iPosY.min ){ posicaoY = posicaoY - 20
-				} else if( evento.code === "ArrowDown" && posicaoY < iPosY.max ){ posicaoY = posicaoY + 20
-				}
-				atualizaPos();
-				getById("lerComandos").innerText = evento.code;
-			});
-		
 		</script>
 	</body>
 </html>
