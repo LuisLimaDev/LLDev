@@ -9,29 +9,30 @@
 		<meta name="description" content="Free Web tutorials">
 		<!-- <script src="padrao.js"></script> -->
 		<!-- <script src="dados.js"></script> -->
+		<!-- <script src="padrao.js"></script> -->
 		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
 		<!-- <script src="menu.js"></script> -->
 		<style>
 
 
 			*, body{
-			transition: 0.5s all ease !important;
-			font-family: 'Verdana', sans;
-			margin: 0px;
-			padding: 0px;
+				transition: 0.5s all ease !important;
+				font-family: 'Verdana', sans;
+				margin: 0px;
+				padding: 0px;
 			}
 
 			#telaSaida{
-			width: 600px;
-			margin: 50px auto;
+				width: 600px;
+				margin: 50px auto;
 			}
 
 			div.botoes a, div.botoes button{
-			padding: 10px;
-			background: blue;
-			border: 2px solid #8f8;
-			color: white;
-			text-decoration: none;
+				padding: 10px;
+				background: blue;
+				border: 2px solid #8f8;
+				color: white;
+				text-decoration: none;
 			}
 
 		</style>
@@ -40,7 +41,7 @@
 	<body>
 
 		<div id="telaSaida">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="420px" width="600px">
+			<svg id="itemSaida" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="420px" width="600px">
 				<defs>
 					<linearGradient id="gradPadrao1" x1="0%" x2="100%" y1="100%" y2="0%">
 						<stop style="stop-color: rgb(50,80,180); stop-opacity: 1" offset="0%"/>
@@ -55,7 +56,7 @@
 					</style>
 				</defs>
 				<g id="fundo">
-				<rect x='0' y='0' width='600' height='480' style='fill: url(#gradPadrao1)'></rect>
+					<rect id='rectFundo' x='0' y='0' width='600' height='480' style='fill: url(#gradPadrao1)'></rect>
 				</g>
 				<rect id="objeto" x='300' y='200' width='1' height='1' style='stroke-width:20px; stroke: blue; '></rect>
 			</svg>
@@ -70,9 +71,42 @@
 			</div>
 		</div>
 		<script>
-			var itemAleatorio, posicaoX=300, posicaoY=200, contador=true, pntTempo=0;
-			let iPosX = {"min":0,"max":590};
-			let iPosY = {"min":0,"max":410};
+
+elem = getById("itemSaida");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+			var itemAleatorio, posicaoX=300, posicaoY=200, contador=true, pntTempo=0; qntAnjos = 0; movimento = 20; largTela = 600; altTela = 420;
+			//getById("rectFundo").setAttribute("width", largTela);
+			//getById("rectFundo").setAttribute("height", altTela);
+			let iPosX = {"min": ( movimento / 2 ),"max": (largTela - ( movimento / 2 ))};
+			let iPosY = {"min": ( movimento / 2 ),"max": ( altTela - ( movimento / 2 ))};
+			let persona = [
+				{
+					tipo:"monstro",
+					cor: "stroke: rgb(255,0,0); filter: drop-shadow( 0 2px 3px rgb(0,0,0))"
+				},
+				{
+					tipo:"anjo",
+					cor: "stroke: rgb(255,255,255); filter: drop-shadow( 0 2px 3px rgb(255,255,255))"
+				}
+			];
 
 			let el = new Elementos;
 			let nSVG = new ElementosSVG;
@@ -88,15 +122,6 @@
 			}
 
 			contarTempo = function() {
-				var today = new Date();
-				var h = today.getHours();
-				var m = today.getMinutes();
-				var s = today.getSeconds();
-				var mili = today.getMilliseconds();
-				// add a zero in front of numbers<10
-				m = checkTime(m);
-				s = checkTime(s);
-				//document.getElementById("saidaTempo").innerHTML = h + ":" + m + ":" + s + ":" + mili;
 				pntTempo = pntTempo + 50;
 				if( contador == true ){ var t = setTimeout(function(){ contarTempo() }, 50); }
 			}
@@ -113,10 +138,26 @@
 				totalVivos = 0;
 				while( itensVivos.length > totalVivos ){
 					if( paramX == itensVivos[totalVivos].getAttribute("cx") && paramY == itensVivos[totalVivos].getAttribute("cy")  ){
-					itensVivos[totalVivos].outerHTML = '';
+						if( posBolhas[ itensVivos[totalVivos].id.slice(2) ].persona.tipo == "monstro" ){
+							pntTempo = pntTempo + 50000;
+							fimDeJogo();
+						}
+						itensVivos[totalVivos].outerHTML = '';
+						qntAnjos--;
 					}
 					totalVivos++;
 				}
+			}
+
+			fimDeJogo = function(){
+				contador = false;
+				getById('objeto').style.stroke = "transparent";
+				getById('saidaPonto').innerHTML = ( ( pntTempo + (getById('fundo').getElementsByTagName("circle").length * 2) ) / 50 ) + ' pontos.'
+			}
+
+			contarAnjos = function( objRecebido ){
+				if( objRecebido.tipo == "anjo" ){qntAnjos++};
+				return objRecebido
 			}
 
 			bolhas = function( saidaElement ){
@@ -127,15 +168,24 @@
 				pai.style.width = iPosX.max;
 				pai.style.height = iPosY.max;
 				inicio = 0;
-				while( inicio < 8 ){
+				totalDeItens = 16;
+				while( inicio < totalDeItens ){
 					posInitX = Math.round( Math.random() * iPosX.max );
 					posInitY = Math.round( Math.random() * iPosY.max );
-					//animBolhasPos( posInitX, posInitY, inicio );
+					posBolhas[inicio] =  {
+						'identifica': 'objeto'+inicio,
+						'x':(Math.round( Math.random() * 30 ) * movimento ),
+						'y':(Math.round( Math.random() * 20 ) * movimento ),
+						'persona': contarAnjos( persona[ Math.round( Math.random()*1 ) ] ) 
+					};
+					//animBolhasPos( posBolhas[ inicio ].x, posBolhas[ inicio ].y, inicio );
 					//gradiente = nSVG.novoDefs( nSVG.linearGradient2Cores("gradient" + inicio ,"#00a","#85a") );
+					gradiente = nSVG.novoDefs( "" );
+					gradiente.innerHTML = nSVG.linearGradient2CoresA("gradient" + inicio ,"rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1)","rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1)");
+					
 					//pai.innerHTML = pai.innerHTML + gradiente.outerHTML;
-					posBolhas[inicio] =  { 'x':(Math.round( Math.random() * 30 ) * 20), 'y':(Math.round( Math.random() * 20 ) * 20)} ;
-					bolhaIndividual =  nSVG.novoCirculo( posBolhas[ inicio ].x, posBolhas[ inicio ].y, 10, "id"+inicio, "fill: rgba( "+ Math.round( Math.random() * 255 ) +", "+ Math.round( Math.random() * 255 ) +" ,"+ Math.round( Math.random() * 255 ) +",1); " );
-					pai.innerHTML = pai.innerHTML + bolhaIndividual;
+					bolhaIndividual =  nSVG.novoCirculo( posBolhas[ inicio ].x, posBolhas[ inicio ].y, 10, "id"+inicio, "animation: 20s moverBolhas"+ inicio +" "+ inicio +"s infinite;fill: transparent; " + posBolhas[inicio].persona.cor + ";" );
+					pai.innerHTML = gradiente.outerHTML + pai.innerHTML + bolhaIndividual;
 					inicio = inicio + 1;
 				}
 				saidaElement.append( pai );
@@ -143,18 +193,17 @@
 
 				window.document.addEventListener("keydown", function(evento){
 					//itemAleatorio = evento;
-					if( evento.code === "ArrowLeft" && posicaoX > iPosX.min ){ posicaoX = posicaoX - 20
-					} else if( evento.code === "ArrowRight" && posicaoX < iPosX.max ){ posicaoX = posicaoX + 20
-					} else if( evento.code === "ArrowUp" && posicaoY > iPosY.min ){ posicaoY = posicaoY - 20
-					} else if( evento.code === "ArrowDown" && posicaoY < iPosY.max ){ posicaoY = posicaoY + 20
+					if( evento.code === "ArrowLeft" && posicaoX > iPosX.min ){ posicaoX = posicaoX - movimento
+					} else if( evento.code === "ArrowRight" && posicaoX < iPosX.max ){ posicaoX = posicaoX + movimento
+					} else if( evento.code === "ArrowUp" && posicaoY > iPosY.min ){ posicaoY = posicaoY - movimento
+					} else if( evento.code === "ArrowDown" && posicaoY < iPosY.max ){ posicaoY = posicaoY + movimento
 					}
 					getById("lerComandos").innerText = evento.code;
-					atualizaPos();
+					if( contador == true ){atualizaPos();}
 					});
 					window.document.addEventListener("keyup", function(evento){
-						if( getById('fundo').getElementsByTagName("circle").length === 0 ){
-						contador = false;
-						getById('saidaPonto').innerHTML = ( pntTempo / 50 ) + ' pontos.'
+						if( getById('fundo').getElementsByTagName("circle").length === 0 || qntAnjos == 0 ){
+						fimDeJogo()
 					}
 				});
 			}
