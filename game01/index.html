@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta http-equiv="Content-Language" content="pt-br">
+		<title>Jogo teste 01</title>
+		<meta name="theme-color" content="#0af"/>
+		<meta name="description" content="Free Web tutorials">
+		<script src="config.js"></script>
+		<script src="elemental.js"></script>
+		<link rel="icon" type="image/png" href="pics/monstro.svg"/>
+		<style>
+
+
+			*, body{
+				transition: 0.5s all ease !important;
+				font-family: 'Verdana', sans;
+				margin: 0px;
+				padding: 0px;
+			}
+
+
+			::-webkit-scrollbar-thumb {
+				background-color: rgba(0,0,0,0.5);
+				border-radius: 3px;
+				width: 3px;
+			}
+
+			::-webkit-scrollbar-track{
+				background-color: rgba(255,255,255,0.0);
+			}
+
+			::-webkit-scrollbar {
+				width: 10px;
+				height: 10px;
+				background-color: rgba(255,255,255,0.0);
+				border-radius: 3px;
+			}
+
+
+			#telaSaida{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			div.botoes a, div.botoes button{
+				align-self: center;
+				padding: 10px;
+				background-image: linear-gradient(15deg, rgb(255,0,0,80%) 50%, rgb(0,0,255,80%) 50%);
+				border: 2px solid rgb(0,0,0,90%);
+				color: white;
+				text-decoration: none;
+				box-shadow: 8px -8px 0 -3px rgb(255 0 136), -8px -8px 0px rgb(136 136 255), 8px 8px 0px rgb(255 136 0 / 37%), -8px 8px 0px rgb(114 255 125), 8px 8px 0px rgb(255 255 136);
+				text-align: center;
+				border-radius: 20px;
+				display: block;
+				margin: 20px auto;
+				width: 25%;
+			}
+
+			div.botoes a:hover, div.botoes button:hover{
+				box-shadow: 0 3px 8px #a84;
+				//background-image: linear-gradient(15deg, rgb(255,120,0,80%) 50%, rgb(120,0,255,80%) 50%);
+				transform: scale(1.1);
+			}
+
+			.botoes, #options:target, #fases:target {
+				width: 100%;
+				display: block;
+				//grid-gap: 20px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				padding: 20px;
+				background: rgb(255,255,255,50%);
+				backdrop-filter: blur(5px);
+				overflow-y: scroll;
+				box-shadow: 0 10px 20px rgb(70,70,70);
+			}
+
+			.escondido{
+				display: none;
+			}
+
+			@keyframes morreu{
+				0%{
+					transform: translate( -10px, -10px)  scale(1)
+				}
+				25%{
+					transform: translate( -20px, -20px) scale(2)
+				}
+				100%{
+					transform: translate( -10px, -10px) scale(1)
+				}
+			}
+
+		</style>
+
+	</head>
+	<body>
+
+		<div id="telaSaida">
+			<div id="itemSaida"></div>
+			<div id="comsGame">
+				<div class='botoes'>
+					<div id='letreiroSaida2'>Evite o mal</div>
+					<div>
+						<a href="javascript:bolhas( getById('itemSaida') )" id="jogarProxima" >Iniciar <span id="faseAtual"></span></a>
+						<span id="btInicia"><a href='JAVASCRIPT:trocarJanela( getByClass("botoes")[0], getById("fases") )' >Escolher fase</a></span>
+						<a href="#placar">HiScores</a>
+						<a href="javascript:trocarJanela( getByClass('botoes')[0], getById('options') )">Options</a>
+						<a href="">reLoad</a>
+					</div>
+				</div>
+			</div>
+			<div id="janelas">
+				<div id="fases" class="escondido botoes">
+					<div class="tituloJanela">
+						<p><span>Escolher fase</span></p>
+						<p>
+							<a href="javascript:trocarJanela( getById('fases'), getByClass('botoes')[0] )"> < Tela inicial</a>
+						</p>
+					</div>
+					<div id="listaFases"></div>
+				</div>
+				<div id="placar" class="escondido">
+					<div class="tituloJanela">
+						<a href="#voltar">Voltar </a>
+						<span>PLACAR</span>
+					</div>
+				</div>
+				<div id="options" class="escondido botoes">
+					<div class="tituloJanela">
+						<p><span>Opções</span></p>
+						<p>
+							<a href="javascript:trocarJanela( getById('options'), getByClass('botoes')[0] )"> < Tela inicial</a>
+						</p>
+					</div>
+					
+					<!-- <p><a href="javascript:tirarJanela( getById('options') )">Ajustar tela</a></p> -->
+					<a href="javascript:ajustarTela()">Ajustar tela <span id="adapTela"></span></a>
+					<a href="javascript:toggleFullScreen()"><span id="modoTela">Entrar em </span>Tela cheia</a>
+					<a href="javascript:console.log()">Controles <span id="modoControles"> no teclado</span></a>
+				</div>
+			</div>
+		</div>
+		
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svgBotoes" class="" width="150" height="150">
+				<defs>
+					<style>
+						g#contrDirecional {
+							position: absolute;
+							width: 100px;
+							height: 100px;
+							top: 75%;
+							background: radial-gradient( rgba(0,0,0,50%) 10%, rgba(255,255,255,0%) 60%);
+							transform: scale(2) translate(7px, 157px);
+						}
+
+						#contrDirecional g circle {
+							filter: drop-shadow(0px 1px 2px black);
+							fill: rgb(255,255,255,30%);
+						}
+
+						#contrDirecional g polygon {
+							stroke: rgb(0,0,0,40%);
+							transform: scale(0.5);
+						}
+
+						#contrDirecional polygon {
+							position: absolute;
+						}
+
+						g#leftDir .item {
+							transform: translate(0, 20px);
+						}
+
+						g#upDir .item {
+							transform: translate( 20px, 0);
+						}
+
+						g#rigthDir .item {
+							transform: translate( 40px, 20px);
+						}
+
+						g#downDir .item {
+							transform: translate( 20px, 40px);
+						}
+					</style>
+				</defs>
+				<g id="contrDirecional">
+					<g id="leftDir" onclick="moveEsquerda()">
+						<circle class="item" cx="10" cy="10" r="10"></circle>
+						<polygon class="item" points="0,10, 10,0, 0,10, 20,10, 0,10, 10,20"></polygon>
+					</g>
+					<g id="upDir" onclick="moveCima()">
+						<circle class="item" cx="10" cy="10" r="10"></circle>
+						<polygon class="item" points="10 0 10 20 10 0 0 10 10 0 20 10"></polygon>
+					</g>
+					<g id="rigthDir" onclick="moveDireita()">
+						<circle class="item" cx="10" cy="10" r="10"></circle>
+						<polygon class="item" points="20,10, 10,0, 20,10, 0,10, 20,10, 10,20" ></polygon>
+					</g>
+					<g id="downDir" onclick="moveBaixo()">
+						<circle class="item" cx="10" cy="10" r="10"></circle>
+						<polygon class="item" points="10 0 10 20 0 10 10 20 20 10 10 20"></polygon>
+					</g>
+				</g>
+			</svg>
+		<script src="after.js"></script>
+	</body>
+</html>
