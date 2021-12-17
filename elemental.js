@@ -1,23 +1,72 @@
 //elemental.js
 
-let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv, svgTag, novoPattern, patternImage, nLinearGradient, corDeParada2, corDeParada1, estilosSVG, agrupamentoSVG, formaPath;
+let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv, novaSessao, svgTag, novoPattern, patternImage, nLinearGradient, corDeParada2, corDeParada1, estilosSVG, agrupamentoSVG, formaPath;
 
 let getById = (id) => document.getElementById(id);
 let getByClass = (cl) => document.getElementsByClassName(cl);
 let novoElm = (el) => document.createElement(el);
-let setID = ( htmlItem, idParaAplicar ) => { htmlItem.id = idParaAplicar }
-
-/**
-inverter = function( textoParaInverter ) {
-    var espacoNoTexto = '';
-    for (var i = textoParaInverter.length - 1; i >= 0; i--) {
-        espacoNoTexto += textoParaInverter[i];
-    }
-    return espacoNoTexto;
+let setID = ( htmlItem, idParaAplicar ) => { htmlItem.id = idParaAplicar };
+let teste = ({ parte1(entrada){ console.log(entrada) }, parte2(entrada){alert(entrada)} });
+let parametrosDaURL = ( parametroDeclarada ) => {
+	pURL = new URL(window.location.href);
+	return pURL.searchParams.get( parametroDeclarada )
 }
-**/
 
+	trocarJanela = function( janelaQueSai, janelaQueEntra ){
+		tirarJanela( janelaQueSai );
+		trazerJanela( janelaQueEntra );
+	}
 
+	tirarJanela = function( objetoPraTirar ) {
+		objetoPraTirar.style.display = "none";
+		objetoPraTirar.style.top = "-500%";
+	}
+
+	trazerJanela = function( objetoPraEntrar ) {
+		objetoPraEntrar.style.display = "block";
+		objetoPraEntrar.style.top = "50%";
+	}
+
+	inverter = function( textoParaInverter ) {
+		var espacoNoTexto = '';
+		for (var i = textoParaInverter.length - 1; i >= 0; i--) {
+			espacoNoTexto += textoParaInverter[i];
+		}
+		return espacoNoTexto;
+	}
+
+	checarZero = function(i) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		return i;
+	}
+
+	var mt = new Date();
+
+class llTempo {
+
+	//mt = '';
+	tagData = mt.getFullYear().toString() + checarZero( mt.getMonth()+1 ) + checarZero( mt.getDate() );
+	tagDataAtualizada(){
+		mt = new Date();
+		return mt.getFullYear().toString() + checarZero( mt.getMonth()+1 ) + checarZero( mt.getDate() );
+	}
+	tagDataFormatada( separador ){
+		mt = new Date();
+		return mt.getFullYear().toString() + separador.toString() + checarZero( mt.getMonth()+1 ) + separador.toString() + checarZero( mt.getDate() );
+	}
+
+	tagHora = checarZero( mt.getHours() ).toString() + checarZero( mt.getMinutes() ) + checarZero( mt.getSeconds() ) + checarZero( mt.getMilliseconds() );
+	tagHoraAtualizada(){ mt = new Date(); return checarZero( mt.getHours() ).toString() + checarZero( mt.getMinutes() ) + checarZero( mt.getSeconds() ) + checarZero( mt.getMilliseconds() ); }
+	tagHoraFormatada( separador ){ mt = new Date(); return checarZero( mt.getHours() ).toString() + separador.toString() + checarZero( mt.getMinutes() ) + separador.toString() + checarZero( mt.getSeconds() ) + ".".toString() + checarZero( mt.getMilliseconds() ); }
+
+	dataFormatadaPTbr( entradaDaData, separador ){
+		entradaDaData = new Date( entradaDaData );
+		return checarZero( entradaDaData.getDate() ) + separador.toString() + checarZero( entradaDaData.getMonth()+1 ) + separador.toString() + entradaDaData.getFullYear().toString();
+	}
+
+}
 
 /**
 
@@ -47,6 +96,12 @@ class Elementos {
         novaDiv = novoElm("div");
         novaDiv.innerHTML = conteudoDaDiv;
         return novaDiv;
+    }
+
+	novaSessao( conteudoDaSection ){
+        novaSessao = novoElm("section");
+        novaSessao.innerHTML = conteudoDaSection;
+        return novaSessao;
     }
 
     novoParagrafo( linhaDoParagrafo ){
@@ -99,7 +154,7 @@ class ElementosSVG {
 
     novoDefs( itensDeEstiloSVG ){ // CRIA UM ITEM DE ESTILOS DO "SVG"
         estilosSVG = novoElm("defs");
-        estilosSVG.append( itensDeEstiloSVG );
+        estilosSVG.innerHMTL = itensDeEstiloSVG;
         return estilosSVG;
     }
 
@@ -145,7 +200,7 @@ class ElementosSVG {
     novoGrupo( itensParaAgrupar, idDoGrupo ){
         agrupamentoSVG = novoElm("g")
         agrupamentoSVG.id = idDoGrupo;
-        agrupamentoSVG.append( itensParaAgrupar );
+        agrupamentoSVG.innerHTML = itensParaAgrupar;
         return agrupamentoSVG;
     }
 
@@ -155,6 +210,10 @@ class ElementosSVG {
 	
 	novoCirculo( distanciaX, distanciaY, tamanhoDoRadio, identificacao, estilosDoCirculoCSS ){
 		return '<circle id="' + identificacao + '" cx="' + distanciaX + '" cy="' + distanciaY + '" r="' + tamanhoDoRadio + '" style="' + estilosDoCirculoCSS + '" />'
+	}
+
+	novoRect( idDoRect, valPosX, valPosY, valLarg, valAlt, estilosDoRect ){
+		return '<rect id="' + idDoRect + '" x="' + valPosX + '" y="' + valPosY + '"  width="' + valLarg + '" height="' + valAlt + '" style="' + estilosDoRect + '"></rect>'
 	}
 	formatoPositivo = "0,10, 10,10, 10,0, 10,10, 20,10, 10,10, 10,20, 10,10";
 	formatoX = "3,0, 20,20, 10,10, 20,0, 0,20, 10,10";
@@ -253,3 +312,192 @@ rolarObjeto = function(){
 	objetoDeRolagem.style.height = ( window.innerHeight / 10 ) + "px";
 	objetoDeRolagem.style.top = Math.round( (winScroll / height) * (document.documentElement.scrollHeight / 6.69 ) ) + "%";
 }
+
+function download(nomeDoArquivo, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', nomeDoArquivo);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+/************************* OPERAÇÕES DO LOCAL STORAGE *************************/
+/******************************************************************************/
+/******************************************************************************/
+	/**********************************************************************/
+
+		let checarIDMemoria = ( idParaVer )=> !(!(localStorage.getItem( idParaVer )));
+
+		function checarMemoria( textoPraVerificar, idNaMemoria ){
+			if( checarIDMemoria( idNaMemoria ) == true ){
+				listaAssistidos = localStorage.getItem( idNaMemoria );
+				if( ( listaAssistidos.match( textoPraVerificar ) != null ) == true ){
+					resultado = true
+				} else {
+					resultado = false;
+				}
+			} else {
+				resultado = false;
+			}
+			return resultado
+		}
+		// existeNaMemoria = checarMemoria( textoPraVerificar, idNaMemoria );
+
+		function addNaMemoria( itemParaAdicionar, idDaMemoria ){ // INSERT INTO idDaMemoria VALUES ( itemParaAdicionar )
+			tempo = new llTempo;
+			if( localStorage.getItem( idDaMemoria ) == null ){
+				conteudo = "{'conteudo':" + itemParaAdicionar + ", 'dataDeRegistro':'" + tempo.tagDataFormatada("/") + "', 'horaDeRegistro':'" + tempo.tagHoraFormatada(":") + "', 'id':'" + tempo.tagDataAtualizada().toString() + tempo.tagHoraAtualizada().toString() + "'}";
+			} else {
+				conteudo = "{'conteudo':" + itemParaAdicionar + ", 'dataDeRegistro':'" + tempo.tagDataFormatada("/") + "', 'horaDeRegistro':'" + tempo.tagHoraFormatada(":") + "', 'id':'" + tempo.tagDataAtualizada().toString() + tempo.tagHoraAtualizada().toString() + "'}," + localStorage.getItem( idDaMemoria );
+			}
+			localStorage.setItem( idDaMemoria , conteudo);
+		}
+		// addNaMemoria( itemParaAdicionar, idDaMemoria );
+
+		function addSemRepetir( valorPraVerificar, idNaMemoria ){
+			if( checarMemoria(valorPraVerificar, idNaMemoria) == false ){
+				addNaMemoria(valorPraVerificar, idNaMemoria);
+			}
+		}
+
+	/**************************************************************************/
+	/*********************** CONSULTAS DO LOCAL STORAGE ***********************/
+	/**************************************************************************/
+
+		function consultarMemoria( itemPesquisado, idDaMemoria ){
+			if( checarMemoria(itemPesquisado, idDaMemoria) == false ){
+				resultado = null
+			} else {
+				resultado = new Array();
+				linha = new Array();
+				compativeis = 0;
+				while( compativeis < todaMemoria( idDaMemoria ).length ){
+					if( JSON.stringify( todaMemoria( idDaMemoria )[compativeis] ).match( itemPesquisado ) != null ){
+						resultado.push({ 'linha':todaMemoria( idDaMemoria )[compativeis], 'indice':compativeis });
+					}
+					compativeis++;
+				}
+			}
+			return resultado;
+		}
+
+		function buscarIdNaMemoria( nomeDaColuna, itemPesquisado, idDaMemoria ){ // SELECT * FROM idDaMemoria WHERE nomeDaColuna LIKE itemPesquisado
+			if( checarMemoria(itemPesquisado, idDaMemoria) == false ){
+				resultado = null
+			} else {
+				resultado = new Array();
+				linha = new Array();
+				compativeis = 0;
+				while( compativeis < todaMemoria( idDaMemoria ).length ){
+					if( JSON.stringify( todaMemoria( idDaMemoria )[compativeis][ nomeDaColuna ] ).match( itemPesquisado ) != null ){
+						resultado.push({ 'linha':todaMemoria( idDaMemoria )[compativeis], 'indice':compativeis });
+					}
+					compativeis++;
+				}
+			}
+			return resultado;
+		}
+
+		function todaMemoria( idDaMemoria ){ // SELECT * FROM idDaMemoria
+			if( checarIDMemoria( idDaMemoria ) == true ){
+				todoArmazenamento = eval("[" + localStorage.getItem( idDaMemoria ) + "]");
+			} else { todoArmazenamento = null }
+			return todoArmazenamento
+		}
+
+	/**************************************************************************/
+	/******************* OPERAÇÕES DE UPDATE NO LOCAL STORAGE *****************/
+	/**************************************************************************/
+
+		function alterarNaMemoria( colunaDaTabela, idItemPraAlterar, itemParaAdicionar, idDaMemoria ){ // UPDATE idDaMemoria SET ( itemParaAdicionar ) WHERE colunaDaTabela LIKE idItemPraAlterar
+			if( !( buscarIdNaMemoria( colunaDaTabela, idItemPraAlterar, idDaMemoria ) == null) == false ){
+				console.log("Nada alterado")
+			} else {
+				itensEncontrados = buscarIdNaMemoria( colunaDaTabela, idItemPraAlterar, idDaMemoria );
+				todosOsItens = todaMemoria( idDaMemoria );
+				if( itensEncontrados.length > 0 ){
+					conferir = 0;
+					while( conferir < itensEncontrados.length ){
+						todosOsItens[itensEncontrados[conferir].indice].conteudo = itemParaAdicionar;
+						// todosOsItens[itensEncontrados[conferir].indice] = "{'conteudo':" + itemParaAdicionar + ", 'dataDeRegistro':'" + tempo.tagDataFormatada("/") + "', 'horaDeRegistro':'" + tempo.tagHoraFormatada(":") + "', 'id':'" + tempo.tagDataAtualizada().toString() + tempo.tagHoraAtualizada().toString() + "'}";;
+						// console.log( todosOsItens[itensEncontrados[conferir].indice] );
+						// console.log( {'conteudo': itemParaAdicionar , 'dataDeRegistro': tempo.tagDataFormatada("/") , 'horaDeRegistro': tempo.tagHoraFormatada(":") , 'id': tempo.tagDataAtualizada().toString() + tempo.tagHoraAtualizada().toString() } );
+						conferir++;
+					}
+				}
+				todosOsItens = reOrganizarString(todosOsItens)
+				localStorage.setItem( idDaMemoria, todosOsItens )
+			}
+		}
+
+	/**************************************************************************/
+	/****************** OPERAÇÕES DE EXCLUSÃO NO LOCAL STORAGE ****************/
+	/**************************************************************************/
+
+		function removerIdDaMemoria( colunaDaTabela, itemParaRemover, idDaMemoria ){ // DELETE FROM idDaMemoria WHERE colunaDaTabela LIKE itemParaRemover
+			if( !( buscarIdNaMemoria( colunaDaTabela, itemParaRemover, idDaMemoria ) == null) == false ){
+				console.log("Nada alterado")
+			} else {
+				itensEncontrados = buscarIdNaMemoria( colunaDaTabela, itemParaRemover, idDaMemoria );
+				todosOsItens = todaMemoria( idDaMemoria );
+				if( itensEncontrados.length > 0 ){
+					conferir = 0;
+					while( conferir < itensEncontrados.length ){
+						todosOsItens[itensEncontrados[conferir].indice] = conferir;
+						conferir++;
+					}
+				}
+				todosOsItens = reOrganizarString(todosOsItens)
+				localStorage.setItem( idDaMemoria, todosOsItens )
+			}
+		}
+
+		function removerDaMemoria( itemParaRemover, idDaMemoria ){ // DELETE FROM idDaMemoria WHERE colunaDaTabela LIKE itemParaRemover
+			if( !(consultarMemoria( itemParaRemover, idDaMemoria ) == null) == false ){
+				console.log("Nada alterado")
+			} else {
+				itensEncontrados = consultarMemoria( itemParaRemover, idDaMemoria );
+				todosOsItens = todaMemoria( idDaMemoria );
+				if( itensEncontrados.length > 0 ){
+					conferir = 0;
+					while( conferir < itensEncontrados.length ){
+						todosOsItens[itensEncontrados[conferir].indice] = conferir;
+						conferir++;
+					}
+				}
+				todosOsItens = reOrganizarString(todosOsItens)
+				localStorage.setItem( idDaMemoria, todosOsItens )
+			}
+		}
+
+		function reOrganizarString( itensParaAdicionar ){
+			linhas = "";
+			total = 0;
+			while( total < itensParaAdicionar.length ){
+				if( isNaN( itensParaAdicionar[total] ) == true ){
+					linhas = JSON.stringify( itensParaAdicionar[total] ) + "," + linhas;
+					// linhas = JSON.stringify( itensParaAdicionar[total] )
+				}
+				total++;
+			}
+			return linhas
+		}
+
+	/**********************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+/********************* FIM DAS OPERAÇÕES DO LOCAL STORAGE *********************/
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
