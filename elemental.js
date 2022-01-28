@@ -12,6 +12,24 @@ let parametrosDaURL = ( parametroDeclarada ) => {
 	return pURL.searchParams.get( parametroDeclarada )
 }
 
+// elemental 2.0
+
+criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType, atributoClass, atributoHREF, atributoSRC, atributoTarget, atributoOnClick, atributoStyle, conteudoInterno }) => {
+	elmentoAleatorio = novoElm( nomeDoElemento );
+	if ( conteudoInterno ){ elmentoAleatorio.innerHTML = conteudoInterno; }
+	if ( atributoID ){ elmentoAleatorio.id = atributoID; }
+	if ( atributoClass ){ elmentoAleatorio.setAttribute("class", atributoClass);}
+	if ( atributoValue ){ elmentoAleatorio.value = atributoValue;}
+	if ( atributoType ){ elmentoAleatorio.type = atributoType;}
+	if ( atributoTarget ){ elmentoAleatorio.target = atributoTarget;}
+	if ( atributoHREF ){ elmentoAleatorio.href = atributoHREF;}
+	if ( atributoSRC ){ elmentoAleatorio.setAttribute("src", atributoSRC);}
+	if ( atributoName ){ elmentoAleatorio.name = atributoName;}
+	if ( atributoOnClick ){ elmentoAleatorio.setAttribute("onclick", atributoOnClick );}
+	if ( atributoStyle ){ elmentoAleatorio.style = atributoStyle;}
+	return elmentoAleatorio;
+}
+
 	trocarJanela = function( janelaQueSai, janelaQueEntra ){
 		tirarJanela( janelaQueSai );
 		trazerJanela( janelaQueEntra );
