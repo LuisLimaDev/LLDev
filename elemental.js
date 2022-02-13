@@ -60,11 +60,13 @@ criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType,
 		return i;
 	}
 
-	var mt = new Date();
+	var mt = new Date(), diaDaSemana, mesDoAno;
 
 class llTempo {
 
-	//mt = '';
+	diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sexta"];
+	mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
 	tagData = mt.getFullYear().toString() + checarZero( mt.getMonth()+1 ) + checarZero( mt.getDate() );
 	tagDataAtualizada(){
 		mt = new Date();
@@ -84,11 +86,22 @@ class llTempo {
 		return checarZero( entradaDaData.getDate() ) + separador.toString() + checarZero( entradaDaData.getMonth()+1 ) + separador.toString() + entradaDaData.getFullYear().toString();
 	}
 
+	dataPorExtenso( entradaDaData ){
+		diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sexta"];
+		mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+		entradaDaData = new Date( entradaDaData );
+		return diaDaSemana[entradaDaData.getDay()] + ", " + entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+
+	}
+
+	nada({ vazio }){
+		return vazio ? vazio : "objeto não utilizado"
+	}
+
 }
 
 /**
-
-
 **/
 
 
