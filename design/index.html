@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Editor de Página</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
-		<style>
+		<style id="llDesign">
 		
 			*, body{
 				padding: 0;
 				margin: 0;
+				transition: all 0.3s ease !important;
 			}
+
+			.escondido{ display: none; opacity: 0; }
 
 			p.gerarNumeros {
 				font-size: 30pt; //80pt fica metade de uma folha A4
@@ -38,17 +40,22 @@
 			div#saida{
 				width: 100%;
 				background: rgba(255,255,255,0.5);
+				overflow-x: auto;
 			}
 			
 			@keyframes focoDeLeitura{
 				from{ background: blue }
 			}
 
-			div#propriedades div, div#propriedades a{
-				padding: 1%;
-				margin: 1%;
-				box-shadow: 0 0 5px -3px #000;
+			div#propriedades div, div#propriedades a {
+				padding: 10px;
+				margin: 10px 0;
+				border: 1px solid #0002;
 				font-family: monospace;
+				border-radius: 20px;
+				box-shadow: 0 20px 10px -20px #000;
+				background: rgb(255 255 255/0.25)
+				/* transform: scale(0.95); */
 			}
 
 			div#topoProps{
@@ -68,13 +75,14 @@
 				position: fixed;
 				width: 300px;
 				background: #88aaff;
-				top: 0;
+				top: 1%;
 				right: 20px;
 				height: 90vh;
 				border: 15px solid #88aaff;
 				overflow-y: auto;
 				box-shadow: 0px 3px 6px #000;
 				display: none;
+				border-radius: 20px;
 			}
 
 			div#propriedades:target{
@@ -107,6 +115,23 @@
 				margin: 5px;
 			}
 
+			#propriedades::-webkit-scrollbar-thumb {
+				background-color: rgb(200 200 255);
+				border-radius: 12px;
+				width: 53px;
+			}
+
+			#propriedades::-webkit-scrollbar-track{
+				background-color: rgb(255 255 255 / 10%);
+			}
+
+			#propriedades::-webkit-scrollbar {
+				width: 3px;
+				height: 3px;
+				background-color: transparent;
+				border-radius: 0px;
+			}
+
 		</style>
 	
 	</head>
@@ -120,13 +145,22 @@
 			<div id="divMedia">
 
 				<div id="editor">
-					<div style="display: grid" id="ferramentas">
-						<textarea id="entrada" rows="7" ></textarea>
+					<div style="overflow: hidden">
+						<div style="display: grid" id="ferramentas">
+							<div id="menuConteudo">
+								<label>Nome do arquivo: <input id="nomeDoArquivo" name="nomeDoArquivo" placeholder="index.html" value="index.html"/></label>
+								<button onclick="salvarArquivo()">Baixar</button>
+								<button onclick="ajustTamanhos()">Ajustar</button>
+							</div>
+							<div id="itensPrincipais">
+								<textarea id="entrada" rows="7" ></textarea>
+								<div id="saida" contenteditable="true" onmousedown="iniciaHold()" onmouseup="finalHold()"></div>
+							</div>
+						</div>
 					</div>
-					<div id="saida" contenteditable="true"></div>
 					<div id="exibirProps">
 						<a href="javascript:abrirJanela( getById('propriedades') )" class="btflutante">Propriedades +</a>
-						<div id="propriedades"><a href="javascript:fecharJanela( getById('propriedades') )" class="btflutante">Fechar</a></div>
+						<div id="propriedades" class="escondido">Props<a href="javascript:fecharJanela( getById('propriedades') )" class="btflutante">Fechar</a></div>
 					</div>
 				</div>
 			</div>
@@ -138,6 +172,39 @@
 	
 		elmnts = new Elementos;
 		forms = new FormLL;
+		posItens = "block";
+		larguraTotal = window.innerWidth || screen.availWidth;
+		alturaTotal = window.innerHeight || screen.availHeight;
+		getById("entrada").style.width = "100%";
+		getById("entrada").style.height = ( Math.round(alturaTotal*0.40) ) + "px";
+		getById("saida").style.width = "100%";
+		getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
+
+		ajustTamanhos=()=>{
+			larguraTotal = window.innerWidth || screen.availWidth;
+			alturaTotal = window.innerHeight || screen.availHeight;
+			if( posItens === "block"){
+				getById("itensPrincipais").style.display = "block";
+				getById("entrada").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
+				getById("entrada").style.height = ( Math.round(alturaTotal * 0.40) ) + "px";
+				getById("saida").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
+				getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
+				posItens = "flex";
+			} else {
+				posItens = "block";
+				getById("itensPrincipais").style.display = "flex";
+				getById("entrada").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
+				getById("entrada").style.height = ( Math.round(alturaTotal*0.84) ) + "px";
+				getById("saida").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
+				getById("saida").style.height = ( Math.round(alturaTotal*0.86) ) + "px";
+			}
+		}
+
+		function salvarArquivo(){
+			textoConteudo = getById("entrada").value;
+			nomeDoArquivo = getById("nomeDoArquivo").value;
+			download( nomeDoArquivo, textoConteudo );
+		}
 
 		const gerarNumeros = ( numeroInicial, numeroFinal, pularNumeros ) => {
 			if ( pularNumeros == null ){ pularNumeros = 2 }
@@ -223,8 +290,8 @@
 			}
 		}
 
-		function abrirJanela( janelaParaAbrir ){ janelaParaAbrir.style.display = "block" }
-		function fecharJanela( janelaParaFechar ){ janelaParaFechar.style.display = "none" }
+		function abrirJanela( janelaParaAbrir ){ janelaParaAbrir.style.display = "block"; setTimeout( function(){ janelaParaAbrir.style.opacity = "1" }, 500) }
+		function fecharJanela( janelaParaFechar ){ janelaParaFechar.style.opacity = "0" ; setTimeout( function(){ janelaParaFechar.style.display = "none" }, 500) }
 
 		function novoElementoAleatorio( nomeElemento, attr1, valor1, attr2, valor2, valorInterno){
 			novoElemento = document.createElement( nomeElemento );
@@ -264,20 +331,26 @@
 			quantidadeDeAttrs = elSelecionado.attributes.length;
 			btflutanteFechar = elmnts.novoLink("Propriedades -", "javascript:fecharJanela( getById('propriedades') )");
 			btflutanteFechar.setAttribute( "class", "btflutante" );
-			topoProps = elmnts.novaDiv( elmnts.novoButton("Elmnt Pai", "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + btflutanteFechar.outerHTML ) ;
+			topoProps = elmnts.novaDiv( btflutanteFechar.outerHTML ) ;
 			topoProps.style.position = "fixed";
 			topoProps.id = "topoProps";
-			getById("propriedades").innerHTML = topoProps.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.className + "</h4>";
+			getById("propriedades").innerHTML = elmnts.novoButton("Ajustar",'ajustTamanhos()',"").outerHTML +"<hr>"+ btflutanteFechar.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.className + "</h4>";
 
+			//itensFilhos = elmnts.novaDiv(elmnts.novoButton('Acima', "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<h3>Árvore</h3>");
+			itensFilhos = elmnts.novaDiv(elmnts.novoLink('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="20"><polygon points="0,10, 10,0, 0,10, 20,10, 0,10, 10,20" style="stroke:black"></polygon><text style="transform: translate(30px, 19px); font-size: 18pt;">Acima</text></svg>', "javascript:elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<h3>Árvore</h3>");
+			itensFilhos.setAttribute("class", "itensFilhos");
+			getById("propriedades").append( itensFilhos );
 			if( itemSelecionadoEdicao.children.length > 0){
 				elFilhos=0;
-				itensFilhos = elmnts.novaDiv("<h3>filhos</h3>");
-				itensFilhos.setAttribute("class", "itensFilhos");
 				while( elFilhos < itemSelecionadoEdicao.children.length ){
-					itensFilhos.append( elmnts.novoLink( itemSelecionadoEdicao.children[elFilhos].nodeName + ": " + itemSelecionadoEdicao.children[elFilhos].innerHTML.slice(0,20) , "javascript:listarAttrs( itemSelecionadoEdicao.children[" + elFilhos + "] )", "") );
+					itensFilhos.append( elmnts.novoLink( ( elFilhos + 1) + ". " + itemSelecionadoEdicao.children[elFilhos].nodeName + ": " + itemSelecionadoEdicao.children[elFilhos].innerHTML.slice(0,20) , "javascript:listarAttrs( itemSelecionadoEdicao.children[" + elFilhos + "] )", "") );
 					elFilhos++;
 				}
-				getById("propriedades").append( itensFilhos );
+			}
+
+			if( itemSelecionadoEdicao.nodeName == "STYLE" || itemSelecionadoEdicao.nodeName == "SCRIPT"){
+				getById("propriedades").append( elmnts.novaDiv( "<h3>" + itemSelecionadoEdicao.nodeName + "</h3>" + elmnts.novaDiv( itemSelecionadoEdicao.innerHTML.replaceAll(";", "; <br>") ).outerHTML ) )
+				//console.log( itemSelecionadoEdicao.nodeName );
 			}
 
 			btNovoElemento = elmnts.novaDiv("Adicionar um novo Elemento: ");
@@ -287,8 +360,15 @@
 
 			contAttrs = 0;
 			while(contAttrs < quantidadeDeAttrs ){
-				editarAttrs = elmnts.novaDiv( elSelecionado.attributes[ contAttrs ].textContent );
 				attrNome = elSelecionado.attributes[ contAttrs ].name;
+				if( attrNome == "style"){
+					conteudoAtributo = elSelecionado.attributes[ contAttrs ].textContent.replaceAll(";", "; <br>");
+					//conteudoAtributo = itemSelecionadoEdicao.style.cssText.replaceAll(";", "; <br>");
+				} else {
+					conteudoAtributo = elSelecionado.attributes[ contAttrs ].textContent;
+				}
+				//console.log( conteudoAtributo );
+				editarAttrs = elmnts.novaDiv( conteudoAtributo );
 				editarAttrs.id = "editarAttr--" + attrNome;
 				editarAttrs.setAttribute("contenteditable", "true");
 				getById("propriedades").append( elmnts.novaDiv( "<h5>" + elSelecionado.attributes[ contAttrs ].name + "</h5>" + editarAttrs.outerHTML + elmnts.novoButton("Aplicar " + attrNome, 'aplicarPropriedade( "' + attrNome + '", getById("editarAttr--' + attrNome + '").innerText )', "").outerHTML ) );
@@ -322,6 +402,19 @@
 			itemSelecionadoEdicao = e.target;
 			listarAttrs( e.target );
 		});
+
+		iniciaHold=()=>{
+			llT = new Date();
+			segurando = "solto";
+			tHold = 0;
+			while( segurando === "segurando" ){
+				llT.setMilliseconds(tHold);
+				tHold++;
+			}
+		}
+
+		finalHold=()=>{ segurando = "solto"}
+
 
 	</script>
 </html>
