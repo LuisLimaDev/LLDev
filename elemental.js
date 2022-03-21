@@ -64,7 +64,7 @@ criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType,
 
 class llTempo {
 
-	diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado"];
+	diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 	mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 	tagData = mt.getFullYear().toString() + checarZero( mt.getMonth()+1 ) + checarZero( mt.getDate() );
@@ -91,7 +91,7 @@ class llTempo {
 		mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 		entradaDaData = new Date( entradaDaData );
-		return diaDaSemana[entradaDaData.getDay()] + ", " + entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+		return entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
 
 	}
 
