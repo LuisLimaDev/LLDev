@@ -14,6 +14,47 @@ let parametrosDaURL = ( parametroDeclarada ) => {
 
 // elemental 2.0
 
+lmnt = ({
+	lmntName,
+	attrID,
+	attrCLASS,
+	attrNAME,
+	attrTYPE,
+	attrTARGET,
+	attrHREF,
+	attrSRC,
+	attrNAME,
+	attrSTYLE,
+	attrONCLICK,
+	attrVALUE,
+	attrCHECKED,
+	attrENABLED,
+	attrFOR,
+	contHTML,
+	contTexto,
+	editavel
+}) => {
+	lmnt = novoElm( lmntName );
+	if ( attrID ){ lmnt.id = attrID }
+	if ( attrCLASS ){ lmnt.setAttribute("class", attrCLASS ) }
+	if ( attrNAME ){ lmnt.name = attrNAME }
+	if ( attrTYPE ){ lmnt.target attrTYPE }
+	if ( attrTARGET ){ lmnt.target = attrTARGET }
+	if ( attrHREF ){ lmnt.href = attrHREF }
+	if ( attrSRC ){ lmnt.src = attrSRC }
+	if ( attrNAME ){ lmnt.name = attrNAME }
+	if ( attrSTYLE ){ lmnt.style = attrSTYLE }
+	if ( attrONCLICK ){ lmnt.setAttribute( "onclick", attrONCLICK ) }
+	if ( attrVALUE ){ lmnt.value = attrVALUE }
+	if ( attrCHECKED ){ lmnt.checked = attrCHECKED }
+	if ( attrENABLED ){ lmnt.enabled = attrENABLED }
+	if ( attrFOR ){ lmnt.for = attrFOR }
+	if ( contHTML ){ lmnt.innerHMTL = contHTML }
+	if ( contTexto ){ lmnt.innerHMTL = contTexto }
+	if ( editavel ){ lmnt.setAttribute("contentEditable", editavel ) }
+	return lmnt
+}
+
 criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType, atributoClass, atributoHREF, atributoSRC, atributoTarget, atributoOnClick, atributoStyle, conteudoInterno }) => {
 	elmentoAleatorio = novoElm( nomeDoElemento );
 	if ( conteudoInterno ){ elmentoAleatorio.innerHTML = conteudoInterno; }
