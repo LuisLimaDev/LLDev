@@ -37,7 +37,7 @@ lmnt = ({
 	if ( attrID ){ lmnt.id = attrID }
 	if ( attrCLASS ){ lmnt.setAttribute("class", attrCLASS ) }
 	if ( attrNAME ){ lmnt.name = attrNAME }
-	if ( attrTYPE ){ lmnt.target attrTYPE }
+	if ( attrTYPE ){ lmnt.target = attrTYPE }
 	if ( attrTARGET ){ lmnt.target = attrTARGET }
 	if ( attrHREF ){ lmnt.href = attrHREF }
 	if ( attrSRC ){ lmnt.src = attrSRC }
