@@ -42,7 +42,6 @@ lmnt = ({
 	if ( attrTARGET ){ lmnt.target = attrTARGET }
 	if ( attrHREF ){ lmnt.href = attrHREF }
 	if ( attrSRC ){ lmnt.src = attrSRC }
-	if ( attrNAME ){ lmnt.name = attrNAME }
 	if ( attrSTYLE ){ lmnt.style = attrSTYLE }
 	if ( attrONCLICK ){ lmnt.setAttribute( "onclick", attrONCLICK ) }
 	if ( attrVALUE ){ lmnt.value = attrVALUE }
