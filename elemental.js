@@ -23,7 +23,6 @@ lmnt = ({
 	attrTARGET,
 	attrHREF,
 	attrSRC,
-	attrNAME,
 	attrSTYLE,
 	attrONCLICK,
 	attrVALUE,
