@@ -29,9 +29,11 @@ lmnt = ({
 	attrCHECKED,
 	attrENABLED,
 	attrFOR,
+	attrPLACEHOLDER,
 	contHTML,
 	contTexto,
-	editavel
+	editavel,
+	ajuda
 }) => {
 	lmnt = novoElm( lmntName );
 	if ( attrID ){ lmnt.id = attrID }
@@ -47,10 +49,12 @@ lmnt = ({
 	if ( attrCHECKED ){ lmnt.checked = attrCHECKED }
 	if ( attrENABLED ){ lmnt.enabled = attrENABLED }
 	if ( attrFOR ){ lmnt.for = attrFOR }
+	if ( attrPLACEHOLDER ){ lmnt.placeholder = attrPLACEHOLDER }
 	if ( contHTML ){ lmnt.innerHMTL = contHTML }
 	if ( contTexto ){ lmnt.innerHMTL = contTexto }
 	if ( editavel ){ lmnt.setAttribute("contentEditable", editavel ) }
-	return lmnt
+	if ( ajuda != null || ajuda != undefined ){ return "lmntName, attrID, attrCLASS, attrNAME, attrTYPE, attrTARGET, attrHREF, attrSRC, attrSTYLE, attrONCLICK, attrVALUE, attrCHECKED, attrENABLED, attrFOR, attrPLACEHOLDER, contHTML, contTexto, editavel, ajuda"
+	} else {return lmnt}
 }
 
 criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType, atributoClass, atributoHREF, atributoSRC, atributoTarget, atributoOnClick, atributoStyle, conteudoInterno }) => {
