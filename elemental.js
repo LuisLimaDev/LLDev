@@ -162,7 +162,7 @@ class Elementos {
 		ancora = novoElm("a");
 		ancora.innerHTML = textoInterno;
 		ancora.href = destinoDoLink;
-		if( targetLink == "" || targetLink == null ){ console.log("feito!") } else { ancora.target = targetLink }
+		if( targetLink == "" || targetLink == null ){  } else { ancora.target = targetLink }
 		return ancora;
 	}
 	
