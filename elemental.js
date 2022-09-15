@@ -138,6 +138,17 @@ class llTempo {
 
 	}
 
+	dataPorExtenso2( entradaDaData ){
+		if( entradaDaData.length === 10 ){
+			entradaDaData = new Date( entradaDaData );
+		} else if( entradaDaData.length === 8 ){
+			entradaDaData = entradaDaData.toString();
+			entradaDaData = entradaDaData.toString().slice(0,4) +'-' + entradaDaData.toString().slice(4,6) + '-' + entradaDaData.toString().slice(6,8);
+			entradaDaData = new Date( entradaDaData );
+		}
+		return this.diaDaSemana[ entradaDaData.getDay() ] + ", " + parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+	}
+
 	nada({ vazio }){
 		return vazio ? vazio : "objeto não utilizado"
 	}
