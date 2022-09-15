@@ -130,15 +130,6 @@ class llTempo {
 	}
 
 	dataPorExtenso( entradaDaData ){
-		diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sexta"];
-		mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-
-		entradaDaData = new Date( entradaDaData );
-		return entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
-
-	}
-
-	dataPorExtenso2( entradaDaData ){
 		if( entradaDaData.length === 10 ){
 			entradaDaData = new Date( entradaDaData );
 		} else if( entradaDaData.length === 8 ){
@@ -147,6 +138,18 @@ class llTempo {
 			entradaDaData = new Date( entradaDaData );
 		}
 		return this.diaDaSemana[ entradaDaData.getDay() ] + ", " + parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+	}
+
+	horaPorExtenso=( horaEntrada )=>{
+		horaEntrada = horaEntrada.toString();
+		if( horaEntrada.length === 3 ){
+			horaEntrada = horaEntrada.slice(0,1) + ":" + horaEntrada.slice(1,3)
+		} else if( horaEntrada.length === 4 ){
+			horaEntrada = horaEntrada.slice(0,2) + ":" + horaEntrada.slice(2,4)
+		} else if( horaEntrada.length > 5 ){
+			horaEntrada = horaEntrada.slice(0,2) + ":" + horaEntrada.slice(2,4) + ":" + horaEntrada.slice(4,6)
+		}
+		return horaEntrada
 	}
 
 	nada({ vazio }){
