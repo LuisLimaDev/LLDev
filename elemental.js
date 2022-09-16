@@ -130,6 +130,15 @@ class llTempo {
 	}
 
 	dataPorExtenso( entradaDaData ){
+		diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sexta"];
+		mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+		entradaDaData = new Date( entradaDaData );
+		return entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+
+	}
+
+	dataPorExtenso2( entradaDaData ){
 		if( entradaDaData.length === 10 ){
 			entradaDaData = new Date( entradaDaData );
 		} else if( entradaDaData.length === 8 ){
@@ -137,7 +146,7 @@ class llTempo {
 			entradaDaData = entradaDaData.toString().slice(0,4) +'-' + entradaDaData.toString().slice(4,6) + '-' + entradaDaData.toString().slice(6,8);
 			entradaDaData = new Date( entradaDaData );
 		}
-		return parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+		return this.diaDaSemana[ entradaDaData.getDay() ] + ", " + parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
 	}
 
 	horaPorExtenso=( horaEntrada )=>{
