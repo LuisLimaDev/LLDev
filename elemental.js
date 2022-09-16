@@ -137,7 +137,7 @@ class llTempo {
 			entradaDaData = entradaDaData.toString().slice(0,4) +'-' + entradaDaData.toString().slice(4,6) + '-' + entradaDaData.toString().slice(6,8);
 			entradaDaData = new Date( entradaDaData );
 		}
-		return this.diaDaSemana[ entradaDaData.getDay() ] + ", " + parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+		return parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
 	}
 
 	horaPorExtenso=( horaEntrada )=>{
