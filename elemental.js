@@ -107,7 +107,7 @@ criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType,
 
 class llTempo {
 
-	diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+	diaDaSemana = [ "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 	mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 	tagData = mt.getFullYear().toString() + checarZero( mt.getMonth()+1 ) + checarZero( mt.getDate() );
