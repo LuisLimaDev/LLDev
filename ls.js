@@ -7,13 +7,12 @@ ls = {
 	getJSON: function( item ){ return eval(`[` + this.get( item ) + `]`)[0] },
 	setJSON: function( item, jsonOnj ){ this.set( item , JSON.stringify(jsonOnj) ) },
 	addJSON: function( item, jsonOnj ){
-		if( !(!(this.get(item))) == false ){
-			this.set( item , JSON.stringify(jsonOnj) );
-		} else {
-			last = this.getJSON( item );
-			last.push( jsonOnj )
-			this.setJSON( item, last )
+		if( this.ab == "" ){
+			this.ab = "[ " + JSON.stringify( jsonOnj ) + "]";
+		} else{
+			this.ab = "[ " + this.ab.slice(2, (ls.ab.length)-1) +", " + JSON.stringify( jsonOnj ) + "]";
 		}
+		this.set( item, this.ab )
 	},
 	busca: function( coluna, itemBusca, tabela ){
 		res = [];
@@ -24,6 +23,15 @@ ls = {
 		}
 		return res
 	},
+	aa: function( entrada ){
+		if( this.ab == "" ){
+			this.ab = "[ " + JSON.stringify( entrada ) + "]";
+		} else{
+			this.ab = "[ " + this.ab.slice(2, (ls.ab.length)-1) +", " + JSON.stringify( entrada ) + "]";
+		}
+		
+	},
+	ab: "",
 	help: function(){
 		console.log('addJSON: ƒ ( item, jsonOnj ) || ADICIONA OBJETOS JSON');
 		console.log('busca: ƒ ( coluna, itemBusca, tabela ) || BUSCA QUANDO EXISTE UMA ESTRUTURA JSON ARMAZENADA');
