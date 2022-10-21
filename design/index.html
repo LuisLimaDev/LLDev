@@ -3,11 +3,17 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
-		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script src="../elemental.js"></script>
 		<style id="llDesign">
 		
+			:root{
+				--corBase: #88aaff;
+				--corBase2: #ACF;
+			}
+			circle:hover, path:hover, text:hover {
+				stroke: rgb(255 0 0/50%);
+				stroke-width: 10px;
+			}
 			*, body{
 				padding: 0;
 				margin: 0;
@@ -29,7 +35,7 @@
 
 			div#editor {
 				display: grid;
-				background: #777;
+				background: var( --corBase2 );
 				padding: 20px;
 			}
 			
@@ -74,11 +80,11 @@
 				min-height: 150px;
 				position: fixed;
 				width: 300px;
-				background: #88aaff;
+				background: var( --corBase );
 				top: 1%;
 				right: 20px;
 				height: 90vh;
-				border: 15px solid #88aaff;
+				border: 15px solid var( --corBase );
 				overflow-y: auto;
 				box-shadow: 0px 3px 6px #000;
 				display: none;
@@ -101,7 +107,7 @@
 				position: fixed;
 				top: 80%;
 				right: 40px;
-				background-color: #88aaff;
+				background-color: var( --corBase );
 				padding: 20px;
 				border-radius: 10px;
 				box-shadow: 0px 1px 6px -4px #000;
@@ -115,28 +121,95 @@
 				margin: 5px;
 			}
 
-			#propriedades::-webkit-scrollbar-thumb {
-				background-color: rgb(200 200 255);
+			div#propriedades::-webkit-scrollbar-thumb, div#propriedades div::-webkit-scrollbar-thumb{
+				background-color: var( --corBase2 );
 				border-radius: 12px;
 				width: 53px;
 			}
 
-			#propriedades::-webkit-scrollbar-track{
+			div#propriedades::-webkit-scrollbar-track, div#propriedades div::-webkit-scrollbar-track{
 				background-color: rgb(255 255 255 / 10%);
 			}
 
-			#propriedades::-webkit-scrollbar {
+			div#propriedades::-webkit-scrollbar, div#propriedades div::-webkit-scrollbar {
 				width: 3px;
 				height: 3px;
 				background-color: transparent;
 				border-radius: 0px;
 			}
 
+			div#menuConteudo section:hover div {
+				display: grid;
+				background: var( --corBase2 );
+				padding: 10px;
+				position: absolute;
+				box-shadow: 0 0 20px #000;
+			}
+
+			.dropavel{
+				display: none;
+			}
+
+			div.tituloJanela {
+				padding: 21px 0;
+				width: 100%;
+				text-align: center;
+				display: grid;
+				grid-template-columns: 120px auto 100px;
+				font-size: 20pt;
+				border: var( --corBase2 ) solid;
+				border-width: 0 0 1px 0;
+				margin-bottom: 20px;
+			}
+
+			div.janela:target {
+				font-family: sans-serif;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				display: grid;
+				background: var( --corBase );
+				padding: 20px;
+				transform: translate(-50%, -50%);
+				box-shadow: 0 0 0 10000px #222a, 0 0 20px #000;
+				border-radius: 20px;
+			}
+
+			div#menuConteudo {
+				display: flex;
+				background: #46a;
+				color: white;
+				font-family: sans-serif;
+			}
+
+			div#menuConteudo span, div#menuConteudo a {
+				display: block;
+				padding: 10px;
+				margin: 0 5px;
+			}
+
+			div#menuConteudo span:hover {
+				background: #acf;
+			}
+
+			div#menuConteudo section {
+				cursor: pointer;
+			}
+
+			.dropavel a:hover {
+				background: var( --corBase);
+				text-decoration: underline;
+			}
+
+			.dropavel a {
+				text-decoration: none;
+			}
+
 		</style>
 	
 	</head>
 	<script>
-		
+
 	</script>
 	<body>
 	
@@ -148,13 +221,30 @@
 					<div style="overflow: hidden">
 						<div style="display: grid" id="ferramentas">
 							<div id="menuConteudo">
-								<label>Nome do arquivo: <input id="nomeDoArquivo" name="nomeDoArquivo" placeholder="index.html" value="index.html"/></label>
-								<button onclick="salvarArquivo()">Baixar</button>
-								<button onclick="ajustTamanhos()">Ajustar</button>
+								<section>
+									<span>Arquivo</span>
+									<div class="dropavel">
+										<a href="#novoArquivo">Novo</a>
+										<a href="#upLoad">Abrir</a>
+										<a href="#baixarItem">Baixar cópia</a>
+										<a href="#">Arquivos recentes</a>
+									</div>
+								</section>
+								<section>
+									<span>Desenhar</span>
+									<div class="dropavel">
+										<a href="JavaScript:ativarDraw()">Ativar</a>
+										<a href="JavaScript:trocaBusha('Path')">Linhas Path</a>
+										<a href="JavaScript:trocaBusha('Circle')">Circulos</a>
+									</div>
+								</section>
+								<section><span onclick="ajustTamanhos()">Ajustar</span></section>
+								<section><span onclick="editavel()">Editavel</span></section>
+								<section><span onclick="janelaExterna()">Visualizar</span></section>
 							</div>
 							<div id="itensPrincipais">
 								<textarea id="entrada" rows="7" ></textarea>
-								<div id="saida" contenteditable="true" onmousedown="iniciaHold()" onmouseup="finalHold()"></div>
+								<div id="saida" contenteditable="true" onmousedown="iniciaHold( event )" onmouseup="finalHold( event )"></div>
 							</div>
 						</div>
 					</div>
@@ -166,255 +256,54 @@
 			</div>
 		
 		</div>
-	
+
+		
+		<div id="janelas">
+		
+			<div id="baixarItem" class="janela dropavel">
+				<div class="tituloJanela">
+					<a href="#" onclick="">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50"  height="30" width="30"><path class="item1" style="stroke: black" d=" m25, 50, 50, 0z m0, 0, 25, 25z m0, 0, 25, -25z"></path></svg>
+					</a>
+					<span>Nomear o arquivo</span>
+				</div>
+				<label>Nome do arquivo: <input id="nomeDoArquivo" name="nomeDoArquivo" placeholder="index.html" value="index.html"/></label>
+				<button onclick="salvarArquivo()">Baixar</button>
+			</div>
+		
+			<div id="upLoad" class="janela dropavel">
+				<div class="tituloJanela">
+					<a href="#" onclick="">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50"  height="30" width="30"><path class="item1" style="stroke: black" d=" m25, 50, 50, 0z m0, 0, 25, 25z m0, 0, 25, -25z"></path></svg>
+					</a>
+					<span>Abrir arquivo</span>
+				</div>
+				<label>Selecionar arquivo: <input type="file" id="nomeArquivoUp" name="nomeArquivoUp"/></label>
+				<button onclick="carregarItem()">Carregar</button>
+			</div>
+		
+			<div id="novoArquivo" class="janela dropavel">
+				<div class="tituloJanela">
+					<a href="#" onclick="">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50"  height="30" width="30"><path class="item1" style="stroke: black" d=" m25, 50, 50, 0z m0, 0, 25, 25z m0, 0, 25, -25z"></path></svg>
+					</a>
+					<span>Deseja criar um novo</span>
+				</div>
+				<label>O arquivo atual já foi salvo?<a href="#baixarItem">Baixar o arquivo atual</a>
+				<button onclick="">Novo arquivo em branco</button>
+			</div>
+		
+		
+		</div>
+
 	</body>
 	<script>
-	
-		elmnts = new Elementos;
-		forms = new FormLL;
-		posItens = "block";
-		larguraTotal = window.innerWidth || screen.availWidth;
-		alturaTotal = window.innerHeight || screen.availHeight;
-		getById("entrada").style.width = "100%";
-		getById("entrada").style.height = ( Math.round(alturaTotal*0.40) ) + "px";
-		getById("saida").style.width = "100%";
-		getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
-
-		ajustTamanhos=()=>{
-			larguraTotal = window.innerWidth || screen.availWidth;
-			alturaTotal = window.innerHeight || screen.availHeight;
-			if( posItens === "block"){
-				getById("itensPrincipais").style.display = "block";
-				getById("entrada").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
-				getById("entrada").style.height = ( Math.round(alturaTotal * 0.40) ) + "px";
-				getById("saida").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
-				getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
-				posItens = "flex";
-			} else {
-				posItens = "block";
-				getById("itensPrincipais").style.display = "flex";
-				getById("entrada").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
-				getById("entrada").style.height = ( Math.round(alturaTotal*0.84) ) + "px";
-				getById("saida").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
-				getById("saida").style.height = ( Math.round(alturaTotal*0.86) ) + "px";
-			}
+		trocaBusha=(selec)=>{
+			draw.tipo = selec
 		}
-
-		function salvarArquivo(){
-			textoConteudo = getById("entrada").value;
-			nomeDoArquivo = getById("nomeDoArquivo").value;
-			download( nomeDoArquivo, textoConteudo );
-		}
-
-		const gerarNumeros = ( numeroInicial, numeroFinal, pularNumeros ) => {
-			if ( pularNumeros == null ){ pularNumeros = 2 }
-			while ( numeroInicial <= numeroFinal ){
-				paragrafo =  elmnts.novoParagrafo( "De '" + numeroInicial + "' \r\n até '" + ( ( numeroInicial + pularNumeros ) - 1) + "'");
-				paragrafo.setAttribute("class", "gerarNumeros");
-				elmnts.acrescentar("saida", paragrafo );
-				numeroInicial = numeroInicial + pularNumeros;
-			}
-		}
-
-		function testeCores(){
-			nada = 0; total = 255;
-			while (nada <= total){
-				codigoDaCor = "rgb(0,"+nada+",125)";
-				mostragem = novoElm("div");
-				mostragem.style.background = codigoDaCor ;
-				getById("saida").append( mostragem );
-				mostragem.innerText = codigoDaCor;
-				nada = nada + 01;
-			}
-		}
-
-		function playM( urlMusica, tipoDeAudio, elementoDeSaida ){
-			tagAudio = novoElm("audio");
-			tagAudio.setAttribute("controls", "");
-			elmnts.acrescentar( tagAudio, tagSource( urlMusica, "audio/" + tipoDeAudio ) );
-			getById( elementoDeSaida ).append( tagAudio );
-		}
-
-		function playV( urlVideo, tipoDeVideo, elementoDeSaida ){
-			tagVideo = novoElm("video");
-			tagVideo.setAttribute("controls", "");
-			tagVideo.append( tagSource( urlVideo, "video/" + tipoDeVideo ) );
-			getById( elementoDeSaida ).append( tagVideo );
-		}
-
-		function tagSource( urlDoItem, tipoDoItem ){
-			origemDoItem = novoElm("source");
-			origemDoItem.src = urlDoItem;
-			origemDoItem.setAttribute( "type", tipoDoItem );
-			return origemDoItem;
-		}
-
-		function testeRGB( vermelho, verde, azul){
-			nada = 0; total = 255;
-			while (nada <= total){
-				codigoDaCor = "rgb(0,"+nada+",125)";
-				mostragem = novoElm("div");
-				mostragem.style.background = codigoDaCor ;
-				getById("saida").append(mostragem);
-				mostragem.innerText = codigoDaCor;
-				nada = nada + 01;
-			}
-		}
-
-		function addLinkNoPost( textoDeLink ){
-			//getById("entrada").value = getById("entrada").value + elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML;
-			
-			//tamanhoDoTexto = textoDeLink.length;
-			//getById("entrada").value.match( window.document.getSelection().toLocaleString() );
-			console.log(getById("entrada").value.replace( window.document.getSelection().toLocaleString(), elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML ));
-			getById("entrada").value = getById("entrada").value.replace( window.document.getSelection().toLocaleString(), " " + elmnts.novoLink( textoDeLink, getById( "campo1" ).value , getById("campo2").value ).outerHTML + " " );
-			getById("campo1").value = "";
-			getById("campo2").value = "";
-			gerarHTML();
-		}
-
-		function gerarHTML(){
-			getById("saida").innerHTML = getById("entrada").value;
-		}
-		
-		function addLink(){
-			selecao = window.document.getSelection();
-			textoDoLink = window.document.getSelection().toLocaleString();
-			if( textoDoLink != "" && textoDoLink != null && window.document.getSelection().anchorNode.id === "ferramentas" ){
-				//getById("campo1").class.remove( "escondido" );
-				//getById("campo2").class.remove( "escondido" );
-				getById("atributos").style.animation = "1s focoDeLeitura linear normal";
-				getById("campo1").placeholder = "endereço Do Link";
-				getById("campo2").placeholder = "abrir em nova guia?";
-				getById("adicionarItem").addEventListener( "click", function(){addLinkNoPost( textoDoLink ) });
-			}
-		}
-
-		function abrirJanela( janelaParaAbrir ){ janelaParaAbrir.style.display = "block"; setTimeout( function(){ janelaParaAbrir.style.opacity = "1" }, 500) }
-		function fecharJanela( janelaParaFechar ){ janelaParaFechar.style.opacity = "0" ; setTimeout( function(){ janelaParaFechar.style.display = "none" }, 500) }
-
-		function novoElementoAleatorio( nomeElemento, attr1, valor1, attr2, valor2, valorInterno){
-			novoElemento = document.createElement( nomeElemento );
-			novoElemento.setAttribute( attr1, valor1 );
-			novoElemento.setAttribute( attr2, valor2 );
-			if( valorInterno != "" && valorInterno != null ){
-				novoElemento.innerHTML = valorInterno;
-			}
-			return novoElemento;
-		}
-
-		function elementoPai( elementofilho ){
-			itemSelecionadoEdicao = elementofilho.parentElement;
-			listarAttrs( itemSelecionadoEdicao );
-		}
-
-		function aplicarPropriedade( propNome, valorProp ){
-			itemSelecionadoEdicao.setAttribute(propNome, valorProp);
-			gerarTexto();
-		}
-
-		function listarAttrs( elSelecionado ){
-			itemSelecionadoEdicao = elSelecionado;
-			nomeElemento = forms.inputTexto( "nomeElemento", "nomeElemento",'');
-			nomeElemento.placeholder = "nome do elemento";
-			nomeAttr1 = forms.inputTexto( "nomeAttr1", "nomeAttr1",'class');
-			nomeAttr1.placeholder = "primeiro atributo";
-			valAttr1 = forms.inputTexto( "valAttr1", "valAttr1",'');
-			valAttr1.placeholder = "valor do primeiro atributo";
-			nomeAttr2 = forms.inputTexto( "nomeAttr2", "nomeAttr2",'style');
-			nomeAttr2.placeholder = "segundo atributo";
-			valAttr2 = forms.inputTexto( "valAttr2", "valAttr2",'');
-			valAttr2.placeholder = "valor do segundo atributo";
-			valInternoElm = forms.inputTexto( "valInternoElm", "valInternoElm",'');
-			valInternoElm.placeholder = "conteudo do elemento";
-
-			quantidadeDeAttrs = elSelecionado.attributes.length;
-			btflutanteFechar = elmnts.novoLink("Propriedades -", "javascript:fecharJanela( getById('propriedades') )");
-			btflutanteFechar.setAttribute( "class", "btflutante" );
-			topoProps = elmnts.novaDiv( btflutanteFechar.outerHTML ) ;
-			topoProps.style.position = "fixed";
-			topoProps.id = "topoProps";
-			getById("propriedades").innerHTML = elmnts.novoButton("Ajustar",'ajustTamanhos()',"").outerHTML +"<hr>"+ btflutanteFechar.outerHTML + "<h3>Objeto: " + elSelecionado.tagName + "</h3><h3>ID: " + elSelecionado.id + "</h3><h4>Class: " + elSelecionado.className + "</h4>";
-
-			//itensFilhos = elmnts.novaDiv(elmnts.novoButton('Acima', "elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<h3>Árvore</h3>");
-			itensFilhos = elmnts.novaDiv(elmnts.novoLink('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="20"><polygon points="0,10, 10,0, 0,10, 20,10, 0,10, 10,20" style="stroke:black"></polygon><text style="transform: translate(30px, 19px); font-size: 18pt;">Acima</text></svg>', "javascript:elementoPai( itemSelecionadoEdicao )" ,'').outerHTML + "<h3>Árvore</h3>");
-			itensFilhos.setAttribute("class", "itensFilhos");
-			getById("propriedades").append( itensFilhos );
-			if( itemSelecionadoEdicao.children.length > 0){
-				elFilhos=0;
-				while( elFilhos < itemSelecionadoEdicao.children.length ){
-					itensFilhos.append( elmnts.novoLink( ( elFilhos + 1) + ". " + itemSelecionadoEdicao.children[elFilhos].nodeName + ": " + itemSelecionadoEdicao.children[elFilhos].innerHTML.slice(0,20) , "javascript:listarAttrs( itemSelecionadoEdicao.children[" + elFilhos + "] )", "") );
-					elFilhos++;
-				}
-			}
-
-			if( itemSelecionadoEdicao.nodeName == "STYLE" || itemSelecionadoEdicao.nodeName == "SCRIPT"){
-				getById("propriedades").append( elmnts.novaDiv( "<h3>" + itemSelecionadoEdicao.nodeName + "</h3>" + elmnts.novaDiv( itemSelecionadoEdicao.innerHTML.replaceAll(";", "; <br>") ).outerHTML ) )
-				//console.log( itemSelecionadoEdicao.nodeName );
-			}
-
-			btNovoElemento = elmnts.novaDiv("Adicionar um novo Elemento: ");
-			getById("propriedades").append( btNovoElemento );
-			btNovoElemento.append( nomeElemento, nomeAttr1, valAttr1, nomeAttr2, valAttr2, valInternoElm );
-			btNovoElemento.append( elmnts.novoButton("Add", 'itemSelecionadoEdicao.append( novoElementoAleatorio( getById( "nomeElemento" ).value, getById( "nomeAttr1" ).value, getById( "valAttr1" ).value, getById( "nomeAttr2" ).value, getById( "valAttr2" ).value, getById( "valInternoElm" ).value ) )', '' ) );
-
-			contAttrs = 0;
-			while(contAttrs < quantidadeDeAttrs ){
-				attrNome = elSelecionado.attributes[ contAttrs ].name;
-				if( attrNome == "style"){
-					conteudoAtributo = elSelecionado.attributes[ contAttrs ].textContent.replaceAll(";", "; <br>");
-					//conteudoAtributo = itemSelecionadoEdicao.style.cssText.replaceAll(";", "; <br>");
-				} else {
-					conteudoAtributo = elSelecionado.attributes[ contAttrs ].textContent;
-				}
-				//console.log( conteudoAtributo );
-				editarAttrs = elmnts.novaDiv( conteudoAtributo );
-				editarAttrs.id = "editarAttr--" + attrNome;
-				editarAttrs.setAttribute("contenteditable", "true");
-				getById("propriedades").append( elmnts.novaDiv( "<h5>" + elSelecionado.attributes[ contAttrs ].name + "</h5>" + editarAttrs.outerHTML + elmnts.novoButton("Aplicar " + attrNome, 'aplicarPropriedade( "' + attrNome + '", getById("editarAttr--' + attrNome + '").innerText )', "").outerHTML ) );
-				contAttrs++;
-			}
-			novoAttrNome = elmnts.novaDiv("add_atributo");
-			novoAttrNome.setAttribute("contenteditable", "true");
-			novoAttrValor = elmnts.novaDiv("valores");
-			novoAttrValor.setAttribute("contenteditable", "true");
-			btAplicaNovoAttr = elmnts.novoButton("Adicionar", "itemSelecionadoEdicao.setAttribute( novoAttrNome.innerText, novoAttrValor.innerText )", "");
-			getById("propriedades").append( novoAttrNome, novoAttrValor, btAplicaNovoAttr );
-		}
-
-		function gerarTexto(){
-			getById("entrada").value = getById("saida").innerHTML;
-		}
-		
-		getById("saida").addEventListener( "change", function(){
-			gerarTexto();
-		});
-		
-		getById("saida").addEventListener( "keyup", function(){
-			getById("entrada").value = getById("saida").innerHTML;
-		});
-		
-		getById("entrada").addEventListener( "keyup", function(){
-			gerarHTML();
-		});
-		let itemSelecionadoEdicao;
-		document.getElementById("saida").addEventListener('click', function(e) {
-			itemSelecionadoEdicao = e.target;
-			listarAttrs( e.target );
-		});
-
-		iniciaHold=()=>{
-			llT = new Date();
-			segurando = "solto";
-			tHold = 0;
-			while( segurando === "segurando" ){
-				llT.setMilliseconds(tHold);
-				tHold++;
-			}
-		}
-
-		finalHold=()=>{ segurando = "solto"}
-
-
 	</script>
+	<script src="app.js"></script>
+	<script src="draw.js"></script>
+	<!-- <script src="tagger.js"></script> -->
 </html>
+
