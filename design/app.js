@@ -61,7 +61,7 @@ const gerarTabela = ( numeroInicial, numeroFinal, qtdColunas, localSaida ) => {
 	while( numeroInicial < numeroFinal ){
 		linhaT = criar({ nomeDoElemento: "tr"});
 		colunas=1;
-		while( colunas < qtdColunas ){
+		while( colunas < (qtdColunas+1) ){
 			celula = criar({ nomeDoElemento: "td" });
 			celula.innerText = numeroInicial;
 			linhaT.append( celula );
@@ -383,175 +383,6 @@ fazer = {
 	}
 }
 
-HTML = {
-'<!--...-->':"",
-'<!DOCTYPE>':"",
-'<a>':"",
-'<abbr>':"",
-'<acronym>':"",
-'<address>':"",
-'<animate>':{
-	'begin':"click",
-	'fill':"freeze",
-	'xlink:href':"SeletorCSS",
-	'attributetype':"CSS",
-    'attributename': "opacity",
-    'from':1,
-    'to':0,
-    'dur':"5s",
-	'repeatcount':"indefinite",
-	'repeatDur':"01:30",
-	'values':"50; 490; 350; 450",
-	'keytimes':"0; 0.5; 0.8; 1",
-	'rotate':"",
-	'keysplines':""
-},
-'<animatemotion>':{
-	'begin':"click",
-	'fill':"freeze",
-	'xlink:href':"SeletorCSS",
-	'attributetype':"CSS",
-    'attributename': "opacity",
-    'from':1,
-    'to':0,
-    'dur':"5s",
-	'repeatcount':"indefinite",
-	'repeatDur':"01:30",
-	'values':"50; 490; 350; 450",
-	'keytimes':"0; 0.5; 0.8; 1",
-	'keysplines':"",
-	'path':"",
-	'rotate':"",
-	'mpath': [ '<mpath xlinkhref="SeletorCSS"></mpath>' ]
-},
-'<applet>':"",
-'<area>':"",
-'<article>':"",
-'<aside>':"",
-'<audio>':"",
-'<b>':"",
-'<base>':"",
-'<basefont>':"",
-'<bdi>':"",
-'<bdo>':"",
-'<big>':"",
-'<blockquote>':"",
-'<body>':"",
-'<br>':"",
-'<button>':"",
-'<canvas>':"",
-'<caption>':"",
-'<center>':"",
-'<circle>':"",
-'<cite>':"",
-'<code>':"",
-'<col>':"",
-'<colgroup>':"",
-'<data>':"",
-'<datalist>':"",
-'<dd>':"",
-'<del>':"",
-'<details>':"",
-'<dfn>':"",
-'<dialog>':"",
-'<dir>':"",
-'<div>':"",
-'<dl>':"",
-'<dt>':"",
-'<em>':"",
-'<embed>':"",
-'<fieldset>':"",
-'<figcaption>':"",
-'<figure>':"",
-'<font>':"",
-'<footer>':"",
-'<form>':"",
-'<frame>':"",
-'<frameset>':"",
-'<g>':"",
-'<h1>':"",
-'<h2>':"",
-'<h3>':"",
-'<h4>':"",
-'<h5>':"",
-'<h6>':"",
-'<head>':"",
-'<header>':"",
-'<hr>':"",
-'<html>':"",
-'<i>':"",
-'<iframe>':"",
-'<img>':"",
-'<input>':"",
-'<ins>':"",
-'<kbd>':"",
-'<label>':"",
-'<legend>':"",
-'<li>':"",
-'<link>':"",
-'<main>':"",
-'<map>':"",
-'<mark>':"",
-'<meta>':"",
-'<meter>':"",
-'<nav>':"",
-'<noframes>':"",
-'<noscript>':"",
-'<object>':"",
-'<ol>':"",
-'<optgroup>':"",
-'<option>':"",
-'<output>':"",
-'<p>':"",
-'<param>':"",
-'<path>':"",
-'<picture>':"",
-'<polygon>':"",
-'<pre>':"",
-'<progress>':"",
-'<q>':"",
-'<rect>':"",
-'<rp>':"",
-'<rt>':"",
-'<ruby>':"",
-'<s>':"",
-'<samp>':"",
-'<script>':"",
-'<section>':"",
-'<select>':"",
-'<small>':"",
-'<source>':"",
-'<span>':"",
-'<strike>':"",
-'<strong>':"",
-'<style>':"",
-'<sub>':"",
-'<summary>':"",
-'<sup>':"",
-'<svg>':"",
-'<table>':"",
-'<tbody>':"",
-'<td>':"",
-'<template>':"",
-'<text>':{
-	'<textpath>':'<textpath xlink:href="SeletorCSS"></textpath>'
-},
-'<textarea>':"",
-'<tfoot>':"",
-'<th>':"",
-'<thead>':"",
-'<time>':"",
-'<title>':"",
-'<tr>':"",
-'<track>':"",
-'<tt>':"",
-'<u>':"",
-'<ul>':"",
-'<var>':"",
-'<video>':"",
-'<wbr>':"",
-}
-
 teste=(pessoa)=>{
 	switch (pessoa){
 		case "Luis":
@@ -560,4 +391,15 @@ teste=(pessoa)=>{
 		case "Lima":
 		return "Trabalhador"
 	}
+}
+
+carregarItem=()=>{
+	
+	upFile = getById("nomeArquivoUp").files[0];
+	leitor = new FileReader();
+	leitor.addEventListener("load", upFile);
+	leitor.readAsText( upFile );
+	setTimeout(function(){
+		getById("entrada").value = leitor.result;
+	}, 200)
 }
