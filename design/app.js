@@ -12,6 +12,11 @@ getById("entrada").style.height = ( Math.round(alturaTotal*0.40) ) + "px";
 getById("saida").style.width = "100%";
 getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
 
+
+calcTela = window.innerHeight - getById("menuConteudo").offsetHeight;
+getById("itensPrincipais").style.height= calcTela + "px";
+anteriores = [];
+
 editavel=()=>{
 	editSaida = getById("saida").getAttribute("contenteditable");
 	if( editSaida === "true" ){
@@ -25,18 +30,19 @@ ajustTamanhos=()=>{
 	alturaTotal = window.innerHeight || screen.availHeight;
 	if( posItens === "block"){
 		getById("itensPrincipais").style.display = "block";
-		getById("entrada").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
-		getById("entrada").style.height = ( Math.round(alturaTotal * 0.40) ) + "px";
-		getById("saida").style.width = ( Math.round( larguraTotal * 0.96) ) + "px";
-		getById("saida").style.height = ( Math.round(alturaTotal*0.48) ) + "px";
+		getById("entrada").style.width = "100%";
+		getById("entrada").style.height = ( Math.round( calcTela/2 )-15 ) + "px";
+		getById("saida").style.width = "100%";
+		getById("saida").style.height = ( Math.round( calcTela/2 )-15 ) + "px";
 		posItens = "flex";
 	} else {
 		posItens = "block";
 		getById("itensPrincipais").style.display = "flex";
-		getById("entrada").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
-		getById("entrada").style.height = ( Math.round(alturaTotal*0.84) ) + "px";
-		getById("saida").style.width = ( Math.round( larguraTotal * 0.48) ) + "px";
-		getById("saida").style.height = ( Math.round(alturaTotal*0.86) ) + "px";
+		getById("itensPrincipais").style.width = "100%";
+		getById("entrada").style.width = ( Math.round( larguraTotal * 0.4999) ) + "px";
+		getById("entrada").style.height = ( calcTela-22 ) + "px";
+		getById("saida").style.width = ( Math.round( larguraTotal * 0.4999) ) + "px";
+		getById("saida").style.height = ( calcTela ) + "px";
 	}
 }
 
