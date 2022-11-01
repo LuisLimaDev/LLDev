@@ -407,5 +407,6 @@ carregarItem=()=>{
 	leitor.readAsText( upFile );
 	setTimeout(function(){
 		getById("entrada").value = leitor.result;
+		gerarHTML();
 	}, 200)
 }
