@@ -73,6 +73,68 @@ criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType,
 	return elmentoAleatorio;
 }
 
+
+/****************************************************************/
+/****************************************************************/
+/**                                                            **/
+/**  VERSÃO INCRIVEL - modofica qualquer elemento, até SVG!!!  **/
+/**                                                            **/
+/****************************************************************/
+/****************************************************************/
+
+ll2 = {
+	velho: null,
+	velhos: new Array(),
+	set: function(e, o){
+		for( i=0; i<o.length; i++ ){
+			e.setAttribute( o[i].att, o[i].valor )
+		}
+		return e
+	},
+	novo: function({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType, atributoClass, atributoHREF, atributoSRC, atributoTarget, atributoOnClick, atributoStyle, outros, conteudoInterno }){
+		this.velho = novoElm( nomeDoElemento );
+		if ( conteudoInterno ){ this.velho.innerHTML = conteudoInterno; }
+		if ( atributoID ){ this.velho.id = atributoID; }
+		if ( atributoClass ){ this.velho.setAttribute("class", atributoClass);}
+		if ( atributoValue ){ this.velho.value = atributoValue;}
+		if ( atributoType ){ this.velho.type = atributoType;}
+		if ( atributoTarget ){ this.velho.target = atributoTarget;}
+		if ( atributoHREF ){ this.velho.href = atributoHREF;}
+		if ( atributoSRC ){ this.velho.setAttribute("src", atributoSRC);}
+		if ( atributoName ){ this.velho.name = atributoName;}
+		if ( atributoOnClick ){ this.velho.setAttribute("onclick", atributoOnClick );}
+		if ( atributoStyle ){ this.velho.style = atributoStyle;}
+		if ( outros ){ this.set( this.velho, outros) }
+		this.velhos.push( this.velho );
+		return this.velho;
+	}
+}
+
+casosDeUso=()=>{
+	formaSVG = make.novo({ nomeDoElemento:"path", atributoStyle:"stroke: black", outros:[{att:"d",valor:"m0,0 10,0z"}] });
+
+	umaDIV = make.novo({
+		nomeDoElemento:"div",
+		conteudoInterno:"texto de teste",
+		outros:[
+			{
+				att:"contentEditable",
+				valor:true
+			},
+			{
+				att:"dataset-objeto-teste",
+				valor:"sucesso"
+			}
+		]
+	});
+	
+	objExistente = make.set( getById( objExistente ), [{att:"contentEditable", valor:true}, {att:"dataset-objeto-teste", valor:"sucesso"}]);
+
+}
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
 	trocarJanela = function( janelaQueSai, janelaQueEntra ){
 		tirarJanela( janelaQueSai );
 		trazerJanela( janelaQueEntra );
