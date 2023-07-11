@@ -1,4 +1,4 @@
-//elemental.js
+//elemental.js...
 
 let ancora, paragrafo, spanDeTexto, imagem, novoFrame, novoBotao, novaDiv, novaSessao, svgTag, novoPattern, patternImage, nLinearGradient, corDeParada2, corDeParada1, estilosSVG, agrupamentoSVG, formaPath;
 
@@ -12,7 +12,22 @@ let parametrosDaURL = ( parametroDeclarada ) => {
 	return pURL.searchParams.get( parametroDeclarada )
 }
 
+svgToIMG=( conteudoSVG )=>{
+	return `data:image/svg+xml;utf8,` + conteudoSVG;
+}
+
 // elemental 2.0
+nada={
+	version:3.0,
+	tipo:"",
+	peso:"",
+	apli:function({tipo,peso}){
+		if(tipo){this.tipo=tipo}
+		if(peso){this.peso=peso}
+	}
+}
+
+conect="on",
 
 lmnt = ({
 	lmntName,
@@ -29,11 +44,10 @@ lmnt = ({
 	attrCHECKED,
 	attrENABLED,
 	attrFOR,
-	attrPLACEHOLDER,
 	contHTML,
 	contTexto,
 	editavel,
-	ajuda
+	help
 }) => {
 	lmnt = novoElm( lmntName );
 	if ( attrID ){ lmnt.id = attrID }
@@ -49,11 +63,30 @@ lmnt = ({
 	if ( attrCHECKED ){ lmnt.checked = attrCHECKED }
 	if ( attrENABLED ){ lmnt.enabled = attrENABLED }
 	if ( attrFOR ){ lmnt.for = attrFOR }
-	if ( attrPLACEHOLDER ){ lmnt.placeholder = attrPLACEHOLDER }
 	if ( contHTML ){ lmnt.innerHMTL = contHTML }
 	if ( contTexto ){ lmnt.innerHMTL = contTexto }
 	if ( editavel ){ lmnt.setAttribute("contentEditable", editavel ) }
-	if ( ajuda != null || ajuda != undefined ){ return "lmntName, attrID, attrCLASS, attrNAME, attrTYPE, attrTARGET, attrHREF, attrSRC, attrSTYLE, attrONCLICK, attrVALUE, attrCHECKED, attrENABLED, attrFOR, attrPLACEHOLDER, contHTML, contTexto, editavel, ajuda"
+	if ( help != null || help != undefined ){
+		lmnt = ' Função "lmnt" \n Versão 1.2 \n Por: LuisLimaDev \n Criação de Elementos HTML por DOM em JavaScript. Para utilização, declare as variáveis pretendidas.\n';
+		lmnt = lmnt + 'lmntName - Refere-se ao Elemento. Ex: a, iframe, span, div... \n';
+		lmnt = lmnt + 'attrID - ID de objeto HTML.\n';
+		lmnt = lmnt + 'attrCLASS - Classes de identificação. \n';
+		lmnt = lmnt + 'attrNAME - Atributo "name", normalmente para inputs.\n';
+		lmnt = lmnt + 'attrTYPE - Atributo "type", normalmente para inputs.\n';
+		lmnt = lmnt + 'attrTARGET - Taarget normalmente para links e formulários.\n';
+		lmnt = lmnt + 'attrHREF - Atributo "HREF", normalmente usado em links.\n';
+		lmnt = lmnt + 'attrSRC - Atributo "SRC" normalmente muito utilizado em img, source e script.\n';
+		lmnt = lmnt + 'attrSTYLE - Estilização em CSS.\n';
+		lmnt = lmnt + 'attrONCLICK - Evento de click no elemento.\n';
+		lmnt = lmnt + 'attrVALUE - Texto interno de elementos "input".\n';
+		lmnt = lmnt + 'attrCHECKED - Válido para inputs de radio e checkbox.\n';
+		lmnt = lmnt + 'attrENABLED - Ativa/desativa interação do objeto HTML.\n';
+		lmnt = lmnt + 'attrFOR - Normalmente identifica um label.\n';
+		lmnt = lmnt + 'contHTML - Conteúdo interno em string HTML do elemento solicitado.\n';
+		lmnt = lmnt + 'contTexto - Texto interno no elemento.\n';
+		lmnt = lmnt + 'editavel - Válido para edições dinâmicas no texto interno do elemento.\n';
+		lmnt = lmnt + 'help - Exibe este texto.'
+		return lmnt
 	} else {return lmnt}
 }
 
@@ -72,6 +105,7 @@ criar = ({nomeDoElemento, atributoID, atributoName, atributoValue, atributoType,
 	if ( atributoStyle ){ elmentoAleatorio.style = atributoStyle;}
 	return elmentoAleatorio;
 }
+
 
 
 /****************************************************************/
@@ -135,6 +169,166 @@ casosDeUso=()=>{
 /****************************************************************/
 /****************************************************************/
 
+//3. Scroll elements to the visible area
+const smoothScroll = (element) => {
+  element.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+
+
+//Get the type of data
+const getType = (value) => {
+  const match = Object.prototype.toString.call(value).match(/ (\w+)]/)
+  return match[1].toLocaleLowerCase()
+}
+
+
+//
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
+// debounce
+    // fn is the function that needs debounce, delay is the timer time
+    function debounce(fn,delay){
+        let timer =  null  // for saving the timer
+        return function () { 
+            // If the timer exists, clear the timer and restart the timer
+            if(timer){
+                clearTimeout(timeout);
+            }
+            //Set a timer and execute the actual function to be executed after a specified time
+            timeout = setTimeout(() => {
+               fn.apply(this);
+            }, delay);
+        }
+    }
+    
+    // throttle
+    function throttle(fn) {
+      let timer = null; // First set a variable, when the timer is not executed, the default is null
+      return function () {
+        if (timer) return; // When the timer is not executed, the timer is always false, and there is no need to execute it later
+        timer = setTimeout(() => {
+          fn.apply(this, arguments);
+           // Finally, set the flag to true after setTimeout is executed (key)
+           // Indicates that the next cycle can be executed
+          timer = null;
+        }, 1000);
+      };
+    }
+
+// Check 2-9 characters, false if not matched, true if matched
+    const validateName = (name) => {
+      const reg = /^[\u4e00-\u9fa5]{2,9}$/;
+      return reg.test(name);
+    };
+// Verify phone number
+    const validatePhoneNum = (mobile) => {
+      const reg = /^1[3,4,5,6,7,8,9]\d{9}$/;
+      return reg.test(mobile);
+    };
+// Check passwords consisting of 6 to 18 uppercase and lowercase alphanumeric underscores
+    const validatePassword = (password) => {
+      const reg = /^[a-zA-Z0-9_]{6,18}$/;
+      return reg.test(password);
+    };
+
+	// formatar dinheiro money
+	const formatMoney = (money) => {
+	  return money.toLocaleString()
+	}
+
+
+	//getColorFun(178,232,55) // The output here is #b2e837
+	function getColorFun(r,g,b) {
+       return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+    }
+    
+    //copyText('hello!') // ctrl + v = copyText  | true
+	const copyText = (text) => {
+        // clipboardData Copy what you need on the page to the clipboard
+        const clipboardData = window.clipboardData
+        if (clipboardData) {
+          clipboardData.clearData()
+          clipboardData.setData('Text', text)
+          return true
+        } else if (document.execCommand) {  // Note that document.execCommand is deprecated but some browsers still support it. Remember to check the compatibility when using it
+          // Get the content to be copied by creating a dom element 
+          const el = document.createElement('textarea')
+          el.value = text
+          el.setAttribute('readonly', '')
+          el.style.position = 'absolute'
+          el.style.left = '-9999px'
+          document.body.appendChild(el)
+          el.select()
+          // Copy the current content to the clipboard
+          document.execCommand('copy')
+          // delete el node
+          document.body.removeChild(el)
+          return true
+        }
+        return false
+    }
+      
+
+
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
+function filterCharacter(str){
+        // First set a mode
+        let pattern = new RegExp("[`~!@#$^&*()=：”“'。，、？|{}':;'%,\\[\\].<>/?~！@#$……&*（）&;—|{ }【】‘；]")
+        let resultStr1 = "";
+        for (let j= 0; j< str.length; j++) {
+            // Mainly through replace, pattern rules to replace characters with empty and finally spliced in resultStr1
+            resultStr1 = resultStr1 + str.substr(j, 1).replace(pattern, '');
+        }
+        // When the loop ends, return the final result resultStr1
+        return resultStr1;
+    }
+    
+    // Example
+    filterCharacter('gyaskjdhy12316789#$%^&!@#1=123,./[') // Result: gyaskjdhy123167891123
+
+
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
+// Convert RGB to Hex
+function getColorFun(r,g,b) {
+       return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+    }
+    
+    getColorFun(178,232,55) // The output here is #b2e837
+
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
+
+// <picture>
+  // <source srcset="my-logo-wide.webp" type="image/webp" media="(min-width: 600px)" />
+  // <source srcset="my-logo-wide.jpeg" type="image/jpeg" type="image/jpeg" media="(min-width: 600px)" />
+  // <source srcset="my-logo-narrow.webp" type="image/webp" /> 
+  // <img src="my-logo-narrow.png" alt="KOUSTAV" loading="lazy" />
+// </picture>
+
+
+
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
+
+
 	trocarJanela = function( janelaQueSai, janelaQueEntra ){
 		tirarJanela( janelaQueSai );
 		trazerJanela( janelaQueEntra );
@@ -197,18 +391,17 @@ class llTempo {
 
 		entradaDaData = new Date( entradaDaData );
 		return entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
-
+	
 	}
 
 	dataPorExtenso2( entradaDaData ){
-		if( entradaDaData.length === 10 ){
-			entradaDaData = new Date( entradaDaData );
-		} else if( entradaDaData.length === 8 ){
-			entradaDaData = entradaDaData.toString();
-			entradaDaData = entradaDaData.toString().slice(0,4) +'-' + entradaDaData.toString().slice(4,6) + '-' + entradaDaData.toString().slice(6,8);
-			entradaDaData = new Date( entradaDaData );
-		}
-		return this.diaDaSemana[ entradaDaData.getDay() ] + ", " + parseInt( entradaDaData.getDate()+1 ) + " de " + this.mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+
+		diaDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sexta"];
+		mesDoAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+		entradaDaData = new Date( entradaDaData );
+		return diaDaSemana[ entradaDaData.getDay() ] + ", " + entradaDaData.getDate() + " de " + mesDoAno[entradaDaData.getMonth()] + " de " + entradaDaData.getFullYear();
+	
 	}
 
 	horaPorExtenso=( horaEntrada )=>{
@@ -247,7 +440,7 @@ class Elementos {
 		ancora = novoElm("a");
 		ancora.innerHTML = textoInterno;
 		ancora.href = destinoDoLink;
-		if( targetLink == "" || targetLink == null ){  } else { ancora.target = targetLink }
+		if( targetLink == "" || targetLink == null ){ console.log("feito!") } else { ancora.target = targetLink }
 		return ancora;
 	}
 	
@@ -660,3 +853,26 @@ function download(nomeDoArquivo, text) {
 /******************************************************************************/
 /******************************************************************************/
 /******************************************************************************/
+
+compartilha=()=>{
+	navigator.share({
+		title: getById("materia").children[0].children[0].innerText,
+		text: getById("materia").children[0].children[1].innerText,
+		url: window.location.href,
+	})
+}
+
+function loadDoc( getOuPost, urlItem ) {
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+		linhasDoTXT = this.responseText;
+	}
+	xhttp.open( getOuPost, urlItem);
+	xhttp.send();
+	
+setTimeout(function(){ saidaItem( linhasDoTXT ); }, 400);
+}
+
+saidaItem=( itemProConsoleLog )=>{
+	console.log( itemProConsoleLog )
+}
