@@ -25,6 +25,76 @@ editavel=()=>{
 	getById("saida").setAttribute("contenteditable", editSaida );
 }
 
+graf=( porcent, elmCnt )=>{
+	elmCnt.style.backgroundImage = "conic-gradient(#ddf, #ddf " + ( porcent * 3.6 ) + "deg, #a48 0)";
+	elmCnt.innerText = porcent + "%"
+}
+
+fillPizza=(elmCnt, porcentagem, total)=>{
+	setTimeout( ()=>{
+		if(porcentagem < total){
+			porcentagem++;
+			elmCnt.style.backgroundImage = "conic-gradient(#ddf, #ddf " + ( porcentagem * 3.6 ) + "deg, #a48 0)";
+			elmCnt.innerText = porcentagem + "%"
+		}
+		repetidor = fillPizza(elmCnt, porcentagem, total);
+	}, 10 );
+}
+
+props=[
+	{propNome:"margin-left",porpValor: "0"},
+	{propNome:"margin-left",porpValor: "15%"},
+	{propNome:"margin-left",porpValor: "25%"},
+	{propNome:"margin-left",porpValor: "35%"},
+	{propNome:"margin-left",porpValor: "45%"},
+	{propNome:"background",porpValor: "#08a"},
+	{propNome:"background",porpValor: "#298"},
+	{propNome:"margin-top",porpValor: "0%"},
+	{propNome:"margin-top",porpValor: "5%"},
+	{propNome:"margin-top",porpValor: "10%"},
+	{propNome:"margin-top",porpValor: "15%"},
+	{propNome:"background",porpValor: "#ce0"},
+	{propNome:"background",porpValor: "#df0"},
+	{propNome:"background",porpValor: "#e00"},
+	{propNome:"margin-top",porpValor: "0"},
+	{propNome:"margin-left",porpValor: "0"}
+]
+
+kick=[
+	{propNome:"margin-left",porpValor: "0"},
+	{propNome:["margin-left", "margin-top"],porpValor: ["0"]},
+	{propNome:"margin-left",porpValor: "0"}
+]
+
+divTest = '<div><br></div><div id="pa" style="width: 0px; height: 0px; padding: 100px; margin-left: 0px; background: rgb(238, 0, 0); margin-top: 0px;"><br></div>';
+
+animePropCSS1=(elmCnt, posic, etapas, loop )=>{
+	loop = ( loop != null ? loop : false);
+	setTimeout( function(){
+		if( posic == (etapas.length - 2) && loop === true ){
+			posic = 0;
+		} else if( posic <  (etapas.length - 1) ){
+			elmCnt.style[ etapas[posic].propNome] = etapas[posic].porpValor;
+			console.log( posic + ". Props: " + [etapas[posic].propNome] + " = " + etapas[posic].porpValor );
+			posic++;
+			repetidor = animePropCSS1( elmCnt, posic, etapas, loop );
+		}
+	}, 60 );
+	elmCnt.style[etapas[posic].propNome ] = etapas[posic].porpValor;
+}
+
+animePropCSS=(elmCnt, posic, etapas )=>{
+	setTimeout( function(){
+		if( posic < (etapas.length - 1) ){
+			elmCnt.style[ etapas[posic].propNome] = etapas[posic].porpValor;
+			console.log( posic + ". Props: " + [etapas[posic].propNome] + " = " + etapas[posic].porpValor );
+			posic++;
+			repetidor = animePropCSS( elmCnt, posic, etapas );
+		}
+	}, 90 );
+	elmCnt.style[etapas[posic].propNome ] = etapas[posic].porpValor;
+}
+
 ajustTamanhos=()=>{
 	larguraTotal = window.innerWidth || screen.availWidth;
 	alturaTotal = window.innerHeight || screen.availHeight;
@@ -188,6 +258,17 @@ isolarOuterHTML=( stringID )=>{
 
 editContElm=()=>{
 	itemSelecionadoEdicao.innerHTML = getById('conteudoElementoSelec').innerText;
+	gerarTexto();
+}
+
+checkAttrs=( qntAttrs, el )=>{
+	if( qntAttrs == 0 ){
+		// el.innerHTML = el.textContent;
+		return "<span>" + el.textContent + "</span>"
+	} else {
+		estilosItemSelecionado( el );
+		return el.getAttribute("class")
+	}
 }
 
 function listarAttrs( elSelecionado ){
@@ -331,6 +412,10 @@ loadRegras2=( seletorCSS )=>{
 		}
 	}
 }
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+
 
 function gerarTexto(){
 	getById("entrada").value = getById("saida").innerHTML;
@@ -351,7 +436,13 @@ getById("entrada").addEventListener( "keyup", function(){
 	coletarEstilos();
 	gerarHTML();
 });
+
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+
 let itemSelecionadoEdicao;
+
 document.getElementById("saida").addEventListener('click', function(e) {
 	itemSelecionadoEdicao = e.target;
 	listarAttrs( e.target );
@@ -409,4 +500,239 @@ carregarItem=()=>{
 		getById("entrada").value = leitor.result;
 		gerarHTML();
 	}, 200)
+}
+
+novoArquivo=()=>{
+	getById("entrada").value = "";
+	gerarHTML();
+}
+
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+
+shotIt=()=>{
+	// solução via link API
+	// https://html2canvas.hertzen.com/
+	html2canvas( getById("saida") ).then(canvas => {
+		let a = document.createElement("a");
+		a.download = "ss.png";
+		a.href = canvas.toDataURL("image/png");
+		a.click();
+	});
+}
+
+shotEl=(htmlOBJ)=>{
+	// solução via link API
+	// https://html2canvas.hertzen.com/
+	html2canvas( htmlOBJ ).then(canvas => {
+		let a = document.createElement("a");
+		a.download = "ss.png";
+		a.href = canvas.toDataURL("image/png");
+		a.click();
+	});
+}
+
+shotAt=()=>{
+	// solução sem API externa
+	// Request media
+	canvas = make.novo({ nomeDoElemento: "canvas" });
+	navigator.mediaDevices.getDisplayMedia().then(stream => {
+		// Grab frame from stream
+		let track = stream.getVideoTracks()[0];
+		let capture = new ImageCapture(track);
+		capture.grabFrame().then(bitmap => 
+		{
+			// Stop sharing
+			track.stop();
+			  
+			// Draw the bitmap to canvas
+			canvas.width = bitmap.width;
+			canvas.height = bitmap.height;
+			canvas.getContext('2d').drawImage(bitmap, 0, 0);
+			  
+			// Grab blob from canvas
+			canvas.toBlob(blob => {
+				// Do things with blob here
+				console.log('output blob:', blob);
+				getById("saida").append(canvas)
+			});
+		});
+	}).catch(e => console.log(e));
+}
+
+printDiv=({divId, title}) =>{
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+  mywindow.document.write(`<html><head><title>${'title'}</title>`);
+  mywindow.document.write('</head><body >');
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+
+  // mywindow.document.close(); // necessary for IE >= 10
+  mywindow.print();
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  // mywindow.close();
+
+  return true;
+}
+
+shotTo=()=>{
+	// função que utiliza uma API
+	// https://raw.githubusercontent.com/amiad/screenshot.js/master/screenshot.js
+	new Screenshot({success: img => {
+        // callback function
+        myimage = img;
+    }});
+	getById("saida").append(myimage)
+}
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+
+
+
+orgEsc=()=>{
+	todoPDF = getById("entrada").value;
+	pags = todoPDF.replace(/\n/gi, " ");
+	pags = pags.split("Ano Letivo: ");
+
+	turma = new Array();
+	for( tSala = 1; tSala < pags.length; tSala++ ){
+		infoSala = pags[tSala].split("Série Nr Nome do Aluno RA Dig. RA UF RA Data de Nascimento Situação Data Movimentação Defciência ");
+		blocoInfo = infoSala[0].split(": ");
+		iTurma = "";
+		if( 1 < infoSala.length ){
+			lSala = infoSala[1] + infoSala[2];
+		} else {
+			lSala = infoSala[1]
+		}
+		turma.push({
+			vigencia: blocoInfo[0].slice(0,4),
+			dataAtualiz: blocoInfo[1].slice(0,10),
+			horaAtualiz: blocoInfo[1].slice(12,20),
+			idTurma: blocoInfo[4].split(" ")[0],
+			tipo: blocoInfo[5].slice(0, -12),
+			serie: blocoInfo[8].slice(0,-7),
+			alunos: lSala
+		});
+	}
+}
+
+orgAluno=( objTurma )=>{
+	bAlunos = objTurma.alunos;
+	alunos = new Array();
+	pedc = bAlunos.split(" SP ");
+	espacoDefc = "";
+	for( nAl = 1; nAl < pedc.length ; nAl++ ){
+		alSepar = pedc[nAl].split(" ");
+		defc = "";
+		if( parseInt( pedc[nAl].split(" ")[3] ) != NaN ){
+			defc = pedc[nAl].split(" ")[3];
+			// console.log(nAl + " - " + pedc[nAl].split(" ")[3] );
+		} else {
+			defc = espacoDefc
+		}
+		alunos.push({
+			serie: pedc[nAl-1].split(" ")[ 0 ],
+			// numChamada: numChamada,
+			// nome
+			ra: pedc[nAl-1].split(" ")[ pedc[nAl-1].split(" ").length - 2 ],
+			digRA: pedc[nAl-1].split(" ")[ pedc[nAl-1].split(" ").length - 1 ],
+			dataDeNascimento: pedc[nAl].split(" ")[0],
+			uf: "SP",
+			situacao: pedc[nAl].split(" ")[1],
+			dataMovimentacao: pedc[nAl].split(" ")[2],
+			// defciencia: pedc[nAl].split(" ")[3]
+			defciencia: defc
+		})
+
+	}
+	return alunos
+}
+
+ckInt=( tB, oAluno, posic )=>{
+	// if( 100 > parseInt(tB) && oAluno.serie == "" ){ // pode ser serie, numCHamada, digRA
+		// if( oAluno.serie == 0 ){}
+	// }
+}
+
+cf=( bloco, coluna )=>{
+	coluna = coluna || -12;
+	resumo = new Array();
+	linhas=bloco.children;
+	i=8;
+	if( !(linhas[5].innerText.match("FUNDAMENTAL")) == false ){
+		materias = 8;
+		if( linhas[3].innerText.split("Ano Letivo: ")[1] > 2017 ){
+			materias = 11;
+		} else if( linhas[3].innerText.split("Ano Letivo: ")[1] > 2020 ){
+			materias = 15;
+		}
+	} else {
+		materias = 11
+	}
+	materias = i + materias;
+	resumo.push({ turma: linhas[5].innerText.split("Turma: ")[1], ano: linhas[3].innerText.split("Ano Letivo: ")[1] });
+	while( i< linhas.length ){
+		if( linhas[i].innerText != "Resultado Final" ){
+			nomeDisc = linhas[i].innerText.split(" ")[0];
+			if( isNaN(linhas[i].innerText.split(" ")[1]) == true){
+				nomeDisc = linhas[i].innerText.split(" ")[0] + " " + linhas[i].innerText.split(" ")[1];
+				if( isNaN(linhas[i].innerText.split(" ")[2]) == true){
+					nomeDisc = linhas[i].innerText.split(" ")[0] + " " + linhas[i].innerText.split(" ")[1] + " " + linhas[i].innerText.split(" ")[2];
+				}
+			}
+			notaFinal = linhas[i].innerText.split(" ")[linhas[i].innerText.split(" ").length + coluna ];
+			resumo.push({
+				disciplina: nomeDisc, nota: notaFinal
+			});
+			i++
+		} else { i = linhas.length }
+	}
+	mostrarResumo( resumo, bloco);
+}
+
+mostrarResumo=( resAno, elmDados )=>{
+	tabela = criar({
+		nomeDoElemento: "table",
+		conteudoInterno: "<thead><td>"+ resAno[0].turma +"</td><td>30/11/"+ resAno[0].ano +"</td></thead>"
+	});
+	corpoTabela = criar({ nomeDoElemento: "tbody"});
+	tabela.append( corpoTabela );
+	for( dd=1; dd < ( resAno.length ); dd++ ){
+		corpoTabela.append( criar({
+			nomeDoElemento: "tr",
+			conteudoInterno: "<td>"+ resAno[dd].disciplina +"</td><td>"+ resAno[dd].nota +"</td>"
+		}))
+	}
+	elmDados.append( criar({nomeDoElemento: 'br'}), tabela );
+}
+
+
+takeScreenshot=( elOBJ, sizes )=>{
+
+
+	const canvas = document.createElement("canvas");
+	canvas.width = sizes.w;
+	canvas.height = sizes.h;
+	canvas.getContext('2d').drawImage(elOBJ, 0, 0, canvas.width, canvas.height);
+	const img = document.createElement("img");
+	img.src = canvas.toDataURL();
+
+	if (this.args.width) {
+		img.width = this.args.width;
+	}
+	if (this.args.height) {
+		img.height = this.args.height;
+	}
+
+	img.addEventListener('load', () => {
+		if (typeof this.args.success == 'function'){
+			this.args.success(img);
+		}
+	});
 }
