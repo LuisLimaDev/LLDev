@@ -4,13 +4,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script src="../elemental.js"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+		<script src="screenshot.js"></script>
 		<style id="llDesign">
 		
 			:root{
 				--corBase: #88aaff;
-				--corBase2: #ACF;
+				--corBase2: #e6f2ff;
 			}
-			circle:hover, path:hover, text:hover {
+			#saida circle:hover, #saida path:hover, #saida text:hover {
 				stroke: rgb(255 0 0/50%);
 				stroke-width: 10px;
 			}
@@ -80,11 +82,11 @@
 				min-height: 150px;
 				position: fixed;
 				width: 300px;
-				background: var( --corBase );
+				background: var( --corBase2 );
 				top: 1%;
 				right: 20px;
 				height: 90vh;
-				border: 15px solid var( --corBase );
+				border: 15px solid var( --corBase2 );
 				overflow-y: auto;
 				box-shadow: 0px 3px 6px #000;
 				display: none;
@@ -168,7 +170,8 @@
 				top: 50%;
 				left: 50%;
 				display: grid;
-				background: var( --corBase );
+				background: #dbdbdb88;
+				backdrop-filter: blur(10px);
 				padding: 20px;
 				transform: translate(-50%, -50%);
 				box-shadow: 0 0 0 10000px #222a, 0 0 20px #000;
@@ -177,7 +180,7 @@
 
 			div#menuConteudo {
 				display: flex;
-				background: #46a;
+				background: #0008;
 				color: white;
 				font-family: sans-serif;
 			}
@@ -188,8 +191,25 @@
 				margin: 0 5px;
 			}
 
+			#lightEASobre{
+				display: grid;
+			}
+
+			#lightEASobre div{
+				max-width: 550px;
+			}
+
+			div#lightEASobre div {
+				width: 100%;
+				padding: 50px 1%;
+			}
+
+			#lightEASobre p{
+				margin: 10px 0;
+			}
+
 			div#menuConteudo span:hover {
-				background: #acf;
+				background: #000a;
 			}
 
 			div#menuConteudo section {
@@ -197,7 +217,7 @@
 			}
 
 			.dropavel a:hover {
-				background: var( --corBase);
+				background: #0002;
 				text-decoration: underline;
 			}
 
@@ -231,7 +251,7 @@
 									</div>
 								</section>
 								<section>
-									<span>Desenhar</span>
+									<span id="sinDraw">Desenhar</span>
 									<div class="dropavel">
 										<a href="JavaScript:ativarDraw()">Ativar</a>
 										<a href="JavaScript:trocaBusha('Path')">Linhas Path</a>
@@ -242,6 +262,12 @@
 								<section><span onclick="ajustTamanhos()">Ajustar</span></section>
 								<section><span onclick="editavel()">Editavel</span></section>
 								<section><span onclick="janelaExterna()">Visualizar</span></section>
+								<section>
+									<span>Mais</span>
+									<div class="dropavel">
+										<a href="#sobre">Sobre</a>
+									</div>
+								</section>
 							</div>
 							<div id="itensPrincipais">
 								<textarea id="entrada" rows="7" ></textarea>
@@ -291,7 +317,48 @@
 					<span>Deseja criar um novo</span>
 				</div>
 				<label>O arquivo atual já foi salvo?<a href="#baixarItem">Baixar o arquivo atual</a>
-				<button onclick="">Novo arquivo em branco</button>
+				<br>
+				<label><a href="#inicio" onclick="novoArquivo()">Novo arquivo em branco</a></label>
+			</div>
+		
+			<div id="sobre" class="janela dropavel">
+				<div class="tituloJanela">
+					<a href="#" onclick="">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="25 25 50 50"  height="30" width="30"><path class="item1" style="stroke: black" d=" m25, 50, 50, 0z m0, 0, 25, 25z m0, 0, 25, -25z"></path></svg>
+					</a>
+					<span>Sobre o Aplicativo</span>
+				</div>
+				<div id="lightEASobre">
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200" width="530" viewBox="0 0 530 140">
+
+							<defs>
+								<linearGradient id="grad" y1="0.024" x2="1" y2="1" gradientUnits="objectBoundingBox">
+									<stop offset="0" stop-color="#ff0"></stop>
+									<stop offset="1" stop-color="#f0a"></stop>
+								</linearGradient>
+							</defs>
+
+							<g style="fill: url(#grad)">
+								<text class="item0" style="
+								transform: translate( 10px, 100px);
+								font-family: monospace;
+								filter: drop-shadow(2px 2px 2px #f0f) drop-shadow(-2px -2px 2px #ff0) drop-shadow(1px 1px 0px #fff) drop-shadow(-1px -1px 0px #fff);
+								font-size: 100pt;
+								">LightEA</text>
+								<text class="item1" style="transform: translate( 440px, 128px);
+								fill: rgb(0 0 0); font-family: sans-serif">By LLDev</text>
+							</g>
+						</svg>
+					</div>
+					<div>
+						<h1>LightEA</h1>
+						<p>Este é um aplicativo em desenvolvimento para ser um facilitador de criação de interfaces web com editor de propriedades para os elementos.</p>
+						<p>Agradecimentos <a href="https://raw.githubusercontent.com/amiad/screenshot.js/master/screenshot.js" target="_blank">amiad</a> pela API provida para captura de imagens.</p>
+						<p>Agradecimentos <a href="https://html2canvas.hertzen.com/dist/html2canvas.min.js" target="_blank">html2canvas</a> pela API provida para captura de canvas.</p>
+						<p>Produto desenvolvido pela LLDev ( <a class="" style="right: 190px" target="_blank" href="https://luislimadev.github.io/LLDev">github@LLDev</a> ).</p>
+					</div>
+				</div>
 			</div>
 		
 		
@@ -307,4 +374,3 @@
 	<script src="draw.js"></script>
 	<!-- <script src="tagger.js"></script> -->
 </html>
-
